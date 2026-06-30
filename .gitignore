@@ -1,0 +1,6 @@
+.env
+access_token.txt
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
