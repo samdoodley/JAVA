@@ -25,6 +25,7 @@ from config import (
     MANUAL_REQUEST_TOKEN, ACCESS_TOKEN,
     PAPER_TRADING,
     STARTING_CAPITAL, CAPITAL_PER_TRADE, RISK_PER_TRADE_PCT,
+    POSITION_QTY_MULTIPLIER,
     EMA_LENGTH, MIN_WICK_PCT, RISK_REWARD, MAX_POSITIONS,
     SCAN_INTERVAL_SEC,
     DASHBOARD_HOST, DASHBOARD_PORT,
@@ -372,7 +373,8 @@ def calc_qty(entry: float, sl: float) -> int:
     risk_per_share = abs(entry - sl)
     if risk_per_share == 0:
         return 0
-    return max(1, int(risk_amount / risk_per_share))
+    base_qty = max(1, int(risk_amount / risk_per_share))
+    return max(1, base_qty * POSITION_QTY_MULTIPLIER)
 
 
 # ── Paper Trading ─────────────────────────────────────────────────────────────
@@ -490,10 +492,10 @@ def monitor_positions():
                 elif price >= pos["tp"]:
                     exit_trade(symbol, pos["tp"], "TP_HIT")
                 else:
-                with _state_lock:
-                    if symbol in state["positions"]:
-                        state["positions"][symbol]["pnl"] = round((price - pos["entry"]) * pos["qty"], 2)
-                        _save_current_report()
+                    with _state_lock:
+                        if symbol in state["positions"]:
+                            state["positions"][symbol]["pnl"] = round((price - pos["entry"]) * pos["qty"], 2)
+                    _save_current_report()
             else:
                 if price >= pos["sl"]:
                     exit_trade(symbol, pos["sl"], "SL_HIT")
@@ -503,7 +505,7 @@ def monitor_positions():
                     with _state_lock:
                         if symbol in state["positions"]:
                             state["positions"][symbol]["pnl"] = round((pos["entry"] - price) * pos["qty"], 2)
-                            _save_current_report()
+                    _save_current_report()
         except Exception as e:
             log.warning(f"Monitor error {symbol}: {e}")
 

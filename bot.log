@@ -2515,3 +2515,581 @@
 2026-06-30 15:39:28,267 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
 2026-06-30 15:40:28,287 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
 2026-06-30 15:41:28,312 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-01 09:55:35,440 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-01 09:55:35,440 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-01 09:55:35,440 [INFO] Capital/trade  : ₹5,000.0
+2026-07-01 09:55:35,440 [INFO] EMA Length     : 200
+2026-07-01 09:55:35,440 [INFO] Min Wick %     : 40
+2026-07-01 09:55:35,440 [INFO] Risk:Reward    : 1:2.0
+2026-07-01 09:55:35,440 [INFO] Max Positions  : 5
+2026-07-01 09:55:35,441 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-01 09:55:35,441 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-01 09:55:35,677 [INFO] ✅ Loaded 9891 NSE instruments
+2026-07-01 09:55:35,679 [INFO] 🔍 Scan loop started
+2026-07-01 09:55:35,679 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-01 09:55:35,785 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2026-07-01 09:55:35,785 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-01 09:55:37,247 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.5
+2026-07-01 09:55:37,247 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1357.3 | SL 1360.8 | TP 1350.3 | Qty 14
+2026-07-01 09:55:38,762 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1860.73
+2026-07-01 09:55:38,763 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1861.9 | SL 1861.0 | TP 1863.7 | Qty 55
+2026-07-01 09:55:40,290 [INFO] 🎯 Signal: SELL CIPLA | EMA=1461.57
+2026-07-01 09:55:40,291 [INFO] 📈 PAPER ENTER SELL CIPLA @ 1460.5 | SL 1463.0 | TP 1455.5 | Qty 20
+2026-07-01 09:55:41,264 [INFO] 🎯 Signal: SELL DIVISLAB | EMA=6637.0
+2026-07-01 09:55:41,264 [INFO] 📈 PAPER ENTER SELL DIVISLAB @ 6575.5 | SL 6581.5 | TP 6563.5 | Qty 8
+2026-07-01 09:55:42,240 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7332.31
+2026-07-01 09:55:42,240 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7118.5 | SL 7119.0 | TP 7117.5 | Qty 100
+2026-07-01 09:55:42,641 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-01 09:55:53,518 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-01 09:55:53,519 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-01 09:55:53,519 [INFO] Capital/trade  : ₹5,000.0
+2026-07-01 09:55:53,519 [INFO] EMA Length     : 200
+2026-07-01 09:55:53,519 [INFO] Min Wick %     : 40
+2026-07-01 09:55:53,519 [INFO] Risk:Reward    : 1:2.0
+2026-07-01 09:55:53,519 [INFO] Max Positions  : 5
+2026-07-01 09:55:53,519 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-01 09:55:53,519 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-01 09:55:53,678 [INFO] ✅ Loaded 9891 NSE instruments
+2026-07-01 09:55:53,681 [INFO] 🔍 Scan loop started
+2026-07-01 09:55:53,681 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-01 09:56:30,170 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-01 09:56:30,170 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-01 09:56:30,170 [INFO] Capital/trade  : ₹5,000.0
+2026-07-01 09:56:30,170 [INFO] EMA Length     : 200
+2026-07-01 09:56:30,170 [INFO] Min Wick %     : 40
+2026-07-01 09:56:30,170 [INFO] Risk:Reward    : 1:2.0
+2026-07-01 09:56:30,170 [INFO] Max Positions  : 5
+2026-07-01 09:56:30,170 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-01 09:56:30,170 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-01 09:56:30,390 [INFO] ✅ Loaded 9891 NSE instruments
+2026-07-01 09:56:30,392 [INFO] 🔍 Scan loop started
+2026-07-01 09:56:30,392 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-01 09:56:30,440 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2026-07-01 09:56:30,440 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-01 09:56:31,889 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.5
+2026-07-01 09:56:31,890 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1358.0 | SL 1360.8 | TP 1352.4 | Qty 17
+2026-07-01 09:56:33,363 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1860.74
+2026-07-01 09:56:33,363 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1862.8 | SL 1861.0 | TP 1866.4 | Qty 27
+2026-07-01 09:56:34,859 [INFO] 🎯 Signal: SELL CIPLA | EMA=1461.57
+2026-07-01 09:56:34,859 [INFO] 📈 PAPER ENTER SELL CIPLA @ 1460.8 | SL 1463.0 | TP 1456.4 | Qty 22
+2026-07-01 09:56:35,913 [INFO] 🎯 Signal: SELL DIVISLAB | EMA=6637.07
+2026-07-01 09:56:35,913 [INFO] 📈 PAPER ENTER SELL DIVISLAB @ 6582.0 | SL 6587.5 | TP 6571.0 | Qty 9
+2026-07-01 09:56:36,897 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7332.37
+2026-07-01 09:56:36,897 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7125.0 | SL 7134.5 | TP 7106.0 | Qty 5
+2026-07-01 09:56:37,298 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-01 10:01:37,751 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-01 10:06:38,055 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1861.0 | PnL ₹-48.60 | SL_HIT
+2026-07-01 10:06:38,218 [INFO] 📉 PAPER EXIT DIVISLAB @ 6587.5 | PnL ₹-49.50 | SL_HIT
+2026-07-01 10:06:38,397 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3021.78
+2026-07-01 10:06:38,397 [INFO] 📈 PAPER ENTER BUY ADANIENT @ 3046.5 | SL 3043.3 | TP 3052.9 | Qty 15
+2026-07-01 10:06:39,887 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.41
+2026-07-01 10:06:40,873 [INFO] 🎯 Signal: SELL BAJAJFINSV | EMA=1773.4
+2026-07-01 10:06:40,873 [INFO] 📈 PAPER ENTER SELL BAJAJFINSV @ 1751.5 | SL 1755.8 | TP 1742.9 | Qty 11
+2026-07-01 10:06:41,274 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-98.10
+2026-07-01 10:11:41,425 [INFO] 📉 PAPER EXIT AXISBANK @ 1360.8 | PnL ₹-47.60 | SL_HIT
+2026-07-01 10:11:41,772 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1755.8 | PnL ₹-47.30 | SL_HIT
+2026-07-01 10:11:44,847 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1860.37
+2026-07-01 10:11:44,848 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1863.0 | SL 1861.0 | TP 1867.0 | Qty 25
+2026-07-01 10:11:45,803 [INFO] 🎯 Signal: BUY BRITANNIA | EMA=5181.75
+2026-07-01 10:11:45,803 [INFO] 📈 PAPER ENTER BUY BRITANNIA @ 5227.0 | SL 5212.0 | TP 5257.0 | Qty 3
+2026-07-01 10:11:46,204 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-193.00
+2026-07-01 10:16:46,483 [INFO] 📉 PAPER EXIT EICHERMOT @ 7106.0 | PnL ₹95.00 | TP_HIT
+2026-07-01 10:16:46,837 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3022.29
+2026-07-01 10:16:49,273 [INFO] 🎯 Signal: SELL BAJAJFINSV | EMA=1773.15
+2026-07-01 10:16:49,273 [INFO] 📈 PAPER ENTER SELL BAJAJFINSV @ 1762.4 | SL 1768.0 | TP 1751.2 | Qty 8
+2026-07-01 10:16:49,674 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-98.00
+2026-07-01 10:21:49,909 [INFO] 📉 PAPER EXIT ADANIENT @ 3052.9 | PnL ₹96.00 | TP_HIT
+2026-07-01 10:21:50,172 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1768.0 | PnL ₹-44.80 | SL_HIT
+2026-07-01 10:21:53,180 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1860.15
+2026-07-01 10:21:55,129 [INFO] 🎯 Signal: SELL COALINDIA | EMA=438.65
+2026-07-01 10:21:55,129 [INFO] 📈 PAPER ENTER SELL COALINDIA @ 438.3 | SL 438.45 | TP 438.0 | Qty 333
+2026-07-01 10:21:55,613 [INFO] 🎯 Signal: SELL DIVISLAB | EMA=6634.35
+2026-07-01 10:21:55,613 [INFO] 📈 PAPER ENTER SELL DIVISLAB @ 6569.5 | SL 6579.0 | TP 6550.5 | Qty 5
+2026-07-01 10:21:56,014 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-46.80
+2026-07-01 10:26:57,416 [INFO] 📉 PAPER EXIT COALINDIA @ 438.0 | PnL ₹99.90 | TP_HIT
+2026-07-01 10:27:00,089 [INFO] 🎯 Signal: SELL BAJAJFINSV | EMA=1772.95
+2026-07-01 10:27:00,089 [INFO] 📈 PAPER ENTER SELL BAJAJFINSV @ 1766.0 | SL 1768.0 | TP 1762.0 | Qty 25
+2026-07-01 10:27:00,491 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹53.10
+2026-07-01 10:32:00,655 [INFO] 📉 PAPER EXIT CIPLA @ 1456.4 | PnL ₹96.80 | TP_HIT
+2026-07-01 10:32:00,806 [INFO] 📉 PAPER EXIT BRITANNIA @ 5212.0 | PnL ₹-45.00 | SL_HIT
+2026-07-01 10:32:00,985 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1768.0 | PnL ₹-50.00 | SL_HIT
+2026-07-01 10:32:03,834 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1773.04
+2026-07-01 10:32:03,834 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1775.5 | SL 1772.7 | TP 1781.1 | Qty 17
+2026-07-01 10:32:04,311 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.93
+2026-07-01 10:32:06,324 [INFO] 🎯 Signal: SELL COALINDIA | EMA=438.6
+2026-07-01 10:32:06,324 [INFO] 📈 PAPER ENTER SELL COALINDIA @ 437.85 | SL 438.3 | TP 436.95 | Qty 111
+2026-07-01 10:32:07,793 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7322.78
+2026-07-01 10:32:07,793 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7122.0 | SL 7134.5 | TP 7097.0 | Qty 4
+2026-07-01 10:32:08,194 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹54.90
+2026-07-01 10:37:08,730 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹54.90
+2026-07-01 10:43:03,868 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1861.0 | PnL ₹-50.00 | SL_HIT
+2026-07-01 10:43:04,058 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1772.7 | PnL ₹-47.60 | SL_HIT
+2026-07-01 10:43:07,230 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.71
+2026-07-01 10:43:07,230 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1860.2 | SL 1858.6 | TP 1863.4 | Qty 31
+2026-07-01 10:43:09,176 [INFO] 🎯 Signal: SELL COALINDIA | EMA=438.55
+2026-07-01 10:43:10,631 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7319.97
+2026-07-01 10:43:11,125 [INFO] 🎯 Signal: BUY GRASIM | EMA=3112.23
+2026-07-01 10:43:11,125 [INFO] 📈 PAPER ENTER BUY GRASIM @ 3114.1 | SL 3107.5 | TP 3127.3 | Qty 7
+2026-07-01 10:43:11,527 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-42.70
+2026-07-01 10:48:11,999 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-42.70
+2026-07-01 10:53:12,591 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-42.70
+2026-07-01 10:58:13,162 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-42.70
+2026-07-01 11:03:13,258 [INFO] 📉 PAPER EXIT DIVISLAB @ 6550.5 | PnL ₹95.00 | TP_HIT
+2026-07-01 11:03:16,571 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.22
+2026-07-01 11:03:17,050 [INFO] 🎯 Signal: SELL BPCL | EMA=305.42
+2026-07-01 11:03:17,050 [INFO] 📈 PAPER ENTER SELL BPCL @ 302.4 | SL 302.8 | TP 301.6 | Qty 124
+2026-07-01 11:03:17,451 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹52.30
+2026-07-01 11:08:17,606 [INFO] 📉 PAPER EXIT COALINDIA @ 436.95 | PnL ₹99.90 | TP_HIT
+2026-07-01 11:08:20,893 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.18
+2026-07-01 11:08:21,392 [INFO] 🎯 Signal: SELL BPCL | EMA=305.37
+2026-07-01 11:08:24,295 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7312.8
+2026-07-01 11:08:25,805 [INFO] 🎯 Signal: SELL HDFCBANK | EMA=798.46
+2026-07-01 11:08:25,805 [INFO] 📈 PAPER ENTER SELL HDFCBANK @ 797.3 | SL 797.6 | TP 796.7 | Qty 166
+2026-07-01 11:08:26,206 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹152.20
+2026-07-01 11:13:26,393 [INFO] 📉 PAPER EXIT EICHERMOT @ 7134.5 | PnL ₹-50.00 | SL_HIT
+2026-07-01 11:13:26,460 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1863.4 | PnL ₹99.20 | TP_HIT
+2026-07-01 11:13:26,709 [INFO] 📉 PAPER EXIT HDFCBANK @ 797.6 | PnL ₹-49.80 | SL_HIT
+2026-07-01 11:13:28,231 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.59
+2026-07-01 11:13:28,231 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1365.4 | SL 1367.3 | TP 1361.6 | Qty 26
+2026-07-01 11:13:29,663 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.15
+2026-07-01 11:13:29,663 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1865.1 | SL 1863.5 | TP 1868.3 | Qty 31
+2026-07-01 11:13:30,135 [INFO] 🎯 Signal: SELL BPCL | EMA=305.32
+2026-07-01 11:13:32,997 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7311.75
+2026-07-01 11:13:32,998 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7135.0 | SL 7139.0 | TP 7127.0 | Qty 12
+2026-07-01 11:13:33,399 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹151.60
+2026-07-01 11:18:33,584 [INFO] 📉 PAPER EXIT GRASIM @ 3127.3 | PnL ₹92.40 | TP_HIT
+2026-07-01 11:18:33,724 [INFO] 📉 PAPER EXIT AXISBANK @ 1367.3 | PnL ₹-49.40 | SL_HIT
+2026-07-01 11:18:33,801 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1868.3 | PnL ₹99.20 | TP_HIT
+2026-07-01 11:18:33,876 [INFO] 📉 PAPER EXIT EICHERMOT @ 7139.0 | PnL ₹-48.00 | SL_HIT
+2026-07-01 11:18:36,843 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.15
+2026-07-01 11:18:36,843 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1869.5 | SL 1863.5 | TP 1881.5 | Qty 8
+2026-07-01 11:18:37,320 [INFO] 🎯 Signal: SELL BPCL | EMA=305.28
+2026-07-01 11:18:37,800 [INFO] 🎯 Signal: BUY BRITANNIA | EMA=5183.51
+2026-07-01 11:18:37,800 [INFO] 📈 PAPER ENTER BUY BRITANNIA @ 5193.5 | SL 5190.0 | TP 5200.5 | Qty 14
+2026-07-01 11:18:41,793 [INFO] 🎯 Signal: SELL HDFCBANK | EMA=798.49
+2026-07-01 11:18:41,793 [INFO] 📈 PAPER ENTER SELL HDFCBANK @ 798.0 | SL 799.35 | TP 795.3 | Qty 37
+2026-07-01 11:18:42,865 [INFO] 🎯 Signal: BUY HEROMOTOCO | EMA=4856.37
+2026-07-01 11:18:42,865 [INFO] 📈 PAPER ENTER BUY HEROMOTOCO @ 4860.3 | SL 4852.7 | TP 4875.5 | Qty 6
+2026-07-01 11:18:43,266 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹245.80
+2026-07-01 11:58:22,027 [WARNING] Candle fetch error BPCL: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-07-01 11:58:22,246 [INFO] 📉 PAPER EXIT BRITANNIA @ 5190.0 | PnL ₹-49.00 | SL_HIT
+2026-07-01 11:58:22,302 [INFO] 📉 PAPER EXIT HDFCBANK @ 799.35 | PnL ₹-49.95 | SL_HIT
+2026-07-01 11:58:22,365 [INFO] 📉 PAPER EXIT HEROMOTOCO @ 4852.7 | PnL ₹-45.60 | SL_HIT
+2026-07-01 11:58:22,420 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3032.26
+2026-07-01 11:58:22,421 [INFO] 📈 PAPER ENTER BUY ADANIENT @ 3083.9 | SL 3077.6 | TP 3096.5 | Qty 7
+2026-07-01 11:58:23,361 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2665.28
+2026-07-01 11:58:23,361 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2697.8 | SL 2694.2 | TP 2705.0 | Qty 13
+2026-07-01 11:58:24,290 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9772.14
+2026-07-01 11:58:24,290 [INFO] 📈 PAPER ENTER BUY BAJAJ-AUTO @ 9823.0 | SL 9809.5 | TP 9850.0 | Qty 3
+2026-07-01 11:58:24,691 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹101.25
+2026-07-01 12:03:31,803 [WARNING] Candle fetch error BPCL: HTTPSConnectionPool(host='api.kite.trade', port=443): Read timed out. (read timeout=7)
+2026-07-01 12:03:31,807 [WARNING] Candle fetch error BHARTIARTL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2714625/5minute?from=2026-06-21+12%3A03%3A31&to=2026-07-01+12%3A03%3A31&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x775d61735cf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-01 12:03:31,809 [WARNING] Candle fetch error ADANIENT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/6401/5minute?from=2026-06-21+12%3A03%3A31&to=2026-07-01+12%3A03%3A31&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x775d61735cf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-01 12:03:31,812 [WARNING] Candle fetch error ASIANPAINT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/60417/5minute?from=2026-06-21+12%3A03%3A31&to=2026-07-01+12%3A03%3A31&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x775d61735cf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-01 12:03:31,815 [WARNING] Candle fetch error BAJAJ-AUTO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/4267265/5minute?from=2026-06-21+12%3A03%3A31&to=2026-07-01+12%3A03%3A31&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x775d61735cf0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-01 12:03:31,816 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹101.25
+2026-07-01 12:08:32,202 [INFO] 📉 PAPER EXIT ADANIENT @ 3096.5 | PnL ₹88.20 | TP_HIT
+2026-07-01 12:08:32,325 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2705.0 | PnL ₹93.60 | TP_HIT
+2026-07-01 12:08:34,410 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9773.65
+2026-07-01 12:08:35,414 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.57
+2026-07-01 12:08:35,888 [INFO] 🎯 Signal: SELL BPCL | EMA=304.92
+2026-07-01 12:08:37,810 [INFO] 🎯 Signal: SELL DIVISLAB | EMA=6620.5
+2026-07-01 12:08:37,810 [INFO] 📈 PAPER ENTER SELL DIVISLAB @ 6569.0 | SL 6571.5 | TP 6564.0 | Qty 20
+2026-07-01 12:08:38,788 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7299.51
+2026-07-01 12:08:38,788 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7127.5 | SL 7131.0 | TP 7120.5 | Qty 14
+2026-07-01 12:08:39,189 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹283.05
+2026-07-01 12:13:39,350 [INFO] 📉 PAPER EXIT BPCL @ 302.8 | PnL ₹-49.60 | SL_HIT
+2026-07-01 12:13:40,505 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1816.49
+2026-07-01 12:13:40,505 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1856.6 | SL 1855.0 | TP 1859.8 | Qty 31
+2026-07-01 12:13:40,907 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹233.45
+2026-07-01 12:18:41,881 [INFO] 📉 PAPER EXIT BAJAJ-AUTO @ 9809.5 | PnL ₹-40.50 | SL_HIT
+2026-07-01 12:18:46,006 [INFO] 🎯 Signal: SELL BPCL | EMA=304.83
+2026-07-01 12:18:46,006 [INFO] 📈 PAPER ENTER SELL BPCL @ 303.15 | SL 303.2 | TP 303.05 | Qty 999
+2026-07-01 12:18:46,407 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹192.95
+2026-07-01 12:23:46,587 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1881.5 | PnL ₹96.00 | TP_HIT
+2026-07-01 12:23:46,826 [INFO] 📉 PAPER EXIT EICHERMOT @ 7120.5 | PnL ₹98.00 | TP_HIT
+2026-07-01 12:23:47,020 [INFO] 📉 PAPER EXIT BPCL @ 303.05 | PnL ₹99.90 | TP_HIT
+2026-07-01 12:23:47,564 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1817.2
+2026-07-01 12:23:50,466 [INFO] 🎯 Signal: SELL BPCL | EMA=304.79
+2026-07-01 12:23:50,466 [INFO] 📈 PAPER ENTER SELL BPCL @ 303.05 | SL 303.2 | TP 302.75 | Qty 333
+2026-07-01 12:23:50,942 [INFO] 🎯 Signal: BUY BRITANNIA | EMA=5182.39
+2026-07-01 12:23:50,942 [INFO] 📈 PAPER ENTER BUY BRITANNIA @ 5198.0 | SL 5188.0 | TP 5218.0 | Qty 5
+2026-07-01 12:23:52,370 [INFO] 🎯 Signal: SELL DIVISLAB | EMA=6618.75
+2026-07-01 12:23:53,340 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7294.93
+2026-07-01 12:23:53,340 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7120.5 | SL 7132.5 | TP 7096.5 | Qty 4
+2026-07-01 12:23:53,741 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹486.85
+2026-07-01 13:05:12,480 [WARNING] Candle fetch error DIVISLAB: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-07-01 13:05:13,034 [INFO] 📉 PAPER EXIT BPCL @ 302.75 | PnL ₹99.90 | TP_HIT
+2026-07-01 13:05:13,784 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1819.77
+2026-07-01 13:05:14,261 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2671.65
+2026-07-01 13:05:14,261 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2710.5 | SL 2708.2 | TP 2715.1 | Qty 21
+2026-07-01 13:05:14,662 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹586.75
+2026-07-01 13:10:14,786 [INFO] 📉 PAPER EXIT DIVISLAB @ 6571.5 | PnL ₹-50.00 | SL_HIT
+2026-07-01 13:10:14,929 [INFO] 📉 PAPER EXIT BRITANNIA @ 5218.0 | PnL ₹100.00 | TP_HIT
+2026-07-01 13:10:15,617 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1820.05
+2026-07-01 13:10:16,090 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2672.03
+2026-07-01 13:10:16,592 [INFO] 🎯 Signal: BUY AXISBANK | EMA=1369.4
+2026-07-01 13:10:16,592 [INFO] 📈 PAPER ENTER BUY AXISBANK @ 1374.2 | SL 1372.7 | TP 1377.2 | Qty 33
+2026-07-01 13:10:17,086 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9776.72
+2026-07-01 13:10:17,086 [INFO] 📈 PAPER ENTER BUY BAJAJ-AUTO @ 9806.5 | SL 9799.0 | TP 9821.5 | Qty 6
+2026-07-01 13:10:17,487 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹636.75
+2026-07-01 13:15:17,590 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1859.8 | PnL ₹99.20 | TP_HIT
+2026-07-01 13:15:17,667 [INFO] 📉 PAPER EXIT EICHERMOT @ 7096.5 | PnL ₹96.00 | TP_HIT
+2026-07-01 13:15:17,920 [INFO] 📉 PAPER EXIT BAJAJ-AUTO @ 9821.5 | PnL ₹90.00 | TP_HIT
+2026-07-01 13:15:19,930 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9776.98
+2026-07-01 13:15:19,930 [INFO] 📈 PAPER ENTER BUY BAJAJ-AUTO @ 9828.0 | SL 9814.0 | TP 9856.0 | Qty 3
+2026-07-01 13:15:20,412 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1772.45
+2026-07-01 13:15:20,413 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1779.4 | SL 1778.5 | TP 1781.2 | Qty 55
+2026-07-01 13:15:21,363 [INFO] 🎯 Signal: SELL BPCL | EMA=304.36
+2026-07-01 13:15:21,363 [INFO] 📈 PAPER ENTER SELL BPCL @ 303.0 | SL 303.3 | TP 302.4 | Qty 166
+2026-07-01 13:15:21,765 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹921.95
+2026-07-01 13:20:21,903 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2715.1 | PnL ₹96.60 | TP_HIT
+2026-07-01 13:20:22,123 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1778.5 | PnL ₹-49.50 | SL_HIT
+2026-07-01 13:20:23,704 [INFO] 🎯 Signal: BUY AXISBANK | EMA=1369.56
+2026-07-01 13:20:24,176 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9777.06
+2026-07-01 13:20:24,653 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1772.45
+2026-07-01 13:20:24,653 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1778.3 | SL 1776.2 | TP 1782.5 | Qty 23
+2026-07-01 13:20:25,128 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1861.49
+2026-07-01 13:20:25,128 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1881.5 | SL 1880.5 | TP 1883.5 | Qty 50
+2026-07-01 13:20:25,530 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹969.05
+2026-07-01 13:25:26,023 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹969.05
+2026-07-01 13:30:26,786 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1880.5 | PnL ₹-50.00 | SL_HIT
+2026-07-01 13:30:27,334 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1821.26
+2026-07-01 13:30:27,334 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1860.0 | SL 1857.0 | TP 1866.0 | Qty 16
+2026-07-01 13:30:27,736 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹919.05
+2026-07-01 13:35:28,127 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1782.5 | PnL ₹96.60 | TP_HIT
+2026-07-01 13:35:28,775 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1821.55
+2026-07-01 13:35:30,208 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9777.52
+2026-07-01 13:35:31,191 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1861.69
+2026-07-01 13:35:31,191 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1875.7 | SL 1873.5 | TP 1880.1 | Qty 22
+2026-07-01 13:35:31,593 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1015.65
+2026-07-01 13:40:32,081 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1015.65
+2026-07-01 13:45:32,474 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1857.0 | PnL ₹-48.00 | SL_HIT
+2026-07-01 13:45:33,110 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1822.12
+2026-07-01 13:45:33,111 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1858.8 | SL 1854.0 | TP 1868.4 | Qty 10
+2026-07-01 13:45:33,512 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹967.65
+2026-07-01 13:50:34,026 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹967.65
+2026-07-01 13:55:34,578 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹967.65
+2026-07-01 14:00:35,149 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1854.0 | PnL ₹-48.00 | SL_HIT
+2026-07-01 14:00:35,703 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1822.78
+2026-07-01 14:00:35,703 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1851.2 | SL 1851.1 | TP 1851.4 | Qty 499
+2026-07-01 14:00:36,104 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹919.65
+2026-07-01 14:05:36,533 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1851.4 | PnL ₹99.80 | TP_HIT
+2026-07-01 14:05:37,076 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1823.01
+2026-07-01 14:05:37,076 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1853.3 | SL 1850.5 | TP 1858.9 | Qty 17
+2026-07-01 14:05:37,478 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1019.45
+2026-07-01 14:10:37,774 [INFO] 📉 PAPER EXIT BPCL @ 303.3 | PnL ₹-49.80 | SL_HIT
+2026-07-01 14:10:37,927 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1858.9 | PnL ₹95.20 | TP_HIT
+2026-07-01 14:10:38,467 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1823.29
+2026-07-01 14:10:38,467 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1858.7 | SL 1850.5 | TP 1875.1 | Qty 6
+2026-07-01 14:10:38,946 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2676.95
+2026-07-01 14:10:38,946 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2712.3 | SL 2708.2 | TP 2720.5 | Qty 12
+2026-07-01 14:10:39,348 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1064.85
+2026-07-01 14:15:39,776 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1064.85
+2026-07-01 14:20:40,250 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1064.85
+2026-07-01 14:25:40,963 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1064.85
+2026-07-01 14:30:41,121 [INFO] 📉 PAPER EXIT AXISBANK @ 1372.7 | PnL ₹-49.50 | SL_HIT
+2026-07-01 14:30:42,263 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1824.21
+2026-07-01 14:30:42,745 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2678.32
+2026-07-01 14:30:43,228 [INFO] 🎯 Signal: BUY AXISBANK | EMA=1370.39
+2026-07-01 14:30:43,228 [INFO] 📈 PAPER ENTER BUY AXISBANK @ 1372.9 | SL 1372.1 | TP 1374.5 | Qty 62
+2026-07-01 14:30:43,629 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1015.35
+2026-07-01 14:35:44,077 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2708.2 | PnL ₹-49.20 | SL_HIT
+2026-07-01 14:35:44,757 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1824.32
+2026-07-01 14:35:45,235 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2678.54
+2026-07-01 14:35:45,235 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2708.1 | SL 2707.2 | TP 2709.9 | Qty 55
+2026-07-01 14:35:45,637 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹966.15
+2026-07-01 14:40:46,066 [INFO] 📉 PAPER EXIT AXISBANK @ 1372.1 | PnL ₹-49.60 | SL_HIT
+2026-07-01 14:40:46,711 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1824.43
+2026-07-01 14:40:47,191 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2678.74
+2026-07-01 14:40:48,173 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9777.78
+2026-07-01 14:40:48,654 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1775.75
+2026-07-01 14:40:48,654 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1795.6 | SL 1793.4 | TP 1800.0 | Qty 22
+2026-07-01 14:40:49,056 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹916.55
+2026-07-01 14:45:49,523 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2709.9 | PnL ₹99.00 | TP_HIT
+2026-07-01 14:45:50,217 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1824.66
+2026-07-01 14:45:50,697 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2678.97
+2026-07-01 14:45:50,697 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2710.7 | SL 2710.2 | TP 2711.7 | Qty 100
+2026-07-01 14:45:51,099 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1015.55
+2026-07-01 14:50:51,600 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2710.2 | PnL ₹-50.00 | SL_HIT
+2026-07-01 14:50:52,168 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1824.74
+2026-07-01 14:50:52,642 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2679.12
+2026-07-01 14:50:52,642 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2708.8 | SL 2707.1 | TP 2712.2 | Qty 29
+2026-07-01 14:50:53,043 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹965.55
+2026-07-01 14:55:53,539 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹965.55
+2026-07-01 15:13:23,694 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-01 15:13:23,694 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-01 15:13:23,694 [INFO] Capital/trade  : ₹15,000.0
+2026-07-01 15:13:23,694 [INFO] EMA Length     : 200
+2026-07-01 15:13:23,694 [INFO] Min Wick %     : 40
+2026-07-01 15:13:23,694 [INFO] Risk:Reward    : 1:2.0
+2026-07-01 15:13:23,694 [INFO] Max Positions  : 5
+2026-07-01 15:13:23,694 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-01 15:13:23,694 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-01 15:13:23,885 [INFO] ✅ Loaded 9891 NSE instruments
+2026-07-01 15:13:23,887 [INFO] 🔍 Scan loop started
+2026-07-01 15:13:23,888 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-01 15:13:24,223 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2026-07-01 15:13:24,223 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-01 15:13:25,124 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2680.19
+2026-07-01 15:13:25,124 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2716.1 | SL 2715.8 | TP 2716.7 | Qty 1500
+2026-07-01 15:13:25,593 [INFO] 🎯 Signal: BUY AXISBANK | EMA=1370.15
+2026-07-01 15:13:25,593 [INFO] 📈 PAPER ENTER BUY AXISBANK @ 1371.2 | SL 1368.0 | TP 1377.6 | Qty 138
+2026-07-01 15:13:26,063 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9776.31
+2026-07-01 15:13:26,063 [INFO] 📈 PAPER ENTER BUY BAJAJ-AUTO @ 9844.0 | SL 9836.0 | TP 9860.0 | Qty 54
+2026-07-01 15:13:26,527 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1777.19
+2026-07-01 15:13:26,527 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1797.7 | SL 1795.0 | TP 1803.1 | Qty 165
+2026-07-01 15:13:30,247 [INFO] 🎯 Signal: SELL EICHERMOT | EMA=7246.29
+2026-07-01 15:13:30,247 [INFO] 📈 PAPER ENTER SELL EICHERMOT @ 7140.0 | SL 7145.0 | TP 7130.0 | Qty 90
+2026-07-01 15:13:30,648 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-02 08:55:41,120 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-02 08:55:41,120 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-02 08:55:41,120 [INFO] Capital/trade  : ₹15,000.0
+2026-07-02 08:55:41,120 [INFO] EMA Length     : 200
+2026-07-02 08:55:41,120 [INFO] Min Wick %     : 40
+2026-07-02 08:55:41,120 [INFO] Risk:Reward    : 1:2.0
+2026-07-02 08:55:41,120 [INFO] Max Positions  : 5
+2026-07-02 08:55:41,120 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-02 08:55:41,120 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-02 08:55:41,313 [INFO] ✅ Loaded 9896 NSE instruments
+2026-07-02 08:55:41,315 [INFO] 🔍 Scan loop started
+2026-07-02 08:55:41,315 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-02 08:55:41,316 [INFO] Market closed. Opens in ~19 min. Sleeping 60 s…
+2026-07-02 08:55:41,373 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2026-07-02 08:55:41,373 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-02 08:56:41,361 [INFO] Market closed. Opens in ~18 min. Sleeping 60 s…
+2026-07-02 08:57:41,422 [INFO] Market closed. Opens in ~17 min. Sleeping 60 s…
+2026-07-02 08:58:41,482 [INFO] Market closed. Opens in ~16 min. Sleeping 60 s…
+2026-07-02 08:59:41,486 [INFO] Market closed. Opens in ~15 min. Sleeping 60 s…
+2026-07-02 09:00:41,540 [INFO] Market closed. Opens in ~14 min. Sleeping 60 s…
+2026-07-02 09:01:41,561 [INFO] Market closed. Opens in ~13 min. Sleeping 60 s…
+2026-07-02 09:02:41,576 [INFO] Market closed. Opens in ~12 min. Sleeping 60 s…
+2026-07-02 09:03:41,637 [INFO] Market closed. Opens in ~11 min. Sleeping 60 s…
+2026-07-02 09:04:41,665 [INFO] Market closed. Opens in ~10 min. Sleeping 60 s…
+2026-07-02 09:05:41,711 [INFO] Market closed. Opens in ~9 min. Sleeping 60 s…
+2026-07-02 09:06:41,715 [INFO] Market closed. Opens in ~8 min. Sleeping 60 s…
+2026-07-02 09:07:41,776 [INFO] Market closed. Opens in ~7 min. Sleeping 60 s…
+2026-07-02 09:08:41,836 [INFO] Market closed. Opens in ~6 min. Sleeping 60 s…
+2026-07-02 09:09:41,890 [INFO] Market closed. Opens in ~5 min. Sleeping 60 s…
+2026-07-02 09:10:41,950 [INFO] Market closed. Opens in ~4 min. Sleeping 60 s…
+2026-07-02 09:11:42,001 [INFO] Market closed. Opens in ~3 min. Sleeping 60 s…
+2026-07-02 09:12:42,011 [INFO] Market closed. Opens in ~2 min. Sleeping 60 s…
+2026-07-02 09:13:42,072 [INFO] Market closed. Opens in ~1 min. Sleeping 60 s…
+2026-07-02 09:14:42,131 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-02 09:15:42,197 [WARNING] Candle fetch error ADANIENT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/6401/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839177e9e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,200 [WARNING] Candle fetch error ADANIPORTS: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/3861249/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,202 [WARNING] Candle fetch error ASIANPAINT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/60417/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,204 [WARNING] Candle fetch error AXISBANK: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/1510401/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,206 [WARNING] Candle fetch error BAJAJ-AUTO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/4267265/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,207 [WARNING] Candle fetch error BAJAJFINSV: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/4268801/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,209 [WARNING] Candle fetch error BHARTIARTL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2714625/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,209 [WARNING] Candle fetch error BPCL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/134657/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,210 [WARNING] Candle fetch error BRITANNIA: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/140033/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,211 [WARNING] Candle fetch error CIPLA: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/177665/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,211 [WARNING] Candle fetch error COALINDIA: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/5215745/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,212 [WARNING] Candle fetch error DIVISLAB: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2800641/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,213 [WARNING] Candle fetch error DRREDDY: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/225537/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,213 [WARNING] Candle fetch error EICHERMOT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/232961/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,214 [WARNING] Candle fetch error GRASIM: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/315393/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,215 [WARNING] Candle fetch error HCLTECH: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/1850625/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,215 [WARNING] Candle fetch error HDFCBANK: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/341249/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,216 [WARNING] Candle fetch error HDFCLIFE: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/119553/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d630>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,217 [WARNING] Candle fetch error HEROMOTOCO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/345089/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,217 [WARNING] Candle fetch error HINDALCO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/348929/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,218 [WARNING] Candle fetch error HINDUNILVR: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/356865/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,219 [WARNING] Candle fetch error ICICIBANK: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/1270529/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,220 [WARNING] Candle fetch error INDUSINDBK: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/1346049/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,220 [WARNING] Candle fetch error INFY: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/408065/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,221 [WARNING] Candle fetch error ITC: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/424961/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,222 [WARNING] Candle fetch error JSWSTEEL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/3001089/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,222 [WARNING] Candle fetch error KOTAKBANK: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/492033/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,223 [WARNING] Candle fetch error LT: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2939649/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,224 [WARNING] Candle fetch error M&M: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/519937/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d900>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,225 [WARNING] Candle fetch error MARUTI: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2815745/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,226 [WARNING] Candle fetch error NESTLEIND: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/4598529/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,226 [WARNING] Candle fetch error NTPC: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2977281/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,227 [WARNING] Candle fetch error ONGC: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/633601/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,228 [WARNING] Candle fetch error POWERGRID: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/3834113/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,228 [WARNING] Candle fetch error RELIANCE: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/738561/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,229 [WARNING] Candle fetch error SBILIFE: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/5582849/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,230 [WARNING] Candle fetch error SBIN: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/779521/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d5d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,230 [WARNING] Candle fetch error SUNPHARMA: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/857857/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,231 [WARNING] Candle fetch error TATACONSUM: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/878593/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,232 [WARNING] Candle fetch error TATASTEEL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/895745/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,232 [WARNING] Candle fetch error TCS: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2953217/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,233 [WARNING] Candle fetch error TECHM: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/3465729/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,234 [WARNING] Candle fetch error TITAN: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/897537/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,234 [WARNING] Candle fetch error UPL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2889473/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,236 [WARNING] Candle fetch error ULTRACEMCO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/2952193/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,236 [WARNING] Candle fetch error VEDL: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/784129/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,237 [WARNING] Candle fetch error WIPRO: HTTPSConnectionPool(host='api.kite.trade', port=443): Max retries exceeded with url: /instruments/historical/969473/5minute?from=2026-06-22+09%3A15%3A42&to=2026-07-02+09%3A15%3A42&interval=5minute&continuous=0&oi=0 (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x75839133d840>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+2026-07-02 09:15:42,237 [INFO] Scan done | Positions: 0/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-02 11:52:31,833 [INFO] 🚀 WickFill Auto-Trader v2 — Zerodha Kite
+2026-07-02 11:52:31,834 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-02 11:52:31,834 [INFO] Capital/trade  : ₹15,000.0
+2026-07-02 11:52:31,834 [INFO] EMA Length     : 200
+2026-07-02 11:52:31,834 [INFO] Min Wick %     : 40
+2026-07-02 11:52:31,834 [INFO] Risk:Reward    : 1:2.0
+2026-07-02 11:52:31,834 [INFO] Max Positions  : 5
+2026-07-02 11:52:31,834 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-02 11:52:31,834 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-02 11:52:31,992 [INFO] ✅ Loaded 9896 NSE instruments
+2026-07-02 11:52:31,994 [INFO] 🔍 Scan loop started
+2026-07-02 11:52:31,994 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | RISK_REWARD=2.0 | MAX_POSITIONS=5
+2026-07-02 11:52:32,058 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3078.91
+2026-07-02 11:52:32,058 [INFO] 📈 PAPER ENTER BUY ADANIENT @ 3158.9 | SL 3155.3 | TP 3166.1 | Qty 123
+2026-07-02 11:52:32,063 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2026-07-02 11:52:32,063 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-02 11:52:32,526 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1831.1
+2026-07-02 11:52:32,526 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1869.9 | SL 1868.5 | TP 1872.7 | Qty 321
+2026-07-02 11:52:33,464 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.58
+2026-07-02 11:52:33,464 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1363.2 | SL 1363.7 | TP 1362.2 | Qty 900
+2026-07-02 11:52:34,407 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1792.49
+2026-07-02 11:52:34,407 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1831.7 | SL 1831.0 | TP 1833.1 | Qty 642
+2026-07-02 11:52:34,891 [INFO] 🎯 Signal: SELL BHARTIARTL | EMA=1859.55
+2026-07-02 11:52:34,891 [INFO] 📈 PAPER ENTER SELL BHARTIARTL @ 1858.1 | SL 1859.1 | TP 1856.1 | Qty 450
+2026-07-02 11:52:35,292 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹0.00
+2026-07-02 11:57:35,528 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1872.7 | PnL ₹898.80 | TP_HIT
+2026-07-02 11:57:35,593 [INFO] 📉 PAPER EXIT AXISBANK @ 1363.7 | PnL ₹-450.00 | SL_HIT
+2026-07-02 11:57:35,651 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1831.0 | PnL ₹-449.40 | SL_HIT
+2026-07-02 11:57:35,775 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3079.42
+2026-07-02 11:57:37,667 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9757.48
+2026-07-02 11:57:37,667 [INFO] 📈 PAPER ENTER BUY BAJAJ-AUTO @ 9760.0 | SL 9725.0 | TP 9830.0 | Qty 12
+2026-07-02 11:57:40,024 [INFO] 🎯 Signal: SELL CIPLA | EMA=1463.17
+2026-07-02 11:57:40,024 [INFO] 📈 PAPER ENTER SELL CIPLA @ 1462.0 | SL 1463.0 | TP 1460.0 | Qty 450
+2026-07-02 11:57:40,499 [INFO] 🎯 Signal: SELL COALINDIA | EMA=437.12
+2026-07-02 11:57:40,499 [INFO] 📈 PAPER ENTER SELL COALINDIA @ 434.3 | SL 434.4 | TP 434.1 | Qty 4500
+2026-07-02 11:57:40,900 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-0.60
+2026-07-02 12:02:41,123 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1859.1 | PnL ₹-450.00 | SL_HIT
+2026-07-02 12:02:41,322 [INFO] 📉 PAPER EXIT COALINDIA @ 434.1 | PnL ₹900.00 | TP_HIT
+2026-07-02 12:02:41,387 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3079.87
+2026-07-02 12:02:43,967 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1793.22
+2026-07-02 12:02:43,967 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1829.9 | SL 1828.2 | TP 1833.3 | Qty 264
+2026-07-02 12:02:44,443 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1859.43
+2026-07-02 12:02:44,443 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1859.9 | SL 1857.0 | TP 1865.7 | Qty 153
+2026-07-02 12:02:44,845 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹449.40
+2026-07-02 12:07:44,945 [INFO] 📉 PAPER EXIT ADANIENT @ 3155.3 | PnL ₹-442.80 | SL_HIT
+2026-07-02 12:07:45,142 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1833.3 | PnL ₹897.60 | TP_HIT
+2026-07-02 12:07:45,271 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3080.19
+2026-07-02 12:07:45,271 [INFO] 📈 PAPER ENTER BUY ADANIENT @ 3155.0 | SL 3147.0 | TP 3171.0 | Qty 54
+2026-07-02 12:07:46,721 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.35
+2026-07-02 12:07:46,722 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1367.0 | SL 1368.0 | TP 1365.0 | Qty 450
+2026-07-02 12:07:47,123 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹904.20
+2026-07-02 12:12:47,396 [INFO] 📉 PAPER EXIT CIPLA @ 1460.0 | PnL ₹900.00 | TP_HIT
+2026-07-02 12:12:47,672 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3080.59
+2026-07-02 12:12:48,147 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1832.39
+2026-07-02 12:12:48,147 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1870.0 | SL 1868.5 | TP 1873.0 | Qty 300
+2026-07-02 12:12:48,548 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1804.20
+2026-07-02 12:17:48,783 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1857.0 | PnL ₹-443.70 | SL_HIT
+2026-07-02 12:17:49,078 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3081.07
+2026-07-02 12:17:49,559 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1832.72
+2026-07-02 12:17:50,532 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1367.19
+2026-07-02 12:17:51,941 [INFO] 🎯 Signal: SELL BHARTIARTL | EMA=1859.3
+2026-07-02 12:17:51,941 [INFO] 📈 PAPER ENTER SELL BHARTIARTL @ 1856.5 | SL 1858.5 | TP 1852.5 | Qty 225
+2026-07-02 12:17:52,342 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1360.50
+2026-07-02 12:22:52,764 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1360.50
+2026-07-02 12:27:53,832 [INFO] 📉 PAPER EXIT AXISBANK @ 1368.0 | PnL ₹-450.00 | SL_HIT
+2026-07-02 12:27:54,028 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3082.18
+2026-07-02 12:27:54,495 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1833.38
+2026-07-02 12:27:55,438 [INFO] 🎯 Signal: BUY AXISBANK | EMA=1367.08
+2026-07-02 12:27:55,438 [INFO] 📈 PAPER ENTER BUY AXISBANK @ 1368.7 | SL 1365.7 | TP 1374.7 | Qty 150
+2026-07-02 12:27:55,839 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹910.50
+2026-07-02 12:32:56,313 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹910.50
+2026-07-02 12:37:56,706 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹910.50
+2026-07-02 12:42:57,209 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹910.50
+2026-07-02 12:47:57,648 [INFO] 📉 PAPER EXIT AXISBANK @ 1365.7 | PnL ₹-450.00 | SL_HIT
+2026-07-02 12:47:57,729 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3084.68
+2026-07-02 12:47:58,201 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1834.69
+2026-07-02 12:47:58,671 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2696.11
+2026-07-02 12:47:58,671 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2750.8 | SL 2749.6 | TP 2753.2 | Qty 372
+2026-07-02 12:47:59,072 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹460.50
+2026-07-02 12:52:59,498 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2749.6 | PnL ₹-446.40 | SL_HIT
+2026-07-02 12:52:59,558 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3085.22
+2026-07-02 12:53:00,034 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1835.0
+2026-07-02 12:53:00,974 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1366.79
+2026-07-02 12:53:00,974 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1365.3 | SL 1367.0 | TP 1361.9 | Qty 264
+2026-07-02 12:53:01,375 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹14.10
+2026-07-02 12:58:01,798 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹14.10
+2026-07-02 13:03:02,157 [INFO] 📉 PAPER EXIT BHARTIARTL @ 1858.5 | PnL ₹-450.00 | SL_HIT
+2026-07-02 13:03:02,280 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3086.38
+2026-07-02 13:03:03,690 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1366.59
+2026-07-02 13:03:04,622 [INFO] 🎯 Signal: BUY BAJAJFINSV | EMA=1797.22
+2026-07-02 13:03:04,622 [INFO] 📈 PAPER ENTER BUY BAJAJFINSV @ 1834.5 | SL 1831.0 | TP 1841.5 | Qty 126
+2026-07-02 13:03:05,023 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:08:05,487 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:13:05,970 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:18:06,447 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:23:06,846 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:28:07,291 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹-435.90
+2026-07-02 13:33:07,591 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1873.0 | PnL ₹900.00 | TP_HIT
+2026-07-02 13:33:07,809 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3090.06
+2026-07-02 13:33:08,277 [INFO] 🎯 Signal: BUY ADANIPORTS | EMA=1837.43
+2026-07-02 13:33:08,277 [INFO] 📈 PAPER ENTER BUY ADANIPORTS @ 1873.5 | SL 1870.6 | TP 1879.3 | Qty 153
+2026-07-02 13:33:08,677 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹464.10
+2026-07-02 13:38:09,093 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹464.10
+2026-07-02 13:43:09,330 [INFO] 📉 PAPER EXIT ADANIENT @ 3171.0 | PnL ₹864.00 | TP_HIT
+2026-07-02 13:43:09,609 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3091.49
+2026-07-02 13:43:09,609 [INFO] 📈 PAPER ENTER BUY ADANIENT @ 3174.8 | SL 3155.3 | TP 3213.8 | Qty 21
+2026-07-02 13:43:10,010 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1328.10
+2026-07-02 13:48:10,543 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹1328.10
+2026-07-02 13:53:10,827 [INFO] 📉 PAPER EXIT BAJAJFINSV @ 1841.5 | PnL ₹882.00 | TP_HIT
+2026-07-02 13:53:11,034 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3092.83
+2026-07-02 13:53:12,439 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1365.54
+2026-07-02 13:53:12,911 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9752.47
+2026-07-02 13:53:15,253 [INFO] 🎯 Signal: SELL CIPLA | EMA=1462.35
+2026-07-02 13:53:15,253 [INFO] 📈 PAPER ENTER SELL CIPLA @ 1459.8 | SL 1460.9 | TP 1457.6 | Qty 408
+2026-07-02 13:53:15,655 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹2210.10
+2026-07-02 13:58:15,915 [INFO] 📉 PAPER EXIT AXISBANK @ 1361.9 | PnL ₹897.60 | TP_HIT
+2026-07-02 13:58:17,125 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2701.75
+2026-07-02 13:58:17,125 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2747.4 | SL 2746.6 | TP 2749.0 | Qty 561
+2026-07-02 13:58:17,527 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹3107.70
+2026-07-02 14:22:31,630 [WARNING] Candle fetch error BAJAJ-AUTO: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-07-02 14:22:31,945 [INFO] 📉 PAPER EXIT CIPLA @ 1457.6 | PnL ₹897.60 | TP_HIT
+2026-07-02 14:22:32,027 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2749.0 | PnL ₹897.60 | TP_HIT
+2026-07-02 14:22:32,100 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3096.83
+2026-07-02 14:22:33,062 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2703.85
+2026-07-02 14:22:33,062 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2752.4 | SL 2749.7 | TP 2757.8 | Qty 165
+2026-07-02 14:22:34,014 [INFO] 🎯 Signal: BUY BAJAJ-AUTO | EMA=9753.5
+2026-07-02 14:22:34,956 [INFO] 🎯 Signal: BUY BHARTIARTL | EMA=1860.23
+2026-07-02 14:22:34,956 [INFO] 📈 PAPER ENTER BUY BHARTIARTL @ 1870.7 | SL 1864.2 | TP 1883.7 | Qty 69
+2026-07-02 14:22:35,358 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4902.90
+2026-07-02 14:27:35,759 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4902.90
+2026-07-02 14:32:36,227 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4902.90
+2026-07-02 14:37:36,558 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2749.7 | PnL ₹-445.50 | SL_HIT
+2026-07-02 14:37:36,712 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3098.68
+2026-07-02 14:37:37,663 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2705.02
+2026-07-02 14:37:37,664 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2748.4 | SL 2747.4 | TP 2750.4 | Qty 450
+2026-07-02 14:37:38,065 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4457.40
+2026-07-02 14:42:38,529 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2747.4 | PnL ₹-450.00 | SL_HIT
+2026-07-02 14:42:38,598 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3099.32
+2026-07-02 14:42:39,551 [INFO] 🎯 Signal: BUY ASIANPAINT | EMA=2705.36
+2026-07-02 14:42:39,551 [INFO] 📈 PAPER ENTER BUY ASIANPAINT @ 2747.0 | SL 2745.9 | TP 2749.2 | Qty 408
+2026-07-02 14:42:39,953 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4007.40
+2026-07-02 14:47:40,428 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4007.40
+2026-07-02 14:52:40,828 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4007.40
+2026-07-02 14:57:41,271 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4007.40
+2026-07-02 15:02:41,719 [INFO] 📉 PAPER EXIT ASIANPAINT @ 2745.9 | PnL ₹-448.80 | SL_HIT
+2026-07-02 15:02:41,796 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3101.48
+2026-07-02 15:02:43,222 [INFO] 🎯 Signal: SELL AXISBANK | EMA=1364.49
+2026-07-02 15:02:43,222 [INFO] 📈 PAPER ENTER SELL AXISBANK @ 1363.3 | SL 1367.7 | TP 1354.5 | Qty 102
+2026-07-02 15:02:43,624 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹3558.60
+2026-07-02 15:07:43,853 [INFO] 📉 PAPER EXIT ADANIPORTS @ 1879.3 | PnL ₹887.40 | TP_HIT
+2026-07-02 15:07:44,170 [INFO] 🎯 Signal: BUY ADANIENT | EMA=3102.15
+2026-07-02 15:07:47,493 [INFO] 🎯 Signal: BUY BPCL | EMA=306.61
+2026-07-02 15:07:47,493 [INFO] 📈 PAPER ENTER BUY BPCL @ 310.25 | SL 309.95 | TP 310.85 | Qty 1497
+2026-07-02 15:07:47,895 [INFO] Scan done | Positions: 5/5 | Watchlist: 50 symbols | PnL: ₹4446.00

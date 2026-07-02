@@ -1,0 +1,38 @@
+"""
+WickFill Bot Configuration — Zerodha Kite
+──────────────────────────────────────────
+Fill in your Zerodha Kite Connect credentials below.
+"""
+
+# ─── Zerodha Kite Connect Credentials ────────────────────────────────────────
+API_KEY     = "p5r1bczk0d353yaf"         # From kite.trade developer console
+API_SECRET  = "3bfkv6tarldn4vtgedegfkh10fkkmwg9"      # From kite.trade developer console
+USER_ID     = "JO5485"         # Your Zerodha client ID (e.g. ZA1234)
+PASSWORD    = "Nikshu2312@#"        # Your Zerodha login password
+TOTP_SECRET = "YOUR_TOTP_SECRET"     # Base32 TOTP secret for 2FA (from Kite setup)
+
+# ─── Redirect / Access Token (manual login fallback) ─────────────────────────
+# If auto-login fails, paste the request_token from the redirect URL here
+# after visiting: https://kite.trade/connect/login?api_key=YOUR_API_KEY
+MANUAL_REQUEST_TOKEN = ""   # e.g. "abc123xyz" — leave blank to use auto-login
+
+# ─── Trading Mode ─────────────────────────────────────────────────────────────
+PAPER_TRADING = True   # ← Set False only when you want REAL trades on Kite
+
+# ─── Capital Settings ─────────────────────────────────────────────────────────
+STARTING_CAPITAL   = 1_00_000   # Virtual capital for paper trading (₹1 lakh)
+CAPITAL_PER_TRADE  = 20_000     # Max capital allocated per single trade
+RISK_PER_TRADE_PCT = 1.0        # % of CAPITAL_PER_TRADE to risk per trade
+
+# ─── Strategy Parameters ──────────────────────────────────────────────────────
+EMA_LENGTH    = 200    # EMA period for trend filter
+MIN_WICK_PCT  = 40     # Minimum wick size as % of candle range to form a zone
+RISK_REWARD   = 2.0    # TP = entry ± risk × RISK_REWARD  (1:2 RR)
+MAX_POSITIONS = 5      # Max simultaneous open positions
+
+# ─── Execution Settings ───────────────────────────────────────────────────────
+SCAN_INTERVAL_SEC = 300   # Scan every 5 minutes (one 5-min candle)
+
+# ─── Dashboard Server ─────────────────────────────────────────────────────────
+DASHBOARD_HOST = "127.0.0.1"
+DASHBOARD_PORT = 5050

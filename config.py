@@ -31,9 +31,10 @@ PAPER_TRADING = True   # Set False only for real money trades
 
 # ─── Capital Configuration ────────────────────────────────────────────────────
 STARTING_CAPITAL = 100000.0    # Virtual capital for paper mode (₹1 lakh)
-CAPITAL_PER_TRADE = 5000.0     # Max capital per trade
+CAPITAL_PER_TRADE = 15000.0    # Max capital per trade
 RISK_PER_TRADE_PCT = 1.0       # % of capital to risk per trade
 MAX_POSITIONS = 5              # Max concurrent positions
+POSITION_QTY_MULTIPLIER = 3    # Multiply calculated quantity by 3 for each trade
 
 # ─── Strategy Configuration ───────────────────────────────────────────────────
 EMA_LENGTH = 200    # EMA trend filter period (candlesticks)
@@ -53,4 +54,4 @@ DASHBOARD_HOST = "127.0.0.1"
 DASHBOARD_PORT = 5050
 
 # ─── Mock Mode ─────────────────────────────────────────────────────────────────
-USE_MOCK_DATA = True  # Use synthetic candles when Kite historical fetch fails or lacks permission
+#USE_MOCK_DATA = True  # Use synthetic candles when Kite historical fetch fails or lacks permission
