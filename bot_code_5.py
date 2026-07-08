@@ -622,5 +622,10 @@ if __name__ == "__main__":
     scan_thread.start()
 
     _save_current_report()
-    from server import run_server
-    run_server(state_getter=get_dashboard_state)
+    from server import register_dashboard_state
+    register_dashboard_state(get_dashboard_state)
+
+    # The Flask app is served by Gunicorn/Wsgi in production.
+    # Do not start another development server from the bot process.
+    while True:
+        time.sleep(60)
