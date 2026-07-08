@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zerodha Trading Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">Z</div>
+          <div>
+            <h1>Zerodha</h1>
+            <p>Trading Terminal</p>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <h3>System Status</h3>
+          <div class="stat-pill" id="bot-status-pill">Connecting…</div>
+          <div class="stat-pill muted" id="data-source-pill">Waiting for data</div>
+        </div>
+        <div class="sidebar-section">
+          <h3>Live Metrics</h3>
+          <ul class="sidebar-list">
+            <li>Current Time <span id="sidebar-time">--:--:--</span></li>
+            <li>Date <span id="sidebar-date">--</span></li>
+            <li>Last Update <span id="last-update">--</span></li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Real-time analytics</p>
+            <h2>Trading Dashboard</h2>
+          </div>
+          <div class="topbar-meta">
+            <div class="meta-card">
+              <span class="meta-label">Current Time</span>
+              <strong id="topbar-time">--:--:--</strong>
+            </div>
+            <div class="meta-card">
+              <span class="meta-label">Current Date</span>
+              <strong id="topbar-date">--</strong>
+            </div>
+          </div>
+        </header>
+
+        <section class="summary-grid">
+          <article class="card summary-card accent-green">
+            <p class="card-label">Today's P&L</p>
+            <h3 id="summary-pnl">0.00</h3>
+          </article>
+          <article class="card summary-card accent-blue">
+            <p class="card-label">Realized P&L</p>
+            <h3 id="summary-realized">0.00</h3>
+          </article>
+          <article class="card summary-card accent-purple">
+            <p class="card-label">Equity</p>
+            <h3 id="summary-equity">0.00</h3>
+          </article>
+          <article class="card summary-card accent-orange">
+            <p class="card-label">Capital Deployed</p>
+            <h3 id="summary-deployed">0.00</h3>
+          </article>
+          <article class="card summary-card accent-cyan">
+            <p class="card-label">Win Rate</p>
+            <h3 id="summary-win-rate">0%</h3>
+          </article>
+          <article class="card summary-card accent-red">
+            <p class="card-label">Wins / Losses</p>
+            <h3 id="summary-wins-losses">0 / 0</h3>
+          </article>
+          <article class="card summary-card accent-yellow">
+            <p class="card-label">Total Trades</p>
+            <h3 id="summary-trades">0</h3>
+          </article>
+          <article class="card summary-card accent-pink">
+            <p class="card-label">Open Positions</p>
+            <h3 id="summary-open-positions">0</h3>
+          </article>
+          <article class="card summary-card accent-teal">
+            <p class="card-label">Unique Symbols</p>
+            <h3 id="summary-symbols">0</h3>
+          </article>
+        </section>
+
+        <section class="chart-grid">
+          <article class="card chart-card">
+            <div class="card-header">
+              <h3>Today's Equity</h3>
+            </div>
+            <canvas id="equityChart"></canvas>
+          </article>
+          <article class="card chart-card">
+            <div class="card-header">
+              <h3>Profit Curve</h3>
+            </div>
+            <canvas id="profitChart"></canvas>
+          </article>
+          <article class="card chart-card">
+            <div class="card-header">
+              <h3>Capital Deployment</h3>
+            </div>
+            <canvas id="deploymentChart"></canvas>
+          </article>
+          <article class="card chart-card">
+            <div class="card-header">
+              <h3>Top Profitable Stocks</h3>
+            </div>
+            <canvas id="profitableChart"></canvas>
+          </article>
+          <article class="card chart-card">
+            <div class="card-header">
+              <h3>Top Losing Stocks</h3>
+            </div>
+            <canvas id="losingChart"></canvas>
+          </article>
+        </section>
+
+        <section class="card table-card">
+          <div class="card-header">
+            <h3>Open Positions</h3>
+            <span id="positions-count">0 rows</span>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Symbol</th>
+                  <th>Open Qty</th>
+                  <th>Capital Deployed</th>
+                  <th>Unrealized P&L</th>
+                  <th>Closed Qty</th>
+                  <th>Closed P&L</th>
+                  <th>Buy Trades</th>
+                  <th>Sell Trades</th>
+                  <th>Open Position Count</th>
+                </tr>
+              </thead>
+              <tbody id="positions-body">
+                <tr>
+                  <td colspan="9">Waiting for data…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/socket.js') }}"></script>
+  </body>
+</html>
