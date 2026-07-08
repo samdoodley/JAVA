@@ -26,6 +26,7 @@ from config import (
     PAPER_TRADING,
     STARTING_CAPITAL, CAPITAL_PER_TRADE, RISK_PER_TRADE_PCT,
     POSITION_QTY_MULTIPLIER,
+    QTY_MODE, QTY_FIXED_SIZE,
     EMA_LENGTH, MIN_WICK_PCT, RISK_REWARD, MAX_POSITIONS,
     SCAN_INTERVAL_SEC,
     DASHBOARD_HOST, DASHBOARD_PORT,
@@ -369,12 +370,22 @@ def check_signal(symbol: str, candles: list[dict]) -> dict | None:
 
 # ── Position Sizing ───────────────────────────────────────────────────────────
 def calc_qty(entry: float, sl: float) -> int:
-    risk_amount    = CAPITAL_PER_TRADE * RISK_PER_TRADE_PCT / 100
+    """Return quantity based on the configured sizing mode.
+
+    - "fixed": uses a small fixed size from config (safe for early testing).
+    - "risk": uses the previous risk-based calculation and can scale larger.
+    """
     risk_per_share = abs(entry - sl)
     if risk_per_share == 0:
         return 0
-    base_qty = max(1, int(risk_amount / risk_per_share))
-    return max(1, base_qty * POSITION_QTY_MULTIPLIER)
+
+    if QTY_MODE == "risk":
+        risk_amount = CAPITAL_PER_TRADE * RISK_PER_TRADE_PCT / 100
+        base_qty = max(1, int(risk_amount / risk_per_share))
+        return max(1, base_qty * POSITION_QTY_MULTIPLIER)
+
+    fixed_qty = max(1, int(QTY_FIXED_SIZE))
+    return fixed_qty
 
 
 # ── Paper Trading ─────────────────────────────────────────────────────────────

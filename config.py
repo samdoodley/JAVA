@@ -36,6 +36,12 @@ RISK_PER_TRADE_PCT = 1.0       # % of capital to risk per trade
 MAX_POSITIONS = 5              # Max concurrent positions
 POSITION_QTY_MULTIPLIER = 3    # Multiply calculated quantity by 3 for each trade
 
+# Quantity sizing mode:
+# - "fixed" uses a small fixed size (currently 50) for lower risk.
+# - "risk" uses the previous risk-based logic and can scale up.
+QTY_MODE = "fixed"
+QTY_FIXED_SIZE = 50
+
 # ─── Strategy Configuration ───────────────────────────────────────────────────
 EMA_LENGTH = 200    # EMA trend filter period (candlesticks)
 MIN_WICK_PCT = 40   # Min wick size (% of candle range) to form a zone
