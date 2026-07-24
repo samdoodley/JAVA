@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-24T14:55:22.934983",
+  "timestamp": "2026-07-24T23:30:43.468363",
   "equity": 500000.0,
   "deployed": 0.0,
   "pnl_today": 0.0,
@@ -10,5 +10,8 @@
   "unique_symbols_traded": 0,
   "symbol_summary": [],
   "positions": [],
-  "trades": []
+  "trades": [],
+  "trend_scores": {},
+  "trend_signals_detected": {},
+  "trend_skips": {}
 }

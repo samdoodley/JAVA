@@ -77,8 +77,11 @@ from config import (
     TELEGRAM_NOTIFY_ERRORS, TELEGRAM_NOTIFY_STARTUP, TELEGRAM_NOTIFY_EOD_SUMMARY,
     TELEGRAM_REQUEST_TIMEOUT_SEC,
     DASHBOARD_HOST, DASHBOARD_PORT,
+    TREND_FILTER_ENABLED, TREND_MIN_SCORE_TRENDING, TREND_MIN_SCORE_NEUTRAL,
+    ALLOW_NEUTRAL_TRADES,
 )
 from reporting import save_trade_report
+from stock_trend_detector import StockTrendDetector, TrendResult
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -100,6 +103,8 @@ IST = ZoneInfo("Asia/Kolkata")
 # locks, exit guards, and latency/slippage bookkeeping. See execution.py for
 # the full explanation of why this replaces REST polling for stop-loss exits.
 engine = ExecutionEngine()
+
+trend_detector = StockTrendDetector()
 
 # ── Hard network timeout for every Kite HTTP call ────────────────────────────
 # pykiteconnect does NOT set a default request timeout. Without this, a
@@ -134,6 +139,10 @@ state = {
     # SL/TRAIL_SL hit counter for the MAX_SL_HITS_PER_DAY circuit breaker.
     # In-memory only (not persisted), so a bot restart always starts fresh.
     "sl_hit_counts":      {},
+    # NEW: trend filter tracking
+    "trend_scores":       {},    # symbol -> {"score": int, "state": str, "reasons": list}
+    "trend_signals_detected": {},  # symbol -> int (signals found by check_signal)
+    "trend_skips":        {},    # symbol -> int (times skipped due to trend filter)
 }
 
 _state_lock = threading.Lock()
@@ -466,6 +475,27 @@ def sl_hit_count_today(symbol: str) -> int:
         if not entry or entry.get("date") != today_str:
             return 0
         return entry["count"]
+
+
+# ── Trend Filter Tracking ─────────────────────────────────────────────────────
+def record_trend_score(symbol: str, result: TrendResult):
+    with _state_lock:
+        state["trend_scores"][symbol] = {
+            "score": result.score,
+            "state": result.state,
+            "reasons": result.reasons,
+            "details": result.details,
+        }
+
+
+def record_trend_signal(symbol: str):
+    with _state_lock:
+        state["trend_signals_detected"][symbol] = state["trend_signals_detected"].get(symbol, 0) + 1
+
+
+def record_trend_skip(symbol: str):
+    with _state_lock:
+        state["trend_skips"][symbol] = state["trend_skips"].get(symbol, 0) + 1
 
 
 # ── Price Bands (value-based position caps) ───────────────────────────────────
@@ -1117,7 +1147,11 @@ def paper_enter(signal: dict):
                     "margin_used": round(margin_used, 2),   # real margin consumed, NOT notional trade value
                     "open_time":  signal["time"],
                     "pnl":        0.0,
+                    "mfe":        0.0,
+                    "mae":        0.0,
                     "status":     "OPEN",
+                    "trend_score": trend_detector.get_trend_score(symbol, candles) if TREND_FILTER_ENABLED else None,
+                    "trend_state": trend_detector.get_market_state(symbol, candles) if TREND_FILTER_ENABLED else None,
                 }
                 state["deployed"] += margin_used
                 deployed_after = state["deployed"]
@@ -1185,6 +1219,11 @@ def _book_exit(symbol: str, exit_price: float, filled_qty: int | None, reason: s
             **pos, "exit": round(exit_price, 2), "pnl": round(pnl, 2),
             "result": result, "reason": reason,
             "close_time": datetime.now(IST).isoformat(),
+            "mfe": round(pos.get("mfe", 0.0), 2),
+            "mae": round(pos.get("mae", 0.0), 2),
+            "holding_minutes": round(minutes_held(pos), 1),
+            "trend_score": pos.get("trend_score"),
+            "trend_state": pos.get("trend_state"),
         }
 
         # ── Slippage Logging ─────────────────────────────────────────────
@@ -1533,7 +1572,11 @@ def live_enter(signal: dict):
             "broker_sl_order_id": broker_sl_order_id,
             "open_time":          signal["time"],
             "pnl":                0.0,
+            "mfe":                0.0,
+            "mae":                0.0,
             "status":             "OPEN",
+            "trend_score":        trend_detector.get_trend_score(symbol, get_candles(symbol, 260) or []) if TREND_FILTER_ENABLED else None,
+            "trend_state":        trend_detector.get_market_state(symbol, get_candles(symbol, 260) or []) if TREND_FILTER_ENABLED else None,
         }
         state["deployed"] += margin_used
         deployed_after  = state["deployed"]
@@ -1797,6 +1840,10 @@ def _process_tick_for_position(symbol: str, price: float):
         if symbol in state["positions"]:
             pnl = (price - pos["entry"]) * pos["qty"] if direction == "BUY" else (pos["entry"] - price) * pos["qty"]
             state["positions"][symbol]["pnl"] = round(pnl, 2)
+            if pnl > state["positions"][symbol].get("mfe", 0):
+                state["positions"][symbol]["mfe"] = round(pnl, 2)
+            if pnl < state["positions"][symbol].get("mae", 0):
+                state["positions"][symbol]["mae"] = round(pnl, 2)
     _save_current_report()
 
 
@@ -1876,6 +1923,289 @@ def enter_trade(signal):
 
 def exit_trade(symbol, price, reason):
     paper_exit(symbol, price, reason) if PAPER_TRADING else live_exit(symbol, reason)
+
+
+def generate_market_trend_report() -> str:
+    """
+    Generate a clean, structured market trend report for ALL watchlist symbols,
+    grouped by TRENDING / NEUTRAL / CHOPPY, with tradable/skipped lists.
+    """
+    lines = [
+        "",
+        "=" * 50,
+        "MARKET TREND REPORT",
+        "=" * 50,
+        "",
+    ]
+
+    trending = []
+    neutral = []
+    choppy = []
+
+    for symbol in WATCHLIST:
+        try:
+            candles = get_candles(symbol, 260)
+            if not candles:
+                choppy.append((symbol, 0, "No candle data"))
+                continue
+            result = trend_detector.compute(symbol, candles)
+            if result.state == "TRENDING":
+                trending.append((symbol, result.score, result.reasons))
+            elif result.state == "NEUTRAL":
+                neutral.append((symbol, result.score, result.reasons))
+            else:
+                choppy.append((symbol, result.score, result.reasons))
+        except Exception as e:
+            choppy.append((symbol, 0, f"Error: {e}"))
+
+    lines.append("TRENDING")
+    lines.append("")
+    for sym, score, _ in trending:
+        lines.append(f"{sym:<16} Score {score}")
+
+    lines.append("")
+    lines.append("-" * 50)
+    lines.append("")
+    lines.append("NEUTRAL")
+    lines.append("")
+    for sym, score, _ in neutral:
+        lines.append(f"{sym:<16} Score {score}")
+
+    lines.append("")
+    lines.append("-" * 50)
+    lines.append("")
+    lines.append("CHOPPY")
+    lines.append("")
+    for sym, score, _ in choppy:
+        lines.append(f"{sym:<16} Score {score}")
+
+    lines.append("")
+    lines.append("=" * 50)
+    lines.append("")
+
+    tradable = [sym for sym, _, _ in trending]
+    if ALLOW_NEUTRAL_TRADES:
+        tradable.extend([sym for sym, _, _ in neutral])
+
+    skipped = [sym for sym, _, _ in choppy]
+    if not ALLOW_NEUTRAL_TRADES:
+        skipped.extend([sym for sym, _, _ in neutral])
+
+    lines.append("TRADABLE TODAY")
+    lines.append("")
+    if tradable:
+        for sym in tradable:
+            lines.append(f"  ✓ {sym}")
+    else:
+        lines.append("  (none)")
+
+    lines.append("")
+    lines.append("Skipped Today")
+    lines.append("")
+    if skipped:
+        for sym in skipped:
+            lines.append(f"  ✗ {sym}")
+        lines.append("")
+        lines.append("Reason:")
+        lines.append("Trend Score below 75")
+    else:
+        lines.append("  (none)")
+
+    lines.append("")
+    lines.append("=" * 50)
+    lines.append("")
+
+    return "\n".join(lines)
+
+
+def generate_trend_eod_report() -> str:
+    today_str = datetime.now(IST).strftime("%Y-%m-%d")
+    with _state_lock:
+        trades = list(state["trades"])
+        trend_scores = dict(state.get("trend_scores", {}))
+        trend_signals = dict(state.get("trend_signals_detected", {}))
+        trend_skips = dict(state.get("trend_skips", {}))
+        sl_hit_counts = dict(state.get("sl_hit_counts", {}))
+        wins, losses = state["wins"], state["losses"]
+
+    # Per-symbol stats from closed trades
+    symbol_stats: dict[str, dict] = {}
+    for t in trades:
+        sym = t["symbol"]
+        if sym not in symbol_stats:
+            symbol_stats[sym] = {
+                "trades": 0, "wins": 0, "losses": 0, "pnl": 0.0,
+                "sl_hits": 0, "trail_sl_hits": 0, "holding_minutes_sum": 0.0,
+            }
+        s = symbol_stats[sym]
+        s["trades"] += 1
+        if t["result"] == "WIN":
+            s["wins"] += 1
+        else:
+            s["losses"] += 1
+        s["pnl"] += t.get("pnl", 0.0)
+        s["holding_minutes_sum"] += t.get("holding_minutes", 0.0)
+        if t.get("reason") == "SL_HIT":
+            s["sl_hits"] += 1
+        elif t.get("reason") == "TRAIL_SL_HIT":
+            s["trail_sl_hits"] += 1
+
+    all_symbols = sorted(set(list(trend_scores.keys()) + list(symbol_stats.keys())))
+
+    trending_stocks = []
+    neutral_stocks = []
+    choppy_stocks = []
+    for sym in all_symbols:
+        ts = trend_scores.get(sym, {})
+        cls = ts.get("state", "CHOPPY")
+        if cls == "TRENDING":
+            trending_stocks.append(sym)
+        elif cls == "NEUTRAL":
+            neutral_stocks.append(sym)
+        else:
+            choppy_stocks.append(sym)
+
+    lines = [
+        "",
+        "=" * 40,
+        "MARKET ANALYSIS REPORT",
+        "=" * 40,
+        "",
+        "Trending Stocks",
+    ]
+    for sym in trending_stocks:
+        lines.append(f"  {sym}")
+    lines.append("")
+    lines.append("Neutral Stocks")
+    for sym in neutral_stocks:
+        lines.append(f"  {sym}")
+    lines.append("")
+    lines.append("Skipped Choppy Stocks")
+    for sym in choppy_stocks:
+        lines.append(f"  {sym}")
+
+    # Per-stock detail
+    lines.append("")
+    lines.append("-" * 40)
+    for sym in all_symbols:
+        ts = trend_scores.get(sym, {})
+        score = ts.get("score", 0)
+        cls = ts.get("state", "CHOPPY")
+        reasons = ", ".join(ts.get("reasons", [])[:3])
+        st = symbol_stats.get(sym, {})
+        trades = st.get("trades", 0)
+        wins = st.get("wins", 0)
+        losses = st.get("losses", 0)
+        pnl = st.get("pnl", 0.0)
+        avg_hold = (st["holding_minutes_sum"] / trades) if trades else 0.0
+        sl_hits = st.get("sl_hits", 0)
+        trail_sl_hits = st.get("trail_sl_hits", 0)
+        signals = trend_signals.get(sym, 0)
+        skips = trend_skips.get(sym, 0)
+
+        lines.append("")
+        lines.append(f"{sym}")
+        lines.append(f"  Trend Score  : {score}")
+        lines.append(f"  Classification: {cls}")
+        if cls == "CHOPPY":
+            lines.append(f"  Skipped      : {skips}")
+            lines.append(f"  Reason       : {reasons}")
+        else:
+            lines.append(f"  Signals      : {signals}")
+            lines.append(f"  Trades       : {trades}")
+            lines.append(f"  Wins         : {wins}")
+            lines.append(f"  Losses       : {losses}")
+            lines.append(f"  PnL          : {pnl:+,.2f}")
+            if trades:
+                lines.append(f"  Avg Hold     : {avg_hold:.1f} min")
+                lines.append(f"  Win Rate     : {wins/trades*100:.1f}%")
+            lines.append(f"  SL Hits      : {sl_hits}")
+            lines.append(f"  Trail SL Hits: {trail_sl_hits}")
+
+    # Analytics
+    def _bucket(syms, stats_map):
+        pnl_list, wr_list, dur_list, sl_list, trail_list = [], [], [], [], []
+        rr_list, mae_list, mfe_list = [], [], []
+        for sym in syms:
+            st = stats_map.get(sym, {})
+            t = st.get("trades", 0)
+            if t == 0:
+                continue
+            pnl_list.append(st.get("pnl", 0.0))
+            wr_list.append(st.get("wins", 0) / t)
+            dur_list.append(st.get("holding_minutes_sum", 0.0) / t)
+            sl_list.append(st.get("sl_hits", 0) / t)
+            trail_list.append(st.get("trail_sl_hits", 0) / t)
+        return pnl_list, wr_list, dur_list, sl_list, trail_list
+
+    # Calculate RR achieved, MAE, MFE from trades
+    def _trade_bucket(syms, trades_list):
+        pnl_list, rr_list, mae_list, mfe_list = [], [], [], []
+        for t in trades_list:
+            if t["symbol"] not in syms:
+                continue
+            pnl_list.append(t.get("pnl", 0.0))
+            risk = t.get("risk", 0)
+            if risk:
+                rr_list.append(t.get("pnl", 0.0) / risk)
+            mae_list.append(abs(t.get("mae", 0.0)))
+            mfe_list.append(abs(t.get("mfe", 0.0)))
+        return pnl_list, rr_list, mae_list, mfe_list
+
+    trend_pnl, trend_wr, trend_dur, trend_sl, trend_trail = _bucket(trending_stocks, symbol_stats)
+    choppy_pnl, choppy_wr, choppy_dur, choppy_sl, choppy_trail = _bucket(choppy_stocks, symbol_stats)
+
+    trend_trade_pnl, trend_rr, trend_mae, trend_mfe = _trade_bucket(trending_stocks, trades)
+    choppy_trade_pnl, choppy_rr, choppy_mae, choppy_mfe = _trade_bucket(choppy_stocks, trades)
+
+    def _avg(lst):
+        return sum(lst) / len(lst) if lst else 0.0
+
+    lines.append("")
+    lines.append("-" * 40)
+    lines.append("ANALYTICS")
+    lines.append("")
+    lines.append(f"Average PnL (TRENDING)     : {_avg(trend_pnl):+,.2f}")
+    lines.append(f"Average PnL (CHOPPY)       : {_avg(choppy_pnl):+,.2f}")
+    lines.append(f"Win Rate (TRENDING)        : {_avg(trend_wr)*100:.1f}%")
+    lines.append(f"Win Rate (CHOPPY)          : {_avg(choppy_wr)*100:.1f}%")
+    lines.append(f"Avg SL Hits/trade (TREND)  : {_avg(trend_sl):.2f}")
+    lines.append(f"Avg SL Hits/trade (CHOP)   : {_avg(choppy_sl):.2f}")
+    lines.append(f"Avg Trail SL Hits/trade    : {_avg(trend_trail):.2f}")
+    lines.append(f"Avg Duration (TREND)       : {_avg(trend_dur):.1f} min")
+    lines.append(f"Avg Duration (CHOP)        : {_avg(choppy_dur):.1f} min")
+    lines.append(f"Avg RR Achieved (TREND)    : {_avg(trend_rr):.2f}")
+    lines.append(f"Avg RR Achieved (CHOP)     : {_avg(choppy_rr):.2f}")
+    lines.append(f"Avg MAE (TREND)            : {_avg(trend_mae):,.2f}")
+    lines.append(f"Avg MAE (CHOP)             : {_avg(choppy_mae):,.2f}")
+    lines.append(f"Avg MFE (TREND)            : {_avg(trend_mfe):,.2f}")
+    lines.append(f"Avg MFE (CHOP)             : {_avg(choppy_mfe):,.2f}")
+
+    # PnL comparison
+    total_pnl_with_filter = sum(t.get("pnl", 0.0) for t in trades)
+    total_signals = sum(trend_signals.get(s, 0) for s in trend_signals)
+    total_skips = sum(trend_skips.get(s, 0) for s in trend_skips)
+
+    lines.append("")
+    lines.append("-" * 40)
+    lines.append("SUMMARY")
+    lines.append(f"Average Trend Score        : {_avg([ts.get('score', 0) for ts in trend_scores.values()]):.1f}")
+    lines.append(f"Total Trades Allowed       : {len(trades)}")
+    lines.append(f"Total Trades Skipped       : {total_skips}")
+    lines.append(f"PnL With Filter           : {total_pnl_with_filter:+,.2f}")
+    lines.append(f"PnL Without Filter        : N/A (no baseline data)")
+    lines.append(f"Improvement %             : N/A (no baseline)")
+    lines.append(f"Win Rate                   : {wins / (wins + losses) * 100:.1f}%" if (wins + losses) else "Win Rate: 0.0%")
+    lines.append(f"Drawdown Reduction %      : N/A (no baseline)")
+    lines.append("")
+    if _avg(trend_pnl) > _avg(choppy_pnl):
+        lines.append("Recommendation: Trend filter BENEFICIAL")
+    else:
+        lines.append("Recommendation: Trend filter NOT BENEFICIAL")
+    lines.append("=" * 40)
+    lines.append("")
+
+    return "\n".join(lines)
 
 
 # ── Force Square-Off (EOD) ────────────────────────────────────────────────────
@@ -2169,11 +2499,17 @@ def _maybe_send_eod_summary():
     total = wins + losses
     wr = round(wins / total * 100, 1) if total else 0
     mode_tag = "📝 PAPER" if PAPER_TRADING else "💰 LIVE"
+    trend_report = generate_trend_eod_report()
+    market_trend_report = generate_market_trend_report()
     send_telegram(
         f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
         f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
-        f"PnL today: ₹{pnl_today:,.2f}"
+        f"PnL today: ₹{pnl_today:,.2f}\n\n"
+        f"{market_trend_report}\n\n"
+        f"{trend_report}"
     )
+    log.info(market_trend_report)
+    log.info(trend_report)
 
 
 def position_monitor_loop():
@@ -2260,9 +2596,32 @@ def scan_loop():
                     if not candles:
                         log.debug(f"{symbol}: no candle data returned — skipping evaluation this cycle.")
                         continue
+
+                    trend_result = trend_detector.compute(symbol, candles)
+                    record_trend_score(symbol, trend_result)
+
+                    if TREND_FILTER_ENABLED:
+                        if trend_result.state == "CHOPPY":
+                            log_skip(
+                                symbol,
+                                f"Trend filter: CHOPPY (score {trend_result.score}/100) — "
+                                f"reasons: {', '.join(trend_result.reasons[:3])}"
+                            )
+                            record_trend_skip(symbol)
+                            continue
+                        if trend_result.state == "NEUTRAL" and not ALLOW_NEUTRAL_TRADES:
+                            log_skip(
+                                symbol,
+                                f"Trend filter: NEUTRAL (score {trend_result.score}/100) — "
+                                f"skipping neutral unless ALLOW_NEUTRAL_TRADES=True"
+                            )
+                            record_trend_skip(symbol)
+                            continue
+
                     signal = check_signal(symbol, candles)
                     if signal:
                         log.info(f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']}")
+                        record_trend_signal(symbol)
 
                         if is_warmup:
                             log_skip(
@@ -2322,6 +2681,9 @@ def get_dashboard_state() -> dict:
         total = state["wins"] + state["losses"]
         wr    = round(state["wins"] / total * 100, 1) if total else 0
         mtm   = _compute_open_mtm_breakdown_locked()
+        trend_scores = dict(state.get("trend_scores", {}))
+        trend_signals = dict(state.get("trend_signals_detected", {}))
+        trend_skips = dict(state.get("trend_skips", {}))
         return {
             "connected":         state["connected"],
             "scan_status":       state["scan_status"],
@@ -2349,6 +2711,11 @@ def get_dashboard_state() -> dict:
             "paper_mode":        PAPER_TRADING,
             "no_new_entries_after": NO_NEW_ENTRIES_AFTER,
             "square_off_time":      SQUARE_OFF_TIME,
+            "trend_filter_enabled": TREND_FILTER_ENABLED,
+            "trend_scores":      trend_scores,
+            "trend_signals_detected": trend_signals,
+            "trend_skips":       trend_skips,
+            "market_trend_report": generate_market_trend_report(),
         }
 
 
@@ -2376,6 +2743,7 @@ if __name__ == "__main__":
     log.info(f"Warm-up scans  : {WARMUP_SCANS} (analysis only, no trades)")
     log.info(f"Trailing SL    : initial {INITIAL_SL_R}R, ladder " + " → ".join(f"{s['trigger_r']}R⇒{s['sl_r']}R" for s in TRAIL_STAGES))
     log.info(f"Kite HTTP timeout: {KITE_REQUEST_TIMEOUT_SEC}s (prevents hung network calls from stalling the scan)")
+    log.info(f"Trend filter   : {'ENABLED' if TREND_FILTER_ENABLED else 'DISABLED'} | Min trending: {TREND_MIN_SCORE_TRENDING} | Min neutral: {TREND_MIN_SCORE_NEUTRAL} | Allow neutral: {ALLOW_NEUTRAL_TRADES}")
 
     if not connect_kite():
         log.warning("Initial connection failed — will retry in scan loop")
@@ -2388,12 +2756,14 @@ if __name__ == "__main__":
 
     if TELEGRAM_NOTIFY_STARTUP:
         mode_tag = "📝 PAPER TRADING" if PAPER_TRADING else "💰 LIVE TRADING"
+        trend_tag = f"Trend filter: {'ON' if TREND_FILTER_ENABLED else 'OFF'} (min trending {TREND_MIN_SCORE_TRENDING})"
         send_telegram(
             f"🚀 WickFill Auto-Trader started\n"
             f"Mode: {mode_tag}\n"
             f"Watchlist: {len(WATCHLIST)} symbols | Max positions: {MAX_POSITIONS}\n"
             f"Window: {TRADING_START_TIME}–{NO_NEW_ENTRIES_AFTER} IST | Square-off: {SQUARE_OFF_TIME} IST\n"
-            f"Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} (fresh count today)"
+            f"Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} (fresh count today)\n"
+            f"{trend_tag}"
         )
 
     scan_thread = threading.Thread(target=scan_loop, daemon=True)

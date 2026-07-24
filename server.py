@@ -126,6 +126,16 @@ MOBILE_PAGE = """
     <div id="trades"></div>
   </section>
 
+  <section>
+    <h2>Trend Classification</h2>
+    <div id="trend"></div>
+  </section>
+
+  <section>
+    <h2>Market Trend Report</h2>
+    <pre id="market-trend" style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px;font-size:12px;white-space:pre-wrap;color:#e6edf3;"></pre>
+  </section>
+
 <script>
 function money(v) {
   const n = Number(v) || 0;
@@ -155,7 +165,7 @@ async function refresh() {
     const positions = d.positions || [];
     document.getElementById("pos-count").textContent = positions.length;
     document.getElementById("positions").innerHTML = positions.length ? `
-      <table><thead><tr><th>Symbol</th><th>Dir</th><th>Qty</th><th>Entry</th><th>SL</th><th>TP</th><th>P&L</th></tr></thead>
+      <table><thead><tr><th>Symbol</th><th>Dir</th><th>Qty</th><th>Entry</th><th>SL</th><th>TP</th><th>P&L</th><th>Trend</th></tr></thead>
       <tbody>${positions.map(p => `
         <tr>
           <td>${p.symbol}</td>
@@ -165,6 +175,7 @@ async function refresh() {
           <td>${money(p.sl)}</td>
           <td>${money(p.tp)}</td>
           <td class="${cls(p.pnl)}">${money(p.pnl)}</td>
+          <td>${p.trend_state ? `<span class="badge">${p.trend_state} (${p.trend_score})</span>` : "-"}</td>
         </tr>`).join("")}
       </tbody></table>` : `<div class="empty">No open positions.</div>`;
 
@@ -181,6 +192,22 @@ async function refresh() {
           <td>${t.reason || ""}</td>
         </tr>`).join("")}
       </tbody></table>` : `<div class="empty">No trades yet.</div>`;
+
+    const trendScores = d.trend_scores || {};
+    const trendEntries = Object.entries(trendScores);
+    document.getElementById("trend").innerHTML = trendEntries.length ? `
+      <table><thead><tr><th>Symbol</th><th>Score</th><th>State</th><th>Top Reasons</th></tr></thead>
+      <tbody>${trendEntries.map(([sym, tv]) => `
+        <tr>
+          <td>${sym}</td>
+          <td>${tv.score ?? 0}</td>
+          <td><span class="badge">${tv.state || "-"}</span></td>
+          <td>${(tv.reasons || []).slice(0, 2).join(", ") || "-"}</td>
+        </tr>`).join("")}
+      </tbody></table>` : `<div class="empty">No trend data yet.</div>`;
+
+    const marketTrend = d.market_trend_report || "";
+    document.getElementById("market-trend").textContent = marketTrend || "No market trend report available yet.";
 
   } catch (e) {
     document.getElementById("status-dot").classList.remove("live");

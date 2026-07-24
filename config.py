@@ -116,7 +116,7 @@ PRICE_BAND_2000_4000 = [
 ]
 
 PRICE_BANDS = [
-    {"name": "500-1000",   "symbols": PRICE_BAND_500_1000,  "max_positions": 5},
+    {"name": "500-1000",   "symbols": PRICE_BAND_500_1000,  "max_positions": 4},
     {"name": "1000-2000",  "symbols": PRICE_BAND_1000_2000, "max_positions": 3},
     {"name": "2000-4000",  "symbols": PRICE_BAND_2000_4000, "max_positions": 2},
 ]
@@ -132,6 +132,16 @@ MAX_POSITIONS = 9
 EMA_LENGTH = 200    # EMA trend filter period (candlesticks)
 MIN_WICK_PCT = 50   # Min wick size (% of candle range) to form a zone
 RISK_REWARD = 2.0   # Reference target only — actual exits are trailing-stop based (see below)
+
+# ─── Trend Filter (per-stock classification) ──────────────────────────────────
+# Computed every new candle. Only stocks classified as TRENDING are allowed
+# to trade. CHOPPY stocks are skipped immediately (no entry evaluation).
+# NEUTRAL stocks are skipped by default; set ALLOW_NEUTRAL_TRADES to True to
+# let them through if you want optional exposure.
+TREND_FILTER_ENABLED = True
+TREND_MIN_SCORE_TRENDING = 75
+TREND_MIN_SCORE_NEUTRAL = 50
+ALLOW_NEUTRAL_TRADES = False
 
 # ─── Timing ───────────────────────────────────────────────────────────────────
 SCAN_INTERVAL_SEC = 300   # Scan every 5 minutes (aligns with 5-min candle) — used for SIGNAL detection only

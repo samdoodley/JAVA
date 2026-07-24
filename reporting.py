@@ -27,6 +27,13 @@ def generate_trade_report(state: dict) -> dict:
                 "open_position_count": 0,
                 "capital_deployed": 0.0,
                 "unrealized_pnl": 0.0,
+                "wins": 0,
+                "losses": 0,
+                "sl_hits": 0,
+                "trail_sl_hits": 0,
+                "total_holding_minutes": 0.0,
+                "trend_score": trade.get("trend_score"),
+                "trend_state": trade.get("trend_state"),
             }
         summary = symbol_summary[symbol]
         summary["closed_trades"] += 1
@@ -36,6 +43,15 @@ def generate_trade_report(state: dict) -> dict:
             summary["buy_trades"] += 1
         else:
             summary["sell_trades"] += 1
+        if trade.get("result") == "WIN":
+            summary["wins"] += 1
+        else:
+            summary["losses"] += 1
+        if trade.get("reason") == "SL_HIT":
+            summary["sl_hits"] += 1
+        elif trade.get("reason") == "TRAIL_SL_HIT":
+            summary["trail_sl_hits"] += 1
+        summary["total_holding_minutes"] += trade.get("holding_minutes", 0.0)
 
     for pos in positions:
         symbol = pos["symbol"]
@@ -51,6 +67,13 @@ def generate_trade_report(state: dict) -> dict:
                 "open_position_count": 0,
                 "capital_deployed": 0.0,
                 "unrealized_pnl": 0.0,
+                "wins": 0,
+                "losses": 0,
+                "sl_hits": 0,
+                "trail_sl_hits": 0,
+                "total_holding_minutes": 0.0,
+                "trend_score": pos.get("trend_score"),
+                "trend_state": pos.get("trend_state"),
             }
         summary = symbol_summary[symbol]
         summary["open_qty"] += pos.get("qty", 0)
@@ -76,6 +99,9 @@ def generate_trade_report(state: dict) -> dict:
         "symbol_summary": sorted(symbol_summary.values(), key=lambda x: x["symbol"]),
         "positions": positions,
         "trades": trades[:50],
+        "trend_scores": state.get("trend_scores", {}),
+        "trend_signals_detected": state.get("trend_signals_detected", {}),
+        "trend_skips": state.get("trend_skips", {}),
     }
     return report
 
