@@ -18727,3 +18727,52 @@ Recommendation: Trend filter NOT BENEFICIAL
 2026-07-25 02:03:18,208 [INFO] Market closed. Opens in ~431 min. Sleeping 60 s…
 2026-07-25 02:04:18,269 [INFO] Market closed. Opens in ~430 min. Sleeping 60 s…
 2026-07-25 02:05:18,329 [INFO] Market closed. Opens in ~429 min. Sleeping 60 s…
+2026-07-25 02:07:20,666 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-25 02:07:20,666 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-25 02:07:20,666 [INFO] Product        : MIS (intraday)
+2026-07-25 02:07:20,667 [INFO] Order type     : MARKET
+2026-07-25 02:07:20,667 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-25 02:07:20,667 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-25 02:07:20,667 [INFO] EMA Length     : 200
+2026-07-25 02:07:20,667 [INFO] Min Wick %     : 50
+2026-07-25 02:07:20,668 [INFO] Risk:Reward    : 1:2.0
+2026-07-25 02:07:20,668 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-25 02:07:20,668 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-25 02:07:20,668 [INFO] Entries cutoff : 14:45 IST
+2026-07-25 02:07:20,668 [INFO] Square-off at  : 15:20 IST
+2026-07-25 02:07:20,668 [INFO] Max hold time  : 120 min
+2026-07-25 02:07:20,668 [INFO] Position check : every 7s (independent of the 300s signal scan)
+2026-07-25 02:07:20,669 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-25 02:07:20,669 [INFO] Cooldown       : 5 min after exit
+2026-07-25 02:07:20,669 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-25 02:07:20,669 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-25 02:07:20,669 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-25 02:07:20,669 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-25 02:07:20,670 [INFO] Trend filter   : ENABLED | Min trending: 75 | Min neutral: 50 | Allow neutral: False
+2026-07-25 02:07:20,670 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-25 02:07:20,670 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-25 02:07:20,919 [INFO] ✅ Loaded 9965 NSE instruments
+2026-07-25 02:07:20,926 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-25 02:07:21,077 [INFO] ✅ KiteTicker connected
+2026-07-25 02:07:21,928 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-25 02:07:21,930 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-25 02:07:21,932 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-25 02:07:21,932 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-25 02:07:21,934 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-25 02:07:21,935 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-25 02:07:21,937 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-25 02:07:21,937 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-25 02:07:21,937 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-25 02:07:21,937 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-25 02:07:21,938 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-25 02:07:21,938 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-25 02:07:21,938 [INFO] Market closed. Opens in ~427 min. Sleeping 60 s…
+2026-07-25 02:07:22,074 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-25 02:07:22,081 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-25 02:07:22,081 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-25 02:08:21,980 [INFO] Market closed. Opens in ~426 min. Sleeping 60 s…
+2026-07-25 02:09:22,041 [INFO] Market closed. Opens in ~425 min. Sleeping 60 s…
+2026-07-25 02:10:22,083 [INFO] Market closed. Opens in ~424 min. Sleeping 60 s…

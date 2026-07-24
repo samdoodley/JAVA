@@ -2502,20 +2502,21 @@ def _maybe_send_eod_summary():
     wr = round(wins / total * 100, 1) if total else 0
     mode_tag = "📝 PAPER" if PAPER_TRADING else "💰 LIVE"
 
-    trend_report = generate_trend_eod_report()
     market_trend_report = generate_market_trend_report()
 
-    has_data = total > 0 or len(trend_scores) > 0 or len(trades) > 0
-    if not has_data:
+    has_trade_data = total > 0 or len(trades) > 0
+    if not has_trade_data:
         send_telegram(
             f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
             f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
-            f"PnL today: ₹{pnl_today:,.2f}\n"
-            f"No trading activity today."
+            f"PnL today: ₹{pnl_today:,.2f}\n\n"
+            f"{market_trend_report}"
         )
-        log.info(f"EOD summary sent (no data) | Trades: {total} | PnL: ₹{pnl_today:,.2f}")
+        log.info(market_trend_report)
+        log.info(f"EOD summary sent | Trades: {total} | PnL: ₹{pnl_today:,.2f}")
         return
 
+    trend_report = generate_trend_eod_report()
     send_telegram(
         f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
         f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
@@ -2768,6 +2769,13 @@ if __name__ == "__main__":
         load_instruments()
         fetch_margins()
         start_execution_engine_if_needed()
+
+    if TREND_FILTER_ENABLED:
+        try:
+            market_report = generate_market_trend_report()
+            log.info(market_report)
+        except Exception as e:
+            log.warning(f"Market trend report generation failed at startup: {e}")
 
     if TELEGRAM_NOTIFY_STARTUP:
         mode_tag = "📝 PAPER TRADING" if PAPER_TRADING else "💰 LIVE TRADING"
