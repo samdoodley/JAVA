@@ -1,5 +1,5 @@
 """
-WickFill Auto-Trader Bot v2 — Zerodha Kite
+WickFill Auto-Trader Bot v3 — Zerodha Kite
 Strategy: EMA 200 Filter + Wick Zones + Zone Fills
 
 *** PATCHED VERSION (round 3) ***
@@ -2496,11 +2496,26 @@ def _maybe_send_eod_summary():
             return
         state["eod_summary_date_sent"] = today_str
         wins, losses, pnl_today = state["wins"], state["losses"], state["pnl_today"]
+        trend_scores = dict(state.get("trend_scores", {}))
+        trades = list(state.get("trades", []))
     total = wins + losses
     wr = round(wins / total * 100, 1) if total else 0
     mode_tag = "📝 PAPER" if PAPER_TRADING else "💰 LIVE"
+
     trend_report = generate_trend_eod_report()
     market_trend_report = generate_market_trend_report()
+
+    has_data = total > 0 or len(trend_scores) > 0 or len(trades) > 0
+    if not has_data:
+        send_telegram(
+            f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
+            f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
+            f"PnL today: ₹{pnl_today:,.2f}\n"
+            f"No trading activity today."
+        )
+        log.info(f"EOD summary sent (no data) | Trades: {total} | PnL: ₹{pnl_today:,.2f}")
+        return
+
     send_telegram(
         f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
         f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
@@ -2721,7 +2736,7 @@ def get_dashboard_state() -> dict:
 
 # ── Entry Point ───────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    log.info("🚀 WickFill Auto-Trader v2 — Zerodha Kite")
+    log.info("🚀 WickFill Auto-Trader v3 — Zerodha Kite")
     log.info(f"Mode           : {'📝 PAPER TRADING' if PAPER_TRADING else '💰 LIVE TRADING'}")
     log.info(f"Product        : MIS (intraday)")
     log.info(f"Order type     : MARKET")
