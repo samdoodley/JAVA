@@ -567,8 +567,13 @@ def start_execution_engine_if_needed():
         log.warning("⚠️ Cannot start KiteTicker — no access_token found on the Kite session.")
         return
     engine.start(API_KEY, access_token)
-    # Give the socket a moment to connect before subscribing.
-    time.sleep(1.0)
+    # Wait for the WebSocket to actually connect before subscribing.
+    # connect(threaded=True) is asynchronous — _on_connect sets
+    # _connected only after the socket finishes its handshake.
+    for _ in range(30):
+        if engine.is_connected():
+            break
+        time.sleep(0.2)
     engine.subscribe_symbols(list(token_map.keys()))
     _engine_started = True
 
