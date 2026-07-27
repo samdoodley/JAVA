@@ -19337,3 +19337,1087 @@ Trend Score below 75
 2026-07-27 12:18:24,477 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.4 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
 2026-07-27 12:18:24,627 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 42/100) — reasons: Strong ADX (47.0 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
 2026-07-27 12:18:24,627 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 12:45:40,439 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-27 12:45:40,439 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-27 12:45:40,439 [INFO] Product        : MIS (intraday)
+2026-07-27 12:45:40,439 [INFO] Order type     : MARKET
+2026-07-27 12:45:40,439 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-27 12:45:40,439 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-27 12:45:40,439 [INFO] EMA Length     : 200
+2026-07-27 12:45:40,439 [INFO] Min Wick %     : 50
+2026-07-27 12:45:40,439 [INFO] Risk:Reward    : 1:2.0
+2026-07-27 12:45:40,439 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-27 12:45:40,439 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-27 12:45:40,439 [INFO] Entries cutoff : 14:45 IST
+2026-07-27 12:45:40,440 [INFO] Square-off at  : 15:20 IST
+2026-07-27 12:45:40,440 [INFO] Max hold time  : 120 min
+2026-07-27 12:45:40,440 [INFO] Position check : every 7s (independent of the 300s signal scan)
+2026-07-27 12:45:40,440 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-27 12:45:40,440 [INFO] Cooldown       : 5 min after exit
+2026-07-27 12:45:40,440 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-27 12:45:40,440 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-27 12:45:40,440 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-27 12:45:40,440 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-27 12:45:40,440 [INFO] Trend filter   : ENABLED | Min trending: 75 | Min neutral: 50 | Allow neutral: False
+2026-07-27 12:45:40,440 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-27 12:45:40,440 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-27 12:45:51,008 [INFO] ⏱️ Kite call instruments took 10.6s
+2026-07-27 12:45:51,012 [INFO] ✅ Loaded 9985 NSE instruments
+2026-07-27 12:45:51,020 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-27 12:45:51,467 [INFO] ✅ KiteTicker connected
+2026-07-27 12:45:51,622 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-27 12:45:56,106 [INFO] 
+==================================================
+MARKET TREND REPORT
+==================================================
+
+TRENDING
+
+
+--------------------------------------------------
+
+NEUTRAL
+
+CANBK            Score 57
+BHARTIARTL       Score 50
+SUNPHARMA        Score 57
+
+--------------------------------------------------
+
+CHOPPY
+
+TATASTEEL        Score 2
+HDFCBANK         Score 45
+KOTAKBANK        Score 15
+SBIN             Score 37
+BEL              Score 2
+Union Bank of India Score 0
+POLYCAB          Score 25
+Bank of India    Score 0
+COALINDIA        Score 45
+MUTHOOTFIN       Score 47
+AXISBANK         Score 15
+ICICIBANK        Score 7
+RELIANCE         Score 10
+INFY             Score 45
+HCLTECH          Score 45
+TRENT            Score 47
+PERSISTENT       Score 28
+TCS              Score 47
+LT               Score 25
+TVSMOTOR         Score 25
+M&M              Score 30
+
+==================================================
+
+TRADABLE TODAY
+
+  (none)
+
+Skipped Today
+
+  ✗ TATASTEEL
+  ✗ HDFCBANK
+  ✗ KOTAKBANK
+  ✗ SBIN
+  ✗ BEL
+  ✗ Union Bank of India
+  ✗ POLYCAB
+  ✗ Bank of India
+  ✗ COALINDIA
+  ✗ MUTHOOTFIN
+  ✗ AXISBANK
+  ✗ ICICIBANK
+  ✗ RELIANCE
+  ✗ INFY
+  ✗ HCLTECH
+  ✗ TRENT
+  ✗ PERSISTENT
+  ✗ TCS
+  ✗ LT
+  ✗ TVSMOTOR
+  ✗ M&M
+  ✗ CANBK
+  ✗ BHARTIARTL
+  ✗ SUNPHARMA
+
+Reason:
+Trend Score below 75
+
+==================================================
+
+2026-07-27 12:45:56,108 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-27 12:45:56,110 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-27 12:45:56,110 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-27 12:45:56,112 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-27 12:45:56,112 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-27 12:45:56,113 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-27 12:45:56,113 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-27 12:45:56,113 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-27 12:45:56,113 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-27 12:45:56,114 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-27 12:45:56,114 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-27 12:45:56,114 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-27 12:45:56,269 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-27 12:45:56,280 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://172.20.10.2:5050
+2026-07-27 12:45:56,281 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-27 12:45:56,423 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (12.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:45:56,601 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.6 > 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 12:45:56,793 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (20.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:45:57,003 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:45:57,209 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (9.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:45:57,401 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:45:57,619 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:45:57,814 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (27.6 > 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:45:58,027 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (35.8 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 12:45:58,251 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (20.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:45:58,435 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 7/100) — reasons: Weak ADX (13.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:45:58,589 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 50/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:45:58,879 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (23.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:45:59,089 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (31.3 > 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:45:59,303 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:45:59,474 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.4 > 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:45:59,634 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (27.1 > 25), ATR contracting, Flat EMA200 slope (+0.05%)
+2026-07-27 12:45:59,828 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 28/100) — reasons: Weak ADX (21.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:45:59,999 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (25.7 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:46:00,186 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:46:00,385 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (22.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:46:00,559 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 30/100) — reasons: Strong ADX (45.4 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 12:46:00,560 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 12:50:03,222 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-27 12:50:03,222 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-27 12:50:03,222 [INFO] Product        : MIS (intraday)
+2026-07-27 12:50:03,222 [INFO] Order type     : MARKET
+2026-07-27 12:50:03,222 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-27 12:50:03,222 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-27 12:50:03,222 [INFO] EMA Length     : 200
+2026-07-27 12:50:03,223 [INFO] Min Wick %     : 50
+2026-07-27 12:50:03,223 [INFO] Risk:Reward    : 1:2.0
+2026-07-27 12:50:03,223 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-27 12:50:03,223 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-27 12:50:03,223 [INFO] Entries cutoff : 14:45 IST
+2026-07-27 12:50:03,223 [INFO] Square-off at  : 15:20 IST
+2026-07-27 12:50:03,223 [INFO] Max hold time  : 120 min
+2026-07-27 12:50:03,223 [INFO] Position check : every 7s (independent of the 300s signal scan)
+2026-07-27 12:50:03,223 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-27 12:50:03,223 [INFO] Cooldown       : 5 min after exit
+2026-07-27 12:50:03,223 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-27 12:50:03,223 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-27 12:50:03,223 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-27 12:50:03,223 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-27 12:50:03,223 [INFO] Trend filter   : ENABLED | Min trending: 75 | Min neutral: 50 | Allow neutral: False
+2026-07-27 12:50:03,224 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-27 12:50:03,224 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-27 12:50:13,950 [INFO] ⏱️ Kite call instruments took 10.7s
+2026-07-27 12:50:13,954 [INFO] ✅ Loaded 9985 NSE instruments
+2026-07-27 12:50:13,961 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-27 12:50:14,365 [INFO] ✅ KiteTicker connected
+2026-07-27 12:50:14,564 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-27 12:50:19,116 [INFO] 
+==================================================
+MARKET TREND REPORT
+==================================================
+
+TRENDING
+
+
+--------------------------------------------------
+
+NEUTRAL
+
+CANBK            Score 57
+MUTHOOTFIN       Score 52
+SUNPHARMA        Score 52
+TRENT            Score 55
+
+--------------------------------------------------
+
+CHOPPY
+
+TATASTEEL        Score 2
+HDFCBANK         Score 47
+KOTAKBANK        Score 15
+SBIN             Score 17
+BEL              Score 2
+Union Bank of India Score 0
+POLYCAB          Score 15
+Bank of India    Score 0
+COALINDIA        Score 45
+AXISBANK         Score 15
+ICICIBANK        Score 7
+BHARTIARTL       Score 47
+RELIANCE         Score 10
+INFY             Score 45
+HCLTECH          Score 45
+PERSISTENT       Score 28
+TCS              Score 45
+LT               Score 25
+TVSMOTOR         Score 25
+M&M              Score 30
+
+==================================================
+
+TRADABLE TODAY
+
+  (none)
+
+Skipped Today
+
+  ✗ TATASTEEL
+  ✗ HDFCBANK
+  ✗ KOTAKBANK
+  ✗ SBIN
+  ✗ BEL
+  ✗ Union Bank of India
+  ✗ POLYCAB
+  ✗ Bank of India
+  ✗ COALINDIA
+  ✗ AXISBANK
+  ✗ ICICIBANK
+  ✗ BHARTIARTL
+  ✗ RELIANCE
+  ✗ INFY
+  ✗ HCLTECH
+  ✗ PERSISTENT
+  ✗ TCS
+  ✗ LT
+  ✗ TVSMOTOR
+  ✗ M&M
+  ✗ CANBK
+  ✗ MUTHOOTFIN
+  ✗ SUNPHARMA
+  ✗ TRENT
+
+Reason:
+Trend Score below 75
+
+==================================================
+
+2026-07-27 12:50:19,119 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-27 12:50:19,121 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-27 12:50:19,121 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-27 12:50:19,123 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-27 12:50:19,123 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-27 12:50:19,125 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-27 12:50:19,125 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-27 12:50:19,126 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-27 12:50:19,126 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-27 12:50:19,126 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-27 12:50:19,126 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-27 12:50:19,127 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-27 12:50:19,264 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-27 12:50:19,275 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://172.20.10.2:5050
+2026-07-27 12:50:19,275 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-27 12:50:19,368 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (11.9 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:50:19,571 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (26.4 > 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 12:50:19,751 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (18.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:50:19,968 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (15.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:50:20,106 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (9.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:50:20,264 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:50:20,457 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:50:20,664 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.9 > 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:50:20,841 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:50:21,057 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (18.6 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:50:21,285 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 7/100) — reasons: Weak ADX (14.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:50:21,446 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.2 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:50:21,685 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (24.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:50:21,888 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (31.0 > 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:50:22,049 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:50:22,189 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.4 > 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:50:22,411 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:50:22,611 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 28/100) — reasons: Weak ADX (20.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:50:22,809 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.1 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:50:23,185 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:50:23,553 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (21.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:50:23,981 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 30/100) — reasons: Strong ADX (45.5 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 12:50:23,981 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 12:55:03,566 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-27 12:55:03,566 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-27 12:55:03,566 [INFO] Product        : MIS (intraday)
+2026-07-27 12:55:03,566 [INFO] Order type     : MARKET
+2026-07-27 12:55:03,566 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-27 12:55:03,567 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-27 12:55:03,567 [INFO] EMA Length     : 200
+2026-07-27 12:55:03,567 [INFO] Min Wick %     : 50
+2026-07-27 12:55:03,567 [INFO] Risk:Reward    : 1:2.0
+2026-07-27 12:55:03,567 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-27 12:55:03,567 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-27 12:55:03,567 [INFO] Entries cutoff : 14:45 IST
+2026-07-27 12:55:03,567 [INFO] Square-off at  : 15:20 IST
+2026-07-27 12:55:03,567 [INFO] Max hold time  : 120 min
+2026-07-27 12:55:03,567 [INFO] Position check : every 7s (independent of the 300s signal scan)
+2026-07-27 12:55:03,567 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-27 12:55:03,567 [INFO] Cooldown       : 5 min after exit
+2026-07-27 12:55:03,567 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-27 12:55:03,568 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-27 12:55:03,568 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-27 12:55:03,568 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-27 12:55:03,568 [INFO] Trend filter   : ENABLED | Min trending: 75 | Min neutral: 50 | Allow neutral: False
+2026-07-27 12:55:03,568 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-27 12:55:03,568 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-27 12:55:14,405 [INFO] ⏱️ Kite call instruments took 10.8s
+2026-07-27 12:55:14,408 [INFO] ✅ Loaded 9985 NSE instruments
+2026-07-27 12:55:14,415 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-27 12:55:14,737 [INFO] ✅ KiteTicker connected
+2026-07-27 12:55:14,817 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-27 12:55:18,642 [INFO] 
+==================================================
+MARKET TREND REPORT
+==================================================
+
+TRENDING
+
+
+--------------------------------------------------
+
+NEUTRAL
+
+CANBK            Score 57
+MUTHOOTFIN       Score 52
+SUNPHARMA        Score 52
+TRENT            Score 55
+
+--------------------------------------------------
+
+CHOPPY
+
+TATASTEEL        Score 2
+HDFCBANK         Score 47
+KOTAKBANK        Score 25
+SBIN             Score 17
+BEL              Score 0
+Union Bank of India Score 0
+POLYCAB          Score 15
+Bank of India    Score 0
+COALINDIA        Score 25
+AXISBANK         Score 15
+ICICIBANK        Score 7
+BHARTIARTL       Score 27
+RELIANCE         Score 10
+INFY             Score 45
+HCLTECH          Score 25
+PERSISTENT       Score 28
+TCS              Score 25
+LT               Score 25
+TVSMOTOR         Score 25
+M&M              Score 30
+
+==================================================
+
+TRADABLE TODAY
+
+  (none)
+
+Skipped Today
+
+  ✗ TATASTEEL
+  ✗ HDFCBANK
+  ✗ KOTAKBANK
+  ✗ SBIN
+  ✗ BEL
+  ✗ Union Bank of India
+  ✗ POLYCAB
+  ✗ Bank of India
+  ✗ COALINDIA
+  ✗ AXISBANK
+  ✗ ICICIBANK
+  ✗ BHARTIARTL
+  ✗ RELIANCE
+  ✗ INFY
+  ✗ HCLTECH
+  ✗ PERSISTENT
+  ✗ TCS
+  ✗ LT
+  ✗ TVSMOTOR
+  ✗ M&M
+  ✗ CANBK
+  ✗ MUTHOOTFIN
+  ✗ SUNPHARMA
+  ✗ TRENT
+
+Reason:
+Trend Score below 75
+
+==================================================
+
+2026-07-27 12:55:18,644 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-27 12:55:18,646 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-27 12:55:18,646 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-27 12:55:18,647 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-27 12:55:18,648 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-27 12:55:18,649 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-27 12:55:18,651 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-27 12:55:18,651 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-27 12:55:18,651 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-27 12:55:18,652 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-27 12:55:18,652 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-27 12:55:18,652 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-27 12:55:18,835 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (11.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:55:18,897 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-27 12:55:18,907 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://172.20.10.2:5050
+2026-07-27 12:55:18,908 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-27 12:55:19,056 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (26.4 > 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 12:55:19,213 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:55:19,522 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (15.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:55:19,711 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (8.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:55:19,879 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:55:20,075 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:55:20,248 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:55:20,411 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:55:20,602 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (18.6 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:55:20,792 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 7/100) — reasons: Weak ADX (15.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:55:20,954 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:55:21,109 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (22.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:55:21,264 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (30.1 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:55:21,425 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:55:21,581 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:55:21,756 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:55:22,294 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 28/100) — reasons: Weak ADX (18.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:55:22,458 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 12:55:22,631 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (20.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:55:22,806 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (21.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:55:22,989 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 30/100) — reasons: Strong ADX (45.3 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 12:55:22,989 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 12:56:08,452 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-27 12:56:08,452 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-27 12:56:08,453 [INFO] Product        : MIS (intraday)
+2026-07-27 12:56:08,453 [INFO] Order type     : MARKET
+2026-07-27 12:56:08,453 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-27 12:56:08,453 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-27 12:56:08,453 [INFO] EMA Length     : 200
+2026-07-27 12:56:08,453 [INFO] Min Wick %     : 50
+2026-07-27 12:56:08,453 [INFO] Risk:Reward    : 1:2.0
+2026-07-27 12:56:08,453 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-27 12:56:08,453 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-27 12:56:08,453 [INFO] Entries cutoff : 14:45 IST
+2026-07-27 12:56:08,453 [INFO] Square-off at  : 15:20 IST
+2026-07-27 12:56:08,453 [INFO] Max hold time  : 120 min
+2026-07-27 12:56:08,453 [INFO] Position check : every 7s (independent of the 300s signal scan)
+2026-07-27 12:56:08,453 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-27 12:56:08,453 [INFO] Cooldown       : 5 min after exit
+2026-07-27 12:56:08,453 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-27 12:56:08,453 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-27 12:56:08,453 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-27 12:56:08,454 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-27 12:56:08,454 [INFO] Trend filter   : ENABLED | Min trending: 75 | Min neutral: 50 | Allow neutral: False
+2026-07-27 12:56:08,454 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-27 12:56:08,454 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-27 12:56:19,134 [INFO] ⏱️ Kite call instruments took 10.7s
+2026-07-27 12:56:19,137 [INFO] ✅ Loaded 9985 NSE instruments
+2026-07-27 12:56:19,144 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-27 12:56:19,636 [INFO] ✅ KiteTicker connected
+2026-07-27 12:56:19,746 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-27 12:56:23,511 [INFO] 
+==================================================
+MARKET TREND REPORT
+==================================================
+
+TRENDING
+
+
+--------------------------------------------------
+
+NEUTRAL
+
+CANBK            Score 57
+MUTHOOTFIN       Score 52
+SUNPHARMA        Score 55
+TRENT            Score 65
+
+--------------------------------------------------
+
+CHOPPY
+
+TATASTEEL        Score 2
+HDFCBANK         Score 47
+KOTAKBANK        Score 25
+SBIN             Score 17
+BEL              Score 0
+Union Bank of India Score 0
+POLYCAB          Score 15
+Bank of India    Score 0
+COALINDIA        Score 25
+AXISBANK         Score 25
+ICICIBANK        Score 12
+BHARTIARTL       Score 25
+RELIANCE         Score 10
+INFY             Score 45
+HCLTECH          Score 25
+PERSISTENT       Score 28
+TCS              Score 25
+LT               Score 25
+TVSMOTOR         Score 25
+M&M              Score 30
+
+==================================================
+
+TRADABLE TODAY
+
+  (none)
+
+Skipped Today
+
+  ✗ TATASTEEL
+  ✗ HDFCBANK
+  ✗ KOTAKBANK
+  ✗ SBIN
+  ✗ BEL
+  ✗ Union Bank of India
+  ✗ POLYCAB
+  ✗ Bank of India
+  ✗ COALINDIA
+  ✗ AXISBANK
+  ✗ ICICIBANK
+  ✗ BHARTIARTL
+  ✗ RELIANCE
+  ✗ INFY
+  ✗ HCLTECH
+  ✗ PERSISTENT
+  ✗ TCS
+  ✗ LT
+  ✗ TVSMOTOR
+  ✗ M&M
+  ✗ CANBK
+  ✗ MUTHOOTFIN
+  ✗ SUNPHARMA
+  ✗ TRENT
+
+Reason:
+Trend Score below 75
+
+==================================================
+
+2026-07-27 12:56:23,513 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-27 12:56:23,513 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-27 12:56:23,515 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-27 12:56:23,515 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-27 12:56:23,517 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-27 12:56:23,517 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-27 12:56:23,518 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-27 12:56:23,519 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-27 12:56:23,519 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-27 12:56:23,519 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-27 12:56:23,519 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-27 12:56:23,520 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-27 12:56:23,663 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-27 12:56:23,671 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://172.20.10.2:5050
+2026-07-27 12:56:23,671 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-27 12:56:23,867 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (11.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:56:24,040 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (26.4 > 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 12:56:24,228 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:56:24,433 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (15.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:56:24,687 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (8.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:56:24,938 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:56:25,118 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:56:25,259 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 12:56:25,437 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:56:25,603 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.6 ≤ 25), ATR expanding, Flat EMA200 slope (-0.02%)
+2026-07-27 12:56:25,799 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (14.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 12:56:26,050 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:56:26,205 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (22.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 12:56:26,372 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (30.1 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:56:26,527 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:56:26,704 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 12:56:26,871 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 12:56:27,044 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 28/100) — reasons: Weak ADX (18.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 12:56:27,283 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (22.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 12:56:27,485 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (20.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 12:56:27,680 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (21.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 12:56:27,926 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 30/100) — reasons: Strong ADX (45.3 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 12:56:27,926 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:01:37,940 [WARNING] ⏱️ Kite API timeout (candles TATASTEEL) after 10.0s [attempt 1/5] — retrying in 3s: HTTPSConnectionPool(host='api.kite.trade', port=443): Read timed out. (read timeout=10)
+2026-07-27 13:01:51,244 [INFO] ⏱️ Kite call candles TATASTEEL took 10.3s
+2026-07-27 13:01:51,248 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (10.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:01:51,409 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.1 > 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:01:51,561 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (18.0 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:01:51,730 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:01:51,938 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (9.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:01:52,103 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:01:52,318 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (13.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:01:52,508 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (22.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:01:52,669 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:01:52,833 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (16.9 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 13:01:53,071 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (13.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:01:53,244 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (25.3 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:01:53,422 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (22.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:01:53,604 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (29.2 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:01:54,380 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (23.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 13:01:54,566 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:01:54,715 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:01:54,921 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (22.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.08%)
+2026-07-27 13:01:55,127 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (21.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:01:55,342 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:01:55,509 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 32/100) — reasons: Strong ADX (45.7 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:01:55,509 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:06:55,815 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 12/100) — reasons: Weak ADX (11.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:06:56,046 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:06:56,262 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (17.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:06:56,482 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (15.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:06:56,689 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (13.0 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:06:56,935 [INFO] ❌ Skipping CANBK: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:06:57,139 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:06:57,341 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (23.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:06:57,581 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 60/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:06:57,790 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.3 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 13:06:57,987 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (12.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:06:58,247 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (25.8 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:06:58,499 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (20.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:06:58,746 [INFO] ❌ Skipping INFY: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:06:59,615 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (23.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 13:06:59,905 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:07:00,215 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (16.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:07:00,672 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (23.0 ≤ 25), ATR expanding, Flat EMA200 slope (+0.08%)
+2026-07-27 13:07:01,594 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (20.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:07:03,031 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:07:03,278 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:07:03,278 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:12:03,568 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (11.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:12:03,773 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:12:04,044 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (17.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:12:04,209 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (15.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:12:04,372 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:12:04,571 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (31.7 > 25), ATR contracting, Flat EMA200 slope (+0.05%)
+2026-07-27 13:12:04,752 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (12.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:12:05,008 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:12:05,575 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:12:06,746 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (16.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:12:07,095 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (12.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:12:07,344 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.0 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:12:07,704 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (19.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:12:07,950 [INFO] ❌ Skipping INFY: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:12:08,315 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:12:08,605 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (22.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.10%)
+2026-07-27 13:12:08,866 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:12:09,102 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (15.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:12:09,308 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (22.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.08%)
+2026-07-27 13:12:09,542 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (18.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:12:09,797 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.9 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:12:10,144 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:12:10,144 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:17:20,257 [WARNING] ⏱️ Kite API timeout (candles TATASTEEL) after 10.0s [attempt 1/5] — retrying in 3s: HTTPSConnectionPool(host='api.kite.trade', port=443): Read timed out. (read timeout=10)
+2026-07-27 13:17:23,568 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 12/100) — reasons: Weak ADX (11.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:17:23,726 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (23.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:17:23,888 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:17:24,098 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (16.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:17:24,254 [INFO] ❌ Skipping BEL: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:24,414 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (30.1 > 25), ATR contracting, Flat EMA200 slope (+0.05%)
+2026-07-27 13:17:24,573 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (12.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:17:24,758 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:17:24,919 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:25,127 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (16.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:17:25,335 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 12/100) — reasons: Weak ADX (12.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:17:25,494 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.0 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:17:25,649 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 12/100) — reasons: Weak ADX (18.4 ≤ 25), ATR expanding, Flat EMA200 slope (-0.00%)
+2026-07-27 13:17:25,806 [INFO] ❌ Skipping INFY: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:25,964 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:26,125 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 45/100) — reasons: Weak ADX (20.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.10%)
+2026-07-27 13:17:26,331 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:26,460 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (14.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:17:26,559 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (20.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:17:26,698 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (20.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:17:26,808 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:17:26,905 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:17:26,905 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:22:27,121 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (12.9 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:22:27,223 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (22.3 ≤ 25), ATR expanding, Flat EMA200 slope (-0.03%)
+2026-07-27 13:22:27,341 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:22:27,453 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (16.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:22:27,625 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (17.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.02%)
+2026-07-27 13:22:27,728 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (28.0 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 13:22:27,830 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (11.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:22:27,945 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (22.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:22:28,589 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (15.6 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:22:28,693 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (13.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:22:28,796 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.8 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:22:28,910 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (17.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:22:29,009 [INFO] ❌ Skipping INFY: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:22:29,165 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:22:29,323 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:22:29,479 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:22:29,636 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (14.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:22:29,794 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (19.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 13:22:29,954 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (21.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:22:30,113 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (16.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:22:30,273 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:22:30,273 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:27:30,590 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (13.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:27:30,699 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (21.5 ≤ 25), ATR expanding, Flat EMA200 slope (-0.03%)
+2026-07-27 13:27:30,824 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (13.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:27:31,114 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (16.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:27:31,303 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (19.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:27:31,414 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.4 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 13:27:31,536 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (10.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:27:31,699 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (22.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:27:31,864 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:27:31,977 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (15.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:27:32,094 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 12/100) — reasons: Weak ADX (13.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:27:32,208 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (25.4 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:27:32,309 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (17.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:27:32,435 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (31.5 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:27:32,541 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:27:32,696 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:27:32,856 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:27:32,995 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (13.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:27:33,096 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 13:27:33,258 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (21.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:27:33,392 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (15.4 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:27:33,554 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:27:33,554 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:32:33,741 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (15.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:32:33,842 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (19.8 ≤ 25), ATR expanding, Flat EMA200 slope (-0.03%)
+2026-07-27 13:32:33,952 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:32:34,123 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:32:34,249 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (20.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:32:34,367 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:32:34,468 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (10.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:32:34,585 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (22.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:32:34,697 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:32:34,815 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.7 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 13:32:34,954 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (12.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:32:35,111 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (24.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:32:35,278 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (16.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:32:35,438 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (30.3 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:32:35,602 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:32:35,756 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (17.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:32:35,917 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:32:36,082 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:32:36,238 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (18.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 13:32:36,403 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (21.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:32:36,538 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (14.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:32:36,695 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:32:36,695 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:37:36,889 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:37,003 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (19.2 ≤ 25), ATR expanding, Flat EMA200 slope (-0.03%)
+2026-07-27 13:37:37,120 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:37,223 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.8 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:37,343 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (19.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:37,469 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:37:37,576 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (10.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:37,684 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (20.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:37:37,798 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 67/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:37:37,921 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (16.8 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 13:37:38,078 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (12.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:37:38,244 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (24.6 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:37:38,407 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 2/100) — reasons: Weak ADX (16.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:37:38,513 [INFO] ❌ Skipping INFY: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:37:38,633 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (49.2 > 25), ATR contracting, Flat EMA200 slope (+0.05%)
+2026-07-27 13:37:38,736 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:37:39,409 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:37:39,570 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (17.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 13:37:39,735 [INFO] ❌ Skipping LT: Trend filter: NEUTRAL (score 50/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:37:39,898 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (13.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:37:40,060 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:37:40,061 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:42:40,251 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (19.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:40,351 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:42:40,457 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:40,585 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:40,707 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (17.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:40,815 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (22.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:42:40,910 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (10.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:41,019 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (19.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:41,178 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 50/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:41,295 [INFO] ❌ Skipping AXISBANK: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:41,401 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (13.0 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:42:41,565 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:41,716 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (16.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:42:41,878 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (27.0 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:42:42,030 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (47.5 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 13:42:42,187 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:42:42,342 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 67/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:42,501 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:42:42,660 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 13:42:42,817 [INFO] ❌ Skipping LT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:42,983 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (12.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:42:43,140 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:42:43,141 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:47:43,274 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (20.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:43,418 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:47:43,519 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:43,637 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:43,737 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (16.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:43,855 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (20.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:47:43,981 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (9.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:44,087 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (18.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:47:44,251 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 48/100) — reasons: Strong ADX (38.4 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:47:44,406 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 38/100) — reasons: Weak ADX (18.6 ≤ 25), ATR expanding, Flat EMA200 slope (-0.02%)
+2026-07-27 13:47:44,526 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (14.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:44,645 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:47:44,788 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (16.4 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 13:47:44,900 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (25.4 > 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:47:45,048 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (46.6 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 13:47:45,204 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:47:45,374 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:47:45,538 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:47:45,693 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 13:47:45,857 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (16.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:47:46,018 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (12.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:47:46,188 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:47:46,188 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:52:46,318 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (21.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:46,464 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (17.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.03%)
+2026-07-27 13:52:46,564 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 45/100) — reasons: Weak ADX (13.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 13:52:46,685 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (14.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:46,789 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (15.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:46,904 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (19.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:52:47,016 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (9.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:47,133 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (18.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:47,266 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 48/100) — reasons: Strong ADX (37.0 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:52:47,434 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.4 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:52:47,613 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (16.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:47,771 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:52:47,877 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (15.9 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:52:47,999 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (23.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:52:48,123 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:52:48,269 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:52:48,387 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (35.4 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:52:48,503 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:52:48,629 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 38/100) — reasons: Weak ADX (14.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 13:52:48,739 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 40/100) — reasons: Weak ADX (15.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:52:48,842 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (11.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:52:48,939 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:52:48,940 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 13:57:49,149 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (23.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 13:57:49,278 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 40/100) — reasons: Weak ADX (16.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:57:49,385 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (14.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 13:57:49,511 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (13.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:49,619 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (16.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:49,783 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (17.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 13:57:49,894 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (10.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:50,014 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:50,140 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 50/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:57:50,297 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:57:50,462 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (18.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:50,625 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (28.6 > 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:57:50,782 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (15.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 13:57:50,948 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (22.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:57:51,107 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:57:51,270 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 13:57:51,415 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (36.9 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 13:57:51,517 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 13:57:51,623 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (13.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 13:57:51,724 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 40/100) — reasons: Weak ADX (14.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 13:57:51,882 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (10.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 13:57:52,049 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 13:57:52,050 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:02:52,233 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (24.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:52,332 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 40/100) — reasons: Weak ADX (16.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:02:52,441 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:52,552 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:52,668 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 38/100) — reasons: Weak ADX (15.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:52,784 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (17.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:02:52,902 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (11.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:53,013 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:53,130 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 53/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:02:53,300 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (17.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:02:53,396 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (20.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:02:53,584 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:02:53,755 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (15.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:02:53,922 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (20.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:02:54,089 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:02:54,255 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (15.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:02:54,411 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (38.0 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:02:54,578 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.07%)
+2026-07-27 14:02:54,731 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (13.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:02:54,882 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 45/100) — reasons: Weak ADX (14.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:02:55,046 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (10.7 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:02:55,204 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:02:55,205 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:07:55,380 [INFO] ❌ Skipping TATASTEEL: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:07:55,476 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 40/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:07:55,587 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (13.8 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:07:55,713 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (13.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:07:55,818 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:07:55,915 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (16.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:07:56,024 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (12.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:07:56,135 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:07:56,248 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 73/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:07:56,418 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (16.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:07:56,584 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (22.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:07:56,744 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:07:56,907 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 0/100) — reasons: Weak ADX (15.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:07:57,072 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (19.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:07:57,237 [INFO] ❌ Skipping SUNPHARMA: Trend filter: NEUTRAL (score 58/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:07:57,405 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (18.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.09%)
+2026-07-27 14:07:57,561 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (37.6 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:07:57,724 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:07:57,908 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:07:58,065 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (14.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:07:58,222 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (10.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:07:58,384 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:07:58,385 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:12:58,572 [INFO] ❌ Skipping TATASTEEL: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:12:58,723 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 45/100) — reasons: Weak ADX (20.3 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 14:12:58,825 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (15.8 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:12:58,948 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:12:59,057 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:12:59,178 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:12:59,297 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:12:59,405 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:12:59,534 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 63/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:12:59,741 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (17.1 ≤ 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 14:12:59,888 [INFO] ❌ Skipping ICICIBANK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (25.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:13:00,028 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 65/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:13:00,195 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (16.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:13:00,334 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:13:00,689 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 48/100) — reasons: Strong ADX (33.2 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:13:00,822 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (19.2 ≤ 25), ATR expanding, Flat EMA200 slope (+0.09%)
+2026-07-27 14:13:00,932 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (38.1 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:13:01,103 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:13:01,262 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (12.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:13:01,404 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 43/100) — reasons: Weak ADX (15.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:13:01,505 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (9.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:13:01,613 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 57/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:13:01,613 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:18:01,733 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (24.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:18:01,841 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 45/100) — reasons: Weak ADX (21.4 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:18:01,945 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (15.4 ≤ 25), ATR expanding, Flat EMA200 slope (+0.02%)
+2026-07-27 14:18:02,070 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (14.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:18:02,196 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (13.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:18:02,302 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (15.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:18:02,446 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:18:02,564 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (17.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:18:02,660 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 63/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:18:02,778 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (18.6 ≤ 25), ATR expanding, Flat EMA200 slope (-0.00%)
+2026-07-27 14:18:02,941 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:18:03,092 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 60/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:18:03,252 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (17.1 ≤ 25), ATR expanding, Flat EMA200 slope (-0.00%)
+2026-07-27 14:18:03,369 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (17.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:18:03,469 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (31.4 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:18:03,600 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (19.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.09%)
+2026-07-27 14:18:03,751 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (38.0 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:18:03,903 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (12.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:18:04,005 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (11.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:18:04,130 [INFO] ❌ Skipping LT: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:18:04,271 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (9.2 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:18:04,427 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:18:04,427 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:23:04,537 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (24.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:23:04,675 [INFO] ❌ Skipping HDFCBANK: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:23:04,772 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.02%)
+2026-07-27 14:23:04,868 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (14.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:23:04,966 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (13.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:23:05,067 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (15.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:23:05,176 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (14.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:23:05,284 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (18.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:23:05,418 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 73/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:23:05,532 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (19.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:23:05,688 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:23:05,823 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (39.9 > 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:23:05,929 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 10/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:23:06,027 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (17.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:23:06,133 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (29.8 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:23:06,260 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (20.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:23:06,402 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (38.0 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:23:06,587 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (11.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:23:06,749 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (10.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:23:06,903 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (14.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:23:07,065 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (9.1 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:23:07,228 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:23:07,228 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:28:07,424 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (24.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:28:07,557 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (21.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:28:07,688 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (14.3 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:28:07,788 [INFO] ❌ Skipping SBIN: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:28:07,888 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (14.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:28:07,989 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (17.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.04%)
+2026-07-27 14:28:08,100 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (14.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:28:08,203 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (17.6 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:28:08,308 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:28:08,407 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (20.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:28:08,508 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:28:08,613 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 42/100) — reasons: Strong ADX (41.4 > 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:28:08,708 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 22/100) — reasons: Weak ADX (18.8 ≤ 25), ATR expanding, Flat EMA200 slope (-0.00%)
+2026-07-27 14:28:08,841 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:28:08,970 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (28.3 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:28:09,096 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (21.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:28:09,254 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (37.4 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:28:09,424 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (12.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:28:09,586 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (10.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:28:09,709 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (13.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:28:09,829 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (8.6 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:28:09,988 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:28:09,988 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:33:10,275 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (22.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:33:10,418 [INFO] ❌ Skipping HDFCBANK: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:33:10,551 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (14.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:33:10,686 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (16.3 ≤ 25), ATR expanding, Flat EMA200 slope (+0.02%)
+2026-07-27 14:33:10,851 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (15.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:33:10,974 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (19.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.05%)
+2026-07-27 14:33:11,104 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (15.0 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:33:11,234 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (16.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.01%)
+2026-07-27 14:33:11,435 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (23.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:33:11,627 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (21.5 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:33:11,813 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:33:11,971 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 42/100) — reasons: Strong ADX (41.5 > 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:33:12,129 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (18.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:33:12,287 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (18.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:33:12,453 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (26.9 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:33:12,608 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (21.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:33:12,763 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (36.9 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:33:12,918 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (12.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:33:13,074 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (10.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:33:13,228 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:33:13,416 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (8.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.02%)
+2026-07-27 14:33:13,576 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:33:13,577 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:38:13,744 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (22.9 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:38:13,902 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (22.3 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:38:14,005 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (15.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:38:14,132 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 47/100) — reasons: Weak ADX (15.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.02%)
+2026-07-27 14:38:14,241 [INFO] ❌ Skipping BEL: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (16.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:38:14,409 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (20.9 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:38:14,543 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:38:14,660 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (15.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:38:14,761 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (23.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:38:14,943 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 30/100) — reasons: Weak ADX (21.7 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:38:15,131 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:38:15,288 [INFO] ❌ Skipping BHARTIARTL: Trend filter: NEUTRAL (score 55/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:38:15,445 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (19.0 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:38:15,633 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (17.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:38:15,787 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (26.1 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:38:15,947 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (23.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:38:16,135 [INFO] ❌ Skipping TRENT: Trend filter: CHOPPY (score 48/100) — reasons: Strong ADX (37.0 > 25), ATR contracting, Flat EMA200 slope (+0.03%)
+2026-07-27 14:38:16,317 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (13.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:38:16,473 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 27/100) — reasons: Weak ADX (10.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:38:16,662 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (12.0 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:38:16,818 [INFO] ❌ Skipping TVSMOTOR: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:38:16,972 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:38:16,973 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:43:17,213 [INFO] ❌ Skipping TATASTEEL: Trend filter: CHOPPY (score 13/100) — reasons: Weak ADX (22.1 ≤ 25), ATR expanding, Flat EMA200 slope (+0.00%)
+2026-07-27 14:43:17,313 [INFO] ❌ Skipping HDFCBANK: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (22.8 ≤ 25), ATR contracting, Flat EMA200 slope (-0.01%)
+2026-07-27 14:43:17,446 [INFO] ❌ Skipping KOTAKBANK: Trend filter: CHOPPY (score 17/100) — reasons: Weak ADX (14.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:43:17,560 [INFO] ❌ Skipping SBIN: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (16.1 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:43:17,685 [INFO] ❌ Skipping BEL: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:43:17,809 [INFO] ❌ Skipping CANBK: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (21.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.05%)
+2026-07-27 14:43:17,929 [INFO] ❌ Skipping POLYCAB: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:43:18,054 [INFO] ❌ Skipping COALINDIA: Trend filter: CHOPPY (score 18/100) — reasons: Weak ADX (14.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:43:18,246 [INFO] ❌ Skipping MUTHOOTFIN: Trend filter: CHOPPY (score 35/100) — reasons: Weak ADX (23.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.01%)
+2026-07-27 14:43:18,405 [INFO] ❌ Skipping AXISBANK: Trend filter: CHOPPY (score 20/100) — reasons: Weak ADX (21.5 ≤ 25), ATR contracting, Flat EMA200 slope (+0.00%)
+2026-07-27 14:43:18,594 [INFO] ❌ Skipping ICICIBANK: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:43:18,755 [INFO] ❌ Skipping BHARTIARTL: Trend filter: CHOPPY (score 43/100) — reasons: Strong ADX (35.2 > 25), ATR expanding, Flat EMA200 slope (-0.01%)
+2026-07-27 14:43:18,908 [INFO] ❌ Skipping RELIANCE: Trend filter: CHOPPY (score 15/100) — reasons: Weak ADX (19.5 ≤ 25), ATR contracting, Flat EMA200 slope (-0.00%)
+2026-07-27 14:43:19,090 [INFO] ❌ Skipping INFY: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (16.6 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:43:19,276 [INFO] ❌ Skipping SUNPHARMA: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (26.2 > 25), ATR contracting, Flat EMA200 slope (+0.04%)
+2026-07-27 14:43:19,429 [INFO] ❌ Skipping HCLTECH: Trend filter: CHOPPY (score 37/100) — reasons: Weak ADX (24.2 ≤ 25), ATR contracting, Flat EMA200 slope (+0.09%)
+2026-07-27 14:43:19,609 [INFO] ❌ Skipping TRENT: Trend filter: NEUTRAL (score 52/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:43:19,765 [INFO] ❌ Skipping PERSISTENT: Trend filter: CHOPPY (score 42/100) — reasons: Weak ADX (12.7 ≤ 25), ATR contracting, Flat EMA200 slope (+0.08%)
+2026-07-27 14:43:19,950 [INFO] ❌ Skipping TCS: Trend filter: CHOPPY (score 25/100) — reasons: Weak ADX (9.4 ≤ 25), ATR contracting, Flat EMA200 slope (+0.06%)
+2026-07-27 14:43:20,107 [INFO] ❌ Skipping LT: Trend filter: CHOPPY (score 32/100) — reasons: Weak ADX (11.8 ≤ 25), ATR contracting, Flat EMA200 slope (+0.02%)
+2026-07-27 14:43:20,295 [INFO] ❌ Skipping TVSMOTOR: Trend filter: NEUTRAL (score 62/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:43:20,480 [INFO] ❌ Skipping M&M: Trend filter: NEUTRAL (score 72/100) — skipping neutral unless ALLOW_NEUTRAL_TRADES=True
+2026-07-27 14:43:20,481 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-27 14:48:20,581 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-27 14:48:20,582 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00

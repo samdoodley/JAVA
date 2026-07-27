@@ -2641,7 +2641,8 @@ def scan_loop():
 
                     signal = check_signal(symbol, candles)
                     if signal:
-                        log.info(f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']}")
+                        trend_tag = f"Trend: {trend_result.state} ({trend_result.score})" if TREND_FILTER_ENABLED else "Trend: N/A"
+                        log.info(f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']} | {trend_tag}")
                         record_trend_signal(symbol)
 
                         if is_warmup:

@@ -87,6 +87,7 @@ class ExecutionEngine:
     def __init__(self):
         self.kws: KiteTicker | None = None
         self._connected = False
+        self._pending_symbols: list[str] = []
 
         # symbol <-> instrument_token maps, built by bot.py from its own
         # instrument cache once instruments are loaded.
@@ -269,20 +270,28 @@ class ExecutionEngine:
 
     def subscribe_symbols(self, symbols: list[str]):
         if self.kws is None:
+            self._pending_symbols = list(set(self._pending_symbols + symbols))
             return
         tokens = [self._symbol_to_token[s] for s in symbols if s in self._symbol_to_token]
         missing = [s for s in symbols if s not in self._symbol_to_token]
         if missing:
             log.warning(f"⚠️ KiteTicker: no instrument token found for {missing} — not subscribed.")
         if tokens:
-            self.kws.subscribe(tokens)
-            self.kws.set_mode(self.kws.MODE_FULL, tokens)
-            log.info(f"📡 KiteTicker subscribed to {len(tokens)} symbols (FULL mode)")
+            try:
+                self.kws.subscribe(tokens)
+                self.kws.set_mode(self.kws.MODE_FULL, tokens)
+                log.info(f"📡 KiteTicker subscribed to {len(tokens)} symbols (FULL mode)")
+            except AttributeError as e:
+                log.warning(f"⚠️ KiteTicker subscribe failed (WebSocket not ready yet): {e} — will retry on connect")
+                self._pending_symbols = list(set(self._pending_symbols + symbols))
 
     # ── WebSocket Callbacks ───────────────────────────────────────────────
     def _on_connect(self, ws, response):
         self._connected = True
         log.info("✅ KiteTicker connected")
+        if self._pending_symbols:
+            self.subscribe_symbols(self._pending_symbols)
+            self._pending_symbols = []
 
     def _on_close(self, ws, code, reason):
         self._connected = False
