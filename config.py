@@ -74,30 +74,24 @@ EMA_LENGTH = 200
 MIN_WICK_PCT = 50
 RISK_REWARD = 2.0
 
-# ─── Trend Filter (per-stock classification) ──────────────────────────────────
-# CHANGED: trade eligibility is now a SINGLE score gate instead of "TRENDING
-# only, NEUTRAL blocked". Any stock — whether the detector labels it NEUTRAL
-# or TRENDING — is eligible to trade once its score is ABOVE
-# TREND_MIN_SCORE_ELIGIBLE. Only stocks at/below that score (i.e. CHOPPY, or
-# a weak NEUTRAL that hasn't cleared the bar) are skipped.
-TREND_FILTER_ENABLED = True
-
-# NEW — the actual trade-eligibility gate used by scan_loop(). Score > 60
-# (NEUTRAL or TRENDING alike) is eligible; score <= 60 is skipped.
-TREND_MIN_SCORE_ELIGIBLE = 60
-
-# Kept only for labeling/reporting (what the detector itself calls
-# TRENDING vs NEUTRAL vs CHOPPY in logs/dashboard) — no longer used to
-# gate whether a trade is allowed. That's TREND_MIN_SCORE_ELIGIBLE's job now.
-TREND_MIN_SCORE_TRENDING = 75
-TREND_MIN_SCORE_NEUTRAL = 50
-
-# Kept for backward compatibility (dashboard/report text still reference
-# it) — but scan_loop() no longer uses this flag to decide eligibility;
-# NEUTRAL stocks with score > TREND_MIN_SCORE_ELIGIBLE now trade regardless
-# of this setting. Left True so nothing else in the file that still checks
-# it behaves unexpectedly.
-ALLOW_NEUTRAL_TRADES = True
+# ─── 4-Tier Trend-Score Gate ───────────────────────────────────────────────────
+# Replaces the old binary TRENDING/NEUTRAL/CHOPPY filter with a continuous
+# 0-100 score (ADX + EMA slope + price-distance from EMA), smoothed per
+# symbol across scans, then bucketed into 4 tiers:
+#
+#   score >= TRENDING_MIN_SCORE                              -> TRENDING
+#   STRONG_NEUTRAL_MIN_SCORE <= score < TRENDING_MIN_SCORE    -> STRONG_NEUTRAL
+#   CHOPPY_MAX_SCORE <= score < STRONG_NEUTRAL_MIN_SCORE      -> WEAK_NEUTRAL
+#   score < CHOPPY_MAX_SCORE                                  -> CHOPPY
+#
+# TRENDING always trades. STRONG_NEUTRAL trades only if
+# ALLOW_STRONG_NEUTRAL_TRADES is True. WEAK_NEUTRAL and CHOPPY never trade.
+TREND_SLOPE_LOOKBACK = 14
+TRENDING_MIN_SCORE = 70
+STRONG_NEUTRAL_MIN_SCORE = 50
+CHOPPY_MAX_SCORE = 30
+ALLOW_STRONG_NEUTRAL_TRADES = True
+SCORE_SMOOTHING_ALPHA = 0.3
 
 # ─── Timing ───────────────────────────────────────────────────────────────────
 SCAN_INTERVAL_SEC = 300
