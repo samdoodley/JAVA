@@ -242,8 +242,10 @@ class ExecutionEngine:
 
     # ── KiteTicker Lifecycle ──────────────────────────────────────────────
     def start(self, api_key: str, access_token: str):
+        if self.kws is not None and self._connected:
+            return  # already started and connected
         if self.kws is not None:
-            return  # already started
+            self.stop()
         self.kws = KiteTicker(api_key, access_token)
         self.kws.on_ticks = self._on_ticks
         self.kws.on_connect = self._on_connect
@@ -263,9 +265,10 @@ class ExecutionEngine:
     def stop(self):
         if self.kws is not None:
             try:
-                self.kws.close()
+                self.kws.stop()
             except Exception:
                 pass
+        self.kws = None
         self._connected = False
 
     def subscribe_symbols(self, symbols: list[str]):
@@ -281,7 +284,7 @@ class ExecutionEngine:
                 self.kws.subscribe(tokens)
                 self.kws.set_mode(self.kws.MODE_FULL, tokens)
                 log.info(f"📡 KiteTicker subscribed to {len(tokens)} symbols (FULL mode)")
-            except AttributeError as e:
+            except Exception as e:
                 log.warning(f"⚠️ KiteTicker subscribe failed (WebSocket not ready yet): {e} — will retry on connect")
                 self._pending_symbols = list(set(self._pending_symbols + symbols))
 
@@ -363,7 +366,7 @@ class ExecutionEngine:
             with self._order_waiters_lock:
                 self._order_updates[order_id] = data
                 ev = self._order_waiters.get(order_id)
-            if ev:
+            if ev and data.get("status") in _TERMINAL_STATUSES:
                 ev.set()
         if self.on_order_update_callback:
             try:

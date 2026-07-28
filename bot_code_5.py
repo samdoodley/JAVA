@@ -1,33 +1,31 @@
 """
 WickFill Auto-Trader Bot v3 — Zerodha Kite
-Strategy: EMA 200 Filter + Wick Zones + Zone Fills
+Strategy: EMA 200 Filter + Wick Zones + Zone Fills + 4-Tier Trend-Score Gate
 
-*** PATCHED VERSION (round 3) ***
-Changes vs your round-2 bot.py:
-  1. NEW — Daily Per-Symbol SL-Hit Circuit Breaker: if any single symbol's
-     stop-loss fires (SL_HIT or TRAIL_SL_HIT) MAX_SL_HITS_PER_DAY times in
-     one calendar day, the bot stops taking NEW entries on that ONE symbol
-     for the rest of today. Every other symbol keeps trading normally per
-     the usual strategy rules — this is a per-symbol block, not a bot-wide
-     pause. Any position already open when the limit is hit is unaffected
-     and keeps being managed normally. The counter resets automatically at
-     midnight IST AND on every bot restart (in-memory only, nothing
-     persisted to disk), so a fresh bot start always begins today's count
-     at 0 for every symbol.
-        - New state key: "sl_hit_counts" (symbol -> {"date", "count"})
-        - New helpers: record_sl_hit(), sl_hit_limit_reached()
-        - Hooked into paper_exit() / live_exit() (counts the hit) and into
-          scan_loop() (blocks new entries once the limit is reached this
-          symbol/today), logged via log_skip() like every other rejection.
-  2. Watchlist updated in config.py (POLYCAB, MUTHOOTFIN added to the
-     500-1000 band; TRENT, PERSISTENT added to the 1000-2000 band) — no
-     bot.py logic change needed for this, WATCHLIST/PRICE_BANDS are just
-     read from config.py as before.
+CHANGES IN THIS VERSION
+------------------------
+1. Dynamic NSE-wide universe scanner REMOVED. The bot goes back to trading
+   only the fixed config.py WATCHLIST (PRICE_BANDS). nse_universe.py,
+   candidate_ranker.py's ranking path, and market_scanner.py are no longer
+   imported or used anywhere in this file.
+2. New 4-tier trend-score gate added directly to check_signal(), replacing
+   the old binary TRENDING/CHOPPY + ALLOW_NEUTRAL_TRADES on/off switch:
 
-Everything else (round-2 fixes: request timeouts, deadlock fix, calc_qty
-margin reuse, explicit skip logging, live_enter duplicate/band guard,
-strategy, sizing %, trailing SL ladder, bands, timing windows, Telegram,
-dashboard, reconciliation) is UNCHANGED from your round-2 file.
+       score >= TRENDING_MIN_SCORE                              -> TRENDING
+       STRONG_NEUTRAL_MIN_SCORE <= score < TRENDING_MIN_SCORE    -> STRONG_NEUTRAL
+       CHOPPY_MAX_SCORE <= score < STRONG_NEUTRAL_MIN_SCORE      -> WEAK_NEUTRAL
+       score < CHOPPY_MAX_SCORE                                  -> CHOPPY
+
+   TRENDING always trades (subject to the existing EMA/wick/RR filters).
+   STRONG_NEUTRAL trades ONLY if ALLOW_STRONG_NEUTRAL_TRADES is True AND
+   every existing strategy filter (EMA bias, wick %, zone fill, risk/reward
+   cap) also passes — same bar as a TRENDING signal, no filters relaxed.
+   WEAK_NEUTRAL and CHOPPY never trade.
+
+   The trend score itself is computed from ADX(14) + 200-EMA slope +
+   price-distance-from-EMA, then smoothed per symbol with an EMA
+   (SCORE_SMOOTHING_ALPHA) across scans so one noisy 5-min candle can't
+   flip a symbol's tier back and forth every cycle.
 """
 
 import sys
@@ -77,11 +75,11 @@ from config import (
     TELEGRAM_NOTIFY_ERRORS, TELEGRAM_NOTIFY_STARTUP, TELEGRAM_NOTIFY_EOD_SUMMARY,
     TELEGRAM_REQUEST_TIMEOUT_SEC,
     DASHBOARD_HOST, DASHBOARD_PORT,
-    TREND_FILTER_ENABLED, TREND_MIN_SCORE_TRENDING, TREND_MIN_SCORE_NEUTRAL,
-    ALLOW_NEUTRAL_TRADES,
+    # ── 4-tier trend-score gate ──────────────────────────────────────────
+    TREND_SLOPE_LOOKBACK, TRENDING_MIN_SCORE, STRONG_NEUTRAL_MIN_SCORE,
+    CHOPPY_MAX_SCORE, ALLOW_STRONG_NEUTRAL_TRADES, SCORE_SMOOTHING_ALPHA,
 )
 from reporting import save_trade_report
-from stock_trend_detector import StockTrendDetector, TrendResult
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -99,19 +97,9 @@ log = logging.getLogger(__name__)
 IST = ZoneInfo("Asia/Kolkata")
 
 # ── Execution Engine ──────────────────────────────────────────────────────────
-# Owns the KiteTicker WebSocket (tick stream + order-update push), per-symbol
-# locks, exit guards, and latency/slippage bookkeeping. See execution.py for
-# the full explanation of why this replaces REST polling for stop-loss exits.
 engine = ExecutionEngine()
 
-trend_detector = StockTrendDetector()
-
 # ── Hard network timeout for every Kite HTTP call ────────────────────────────
-# pykiteconnect does NOT set a default request timeout. Without this, a
-# stalled connection to Zerodha's servers just hangs the calling thread
-# forever — kite_call_with_retry() only catches Timeout/ConnectionError/
-# ReadTimeout, and none of those fire if the socket never times out in the
-# first place.
 KITE_REQUEST_TIMEOUT_SEC = 10
 
 # ── State ─────────────────────────────────────────────────────────────────────
@@ -122,27 +110,23 @@ state = {
     "scan_status":       "IDLE",
     "connected":         False,
     "last_scan":         None,
-    "equity":            0.0,   # no more hardcoded STARTING_CAPITAL — set from live margin on first fetch
+    "equity":            0.0,
     "deployed":          0.0,
     "pnl_today":         0.0,
     "wins":              0,
     "losses":            0,
     "kite":              None,
-    "scan_count":        0,     # incremented once per full scan cycle (used for warm-up)
-    "cooldowns":         {},    # symbol -> datetime of last exit (used for cooldown gate)
-    "available_margin":  0.0,  # live, from kite.margins() — refreshed every MARGIN_REFRESH_INTERVAL_SEC
+    "scan_count":        0,
+    "cooldowns":         {},
+    "available_margin":  0.0,
     "margin_last_fetch":  None,
-    "margin_source":     "unknown",   # "kite" or "fallback"
+    "margin_source":     "unknown",
     "equity_initialized": False,
-    "eod_summary_date_sent": None,    # date string ("YYYY-MM-DD") once today's EOD Telegram summary is sent
-    # NEW: symbol -> {"date": "YYYY-MM-DD", "count": int} — per-symbol daily
-    # SL/TRAIL_SL hit counter for the MAX_SL_HITS_PER_DAY circuit breaker.
-    # In-memory only (not persisted), so a bot restart always starts fresh.
+    "eod_summary_date_sent": None,
     "sl_hit_counts":      {},
-    # NEW: trend filter tracking
-    "trend_scores":       {},    # symbol -> {"score": int, "state": str, "reasons": list}
-    "trend_signals_detected": {},  # symbol -> int (signals found by check_signal)
-    "trend_skips":        {},    # symbol -> int (times skipped due to trend filter)
+    # ── Trend-score gate telemetry (per-symbol smoothed score + tier) ────
+    "trend_scores":       {},   # symbol -> smoothed score (float)
+    "trend_tiers":         {},  # symbol -> last classified tier (str)
 }
 
 _state_lock = threading.Lock()
@@ -154,17 +138,11 @@ def safe_state_update(updates: dict):
 
 
 # ── Centralized "trade skipped/rejected before entry" logger ─────────────────
-# Every single place a detected signal fails to become a position — paper or
-# live, cooldown, duplicate, band cap, qty=0, margin, order-margin failure,
-# warm-up, trading window, daily SL-hit limit, whatever — must call this
-# instead of a bare `return`/`continue`. No signal is allowed to disappear
-# without one line explaining exactly why.
 def log_skip(symbol: str, reason: str):
     log.info(f"❌ Skipping {symbol}: {reason}")
 
 
 def _fmt_remaining(minutes: float) -> str:
-    """Format a remaining-time float (in minutes) as 'Xm Ys' for skip logs."""
     total_seconds = max(0, int(round(minutes * 60)))
     m, s = divmod(total_seconds, 60)
     return f"{m}m {s}s"
@@ -172,12 +150,6 @@ def _fmt_remaining(minutes: float) -> str:
 
 # ── Telegram Notifications ────────────────────────────────────────────────────
 def send_telegram(message: str, silent: bool = False):
-    """
-    Push a message to Telegram. Fire-and-forget on a background thread so a
-    slow or unreachable Telegram API call NEVER delays scanning, order
-    placement, or the position-monitor loop — trading logic never waits on
-    this. No-ops quietly if TELEGRAM_ENABLED is False.
-    """
     if not TELEGRAM_ENABLED:
         return
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
@@ -213,11 +185,8 @@ def connect_kite() -> bool:
         return False
 
     try:
-        # timeout=KITE_REQUEST_TIMEOUT_SEC — every kite.* call this object
-        # makes will now raise instead of hanging indefinitely.
         kite = KiteConnect(api_key=API_KEY, timeout=KITE_REQUEST_TIMEOUT_SEC)
 
-        # Option 1: direct access token (fastest)
         if ACCESS_TOKEN:
             log.info("Using existing ACCESS_TOKEN from config")
             kite.set_access_token(ACCESS_TOKEN)
@@ -242,7 +211,6 @@ def connect_kite() -> bool:
             )
             return False
 
-        # Option 2: manual request_token from browser redirect
         if MANUAL_REQUEST_TOKEN:
             log.info("Using MANUAL_REQUEST_TOKEN…")
             data = kite.generate_session(MANUAL_REQUEST_TOKEN, api_secret=API_SECRET)
@@ -251,7 +219,6 @@ def connect_kite() -> bool:
             log.info("✅ Connected via manual request_token")
             return True
 
-        # Option 3: auto-login via Kite web session
         session = requests.Session()
         totp_val = pyotp.TOTP(TOTP_SECRET).now()
 
@@ -315,14 +282,6 @@ def connect_kite() -> bool:
 
 # ── Kite API retry wrapper (handles timeouts / transient network errors) ──────
 def kite_call_with_retry(fn, *args, what: str = "", attempts: int = None, delay: float = None, **kwargs):
-    """
-    Call a Kite API function, retrying a few times on timeout / transient
-    connection errors instead of giving up on the first failure. Returns
-    the function's result, or None if every attempt fails. Also logs how
-    long each attempt took, so a slow-but-not-quite-timed-out Kite call is
-    visible in the logs rather than silently eating several seconds per
-    symbol.
-    """
     attempts = attempts or KITE_RETRY_ATTEMPTS
     delay = delay if delay is not None else KITE_RETRY_DELAY_SEC
 
@@ -429,13 +388,6 @@ def in_cooldown(symbol: str) -> bool:
 
 
 # ── Daily Per-Symbol SL-Hit Circuit Breaker ───────────────────────────────────
-# If ANY symbol's stop-loss fires (SL_HIT or TRAIL_SL_HIT) MAX_SL_HITS_PER_DAY
-# times in one calendar day, that ONE symbol is blocked from new entries for
-# the rest of today. Every other symbol keeps trading normally. Resets
-# automatically at midnight IST (a new date means a fresh count) and also on
-# every bot restart, since this lives only in the in-memory `state` dict and
-# is never written to disk — exactly the "fresh start tomorrow / on restart"
-# behavior requested.
 def record_sl_hit(symbol: str):
     today_str = datetime.now(IST).strftime("%Y-%m-%d")
     with _state_lock:
@@ -477,29 +429,11 @@ def sl_hit_count_today(symbol: str) -> int:
         return entry["count"]
 
 
-# ── Trend Filter Tracking ─────────────────────────────────────────────────────
-def record_trend_score(symbol: str, result: TrendResult):
-    with _state_lock:
-        state["trend_scores"][symbol] = {
-            "score": result.score,
-            "state": result.state,
-            "reasons": result.reasons,
-            "details": result.details,
-        }
-
-
-def record_trend_signal(symbol: str):
-    with _state_lock:
-        state["trend_signals_detected"][symbol] = state["trend_signals_detected"].get(symbol, 0) + 1
-
-
-def record_trend_skip(symbol: str):
-    with _state_lock:
-        state["trend_skips"][symbol] = state["trend_skips"].get(symbol, 0) + 1
-
-
 # ── Price Bands (value-based position caps) ───────────────────────────────────
-def band_for_symbol(symbol: str) -> dict | None:
+# Static WATCHLIST / PRICE_BANDS only — a symbol's band is decided by fixed
+# membership in config.py's PRICE_BANDS, exactly as it was before the
+# dynamic scanner existed.
+def band_for_symbol(symbol: str, price: float | None = None) -> dict | None:
     for band in PRICE_BANDS:
         if symbol in band["symbols"]:
             return band
@@ -511,8 +445,8 @@ def band_open_positions_count(band_name: str) -> int:
         return sum(1 for p in state["positions"].values() if p.get("band") == band_name)
 
 
-def band_capacity_available(symbol: str) -> bool:
-    band = band_for_symbol(symbol)
+def band_capacity_available(symbol: str, price: float | None = None) -> bool:
+    band = band_for_symbol(symbol, price)
     if not band:
         return True
     return band_open_positions_count(band["name"]) < band["max_positions"]
@@ -542,24 +476,23 @@ def get_instrument_token(symbol: str) -> int | None:
     return _instrument_cache.get(symbol)
 
 
-_engine_started = False
+def _current_watchlist() -> list[str]:
+    """The list of symbols the scan loop evaluates every cycle — always the
+    fixed static WATCHLIST from config.py."""
+    return WATCHLIST
 
 
 def start_execution_engine_if_needed():
-    """
-    Starts the KiteTicker WebSocket exactly once, right after instruments are
-    loaded (so the symbol->token map is available), and subscribes to the
-    full WATCHLIST — this covers every symbol the scan loop can ever open a
-    position on, with no per-symbol special-casing required.
-    """
-    global _engine_started
-    if not USE_KITETICKER or _engine_started:
+    """Starts the KiteTicker WebSocket if not already running and subscribes to the
+    full static WATCHLIST (small, fixed symbol set — no subscription-cap
+    concerns)."""
+    if not USE_KITETICKER or engine.is_connected():
         return
     kite = state["kite"]
     if kite is None or not _instrument_cache:
         return
     token_map = {s: _instrument_cache[s] for s in WATCHLIST if s in _instrument_cache}
-    engine.set_symbol_token_map(token_map)
+    engine.set_symbol_token_map(dict(_instrument_cache))
     engine.on_ticks_callback = _handle_ticks
     engine.on_order_update_callback = _handle_order_update
     access_token = getattr(kite, "access_token", None)
@@ -567,34 +500,13 @@ def start_execution_engine_if_needed():
         log.warning("⚠️ Cannot start KiteTicker — no access_token found on the Kite session.")
         return
     engine.start(API_KEY, access_token)
-    # Wait for the WebSocket to actually connect before subscribing.
-    # connect(threaded=True) is asynchronous — _on_connect sets
-    # _connected only after the socket finishes its handshake.
-    for _ in range(30):
-        if engine.is_connected():
-            break
-        time.sleep(0.2)
-    engine.subscribe_symbols(list(token_map.keys()))
-    _engine_started = True
+    time.sleep(1.0)
+    if token_map:
+        engine.subscribe_symbols(list(token_map.keys()))
 
 
 # ── Live Account Margin (replaces all hardcoded capital/leverage) ────────────
 def fetch_margins() -> float:
-    """
-    Returns the "usable" capital to size trades against (after
-    MARGIN_SAFETY_BUFFER_PCT is set aside as reserve). Cached for
-    MARGIN_REFRESH_INTERVAL_SEC.
-
-    - LIVE mode: always the REAL available margin from kite.margins()
-      (equity segment) — a read-only call, never places an order.
-    - PAPER mode: a notional capital pool (PAPER_VIRTUAL_CAPITAL) that moves
-      up/down with paper P&L exactly like a real account would, since the
-      connected account's real cash balance may legitimately be ₹0 (unfunded
-      for this segment, funds parked elsewhere, used only for market data)
-      — that shouldn't mean every paper trade sizes to zero. Real per-stock
-      leverage (via order_margins()) is still applied on top of this pool
-      for realistic sizing; only the total capital figure is virtual here.
-    """
     now = datetime.now(IST)
 
     with _state_lock:
@@ -609,7 +521,7 @@ def fetch_margins() -> float:
             if not state.get("equity_initialized"):
                 state["equity"] = PAPER_VIRTUAL_CAPITAL
                 state["equity_initialized"] = True
-            virtual_capital = state["equity"]  # grows/shrinks with paper wins/losses
+            virtual_capital = state["equity"]
 
         usable = virtual_capital * (1 - MARGIN_SAFETY_BUFFER_PCT / 100)
         safe_state_update({
@@ -656,13 +568,11 @@ def fetch_margins() -> float:
 
 
 def max_capital_per_trade() -> float:
-    """The slice of the current live available margin any ONE trade may use."""
     available = fetch_margins()
     return available * (MAX_MARGIN_PER_TRADE_PCT / 100)
 
 
 def get_available_capital() -> float:
-    """How much of the LIVE available margin is still free (not yet deployed)."""
     total_margin = fetch_margins()
     with _state_lock:
         return total_margin - state["deployed"]
@@ -672,26 +582,13 @@ def is_within_investment_limit(
     symbol: str, direction: str, entry: float, qty: int,
     known_margin: float | None = None,
 ) -> tuple[bool, float]:
-    """
-    Check a prospective trade against available capital using its REAL
-    required MARGIN (via order_margins()) — NOT the full notional trade
-    value (entry x qty). With real MIS leverage, required margin is only a
-    fraction of notional exposure; comparing notional exposure to available
-    capital would reject almost every leveraged trade even when it easily
-    fits. Falls back to the full notional value (conservative) only if the
-    margin lookup itself fails. Returns (allowed, required_margin_used).
-
-    Accepts known_margin — if calc_qty() already computed the real required
-    margin for this exact symbol/qty, pass it in here instead of hitting
-    order_margins() over the network a second time.
-    """
     total_capital = fetch_margins()
     if known_margin is not None and known_margin > 0:
         required = known_margin
     else:
         required = _order_margin_required(symbol, direction, qty)
         if required is None or required <= 0:
-            required = entry * qty  # couldn't verify — fall back to conservative no-leverage figure
+            required = entry * qty
     if required > total_capital:
         return False, required
     if required > get_available_capital():
@@ -778,6 +675,132 @@ def calc_ema(closes: list[float], period: int) -> list[float | None]:
     return [None] * (period - 1) + ema
 
 
+# ── ADX (Wilder's, 14-period default) ─────────────────────────────────────────
+def _calc_adx(candles: list[dict], period: int = 14) -> float:
+    n = len(candles)
+    if n < period + 1:
+        return 0.0
+    plus_dm: list[float] = [0.0]
+    minus_dm: list[float] = [0.0]
+    tr_list: list[float] = [candles[0]["high"] - candles[0]["low"]]
+
+    for i in range(1, n):
+        up = candles[i]["high"] - candles[i - 1]["high"]
+        down = candles[i - 1]["low"] - candles[i]["low"]
+        plus_dm.append(up if up > down and up > 0 else 0.0)
+        minus_dm.append(down if down > up and down > 0 else 0.0)
+        prev_close = candles[i - 1]["close"]
+        tr = max(
+            candles[i]["high"] - candles[i]["low"],
+            abs(candles[i]["high"] - prev_close),
+            abs(candles[i]["low"] - prev_close),
+        )
+        tr_list.append(tr)
+
+    smoothed_plus = sum(plus_dm[1:period + 1])
+    smoothed_minus = sum(minus_dm[1:period + 1])
+    smoothed_tr = sum(tr_list[1:period + 1])
+
+    dx_list: list[float] = [0.0] * period
+    for i in range(period, n):
+        if smoothed_tr == 0:
+            dx = 0.0
+        else:
+            plus_di = 100.0 * smoothed_plus / smoothed_tr
+            minus_di = 100.0 * smoothed_minus / smoothed_tr
+            di_sum = plus_di + minus_di
+            dx = 100.0 * abs(plus_di - minus_di) / di_sum if di_sum else 0.0
+        dx_list.append(dx)
+        if i < n - 1:
+            smoothed_plus = smoothed_plus - (smoothed_plus / period) + plus_dm[i + 1]
+            smoothed_minus = smoothed_minus - (smoothed_minus / period) + minus_dm[i + 1]
+            smoothed_tr = smoothed_tr - (smoothed_tr / period) + tr_list[i + 1]
+
+    adx_vals: list[float] = [sum(dx_list[:period]) / period]
+    for dx in dx_list[period:]:
+        adx_vals.append((adx_vals[-1] * (period - 1) + dx) / period)
+
+    return adx_vals[-1] if adx_vals else 0.0
+
+
+# ── 4-Tier Trend-Score Gate ───────────────────────────────────────────────────
+def _calc_raw_trend_score(candles: list[dict], ema_vals: list[float | None]) -> float:
+    """
+    Combines three components into a single 0-100 trend-strength score:
+      - ADX(14): how strongly the market is trending, regardless of direction
+        (contributes up to 60 points)
+      - 200-EMA slope over TREND_SLOPE_LOOKBACK candles: how fast the EMA
+        itself is moving (contributes up to 25 points)
+      - Price distance from the 200-EMA, as a %: how extended/committed the
+        current move is (contributes up to 15 points)
+    """
+    closes = [c["close"] for c in candles]
+    valid_ema = [v for v in ema_vals if v is not None]
+    if len(valid_ema) < TREND_SLOPE_LOOKBACK + 1 or not closes:
+        return 0.0
+
+    adx = _calc_adx(candles, 14)
+    adx_component = min(adx, 60.0)
+
+    slope_window = valid_ema[-TREND_SLOPE_LOOKBACK:]
+    base = slope_window[0]
+    ema_slope_pct = ((slope_window[-1] - base) / base * 100) if base else 0.0
+    slope_component = min(abs(ema_slope_pct) * 20.0, 25.0)
+
+    ema_now = valid_ema[-1]
+    price_dist_pct = (abs(closes[-1] - ema_now) / ema_now * 100) if ema_now else 0.0
+    dist_component = min(price_dist_pct * 10.0, 15.0)
+
+    return round(min(adx_component + slope_component + dist_component, 100.0), 2)
+
+
+def _smooth_trend_score(symbol: str, raw_score: float) -> float:
+    """EMA-smooths the raw trend score per symbol across scans using
+    SCORE_SMOOTHING_ALPHA, so one noisy candle can't flip a symbol's tier
+    back and forth every cycle."""
+    with _state_lock:
+        prev = state["trend_scores"].get(symbol)
+        smoothed = raw_score if prev is None else (
+            SCORE_SMOOTHING_ALPHA * raw_score + (1 - SCORE_SMOOTHING_ALPHA) * prev
+        )
+        state["trend_scores"][symbol] = smoothed
+    return round(smoothed, 2)
+
+
+def classify_trend_tier(score: float) -> str:
+    if score >= TRENDING_MIN_SCORE:
+        return "TRENDING"
+    if score >= STRONG_NEUTRAL_MIN_SCORE:
+        return "STRONG_NEUTRAL"
+    if score >= CHOPPY_MAX_SCORE:
+        return "WEAK_NEUTRAL"
+    return "CHOPPY"
+
+
+def trend_gate_allows_entry(symbol: str, candles: list[dict], ema_vals: list[float | None]) -> tuple[bool, str, float]:
+    """
+    Returns (allowed, tier, smoothed_score).
+      TRENDING        -> always allowed
+      STRONG_NEUTRAL  -> allowed only if ALLOW_STRONG_NEUTRAL_TRADES is True
+                          (the caller still has to pass every other existing
+                          strategy filter — this gate does not relax those)
+      WEAK_NEUTRAL     -> never allowed
+      CHOPPY           -> never allowed
+    """
+    raw_score = _calc_raw_trend_score(candles, ema_vals)
+    score = _smooth_trend_score(symbol, raw_score)
+    tier = classify_trend_tier(score)
+
+    with _state_lock:
+        state["trend_tiers"][symbol] = tier
+
+    if tier == "TRENDING":
+        return True, tier, score
+    if tier == "STRONG_NEUTRAL":
+        return ALLOW_STRONG_NEUTRAL_TRADES, tier, score
+    return False, tier, score
+
+
 # ── Wick Zone Detection ───────────────────────────────────────────────────────
 def detect_wick_zones(candles: list[dict]) -> list[dict]:
     zones = []
@@ -805,7 +828,19 @@ def detect_wick_zones(candles: list[dict]) -> list[dict]:
 
 # ── Strategy Signal ───────────────────────────────────────────────────────────
 def check_signal(symbol: str, candles: list[dict]) -> dict | None:
-    needed = EMA_LENGTH + 10
+    """
+    Core EMA200 + wick-zone strategy, now gated by the 4-tier trend-score
+    classifier before any zone-fill logic runs:
+
+      1. Need enough candles for the 200-EMA.
+      2. Compute the smoothed trend score / tier for this symbol.
+         - CHOPPY / WEAK_NEUTRAL -> no signal, skip the rest of the checks.
+         - STRONG_NEUTRAL -> only continue if ALLOW_STRONG_NEUTRAL_TRADES.
+         - TRENDING -> always continue.
+      3. From here on the strategy logic is unchanged: EMA bias, wick-zone
+         detection, zone-fill entry, 3% max-risk cap, TP at RISK_REWARD.
+    """
+    needed = EMA_LENGTH + max(10, TREND_SLOPE_LOOKBACK + 1)
     if len(candles) < needed:
         log.debug(f"{symbol}: only {len(candles)} candles, need {needed}")
         return None
@@ -815,6 +850,11 @@ def check_signal(symbol: str, candles: list[dict]) -> dict | None:
     ema_now  = ema_vals[-1]
 
     if ema_now is None:
+        return None
+
+    allowed, tier, score = trend_gate_allows_entry(symbol, candles, ema_vals)
+    if not allowed:
+        log.debug(f"{symbol}: trend gate blocked entry — tier={tier} score={score}")
         return None
 
     current_price = closes[-1]
@@ -843,6 +883,8 @@ def check_signal(symbol: str, candles: list[dict]) -> dict | None:
                     "ema":    round(ema_now, 2),
                     "zone":   zone,
                     "time":   datetime.now(IST).isoformat(),
+                    "trend_tier":  tier,
+                    "trend_score": score,
                 }
 
         elif zone["type"] == "BEAR" and bias == "SELL":
@@ -861,6 +903,8 @@ def check_signal(symbol: str, candles: list[dict]) -> dict | None:
                     "ema":    round(ema_now, 2),
                     "zone":   zone,
                     "time":   datetime.now(IST).isoformat(),
+                    "trend_tier":  tier,
+                    "trend_score": score,
                 }
     return None
 
@@ -889,13 +933,6 @@ def compute_trail_sl_r(current_r: float) -> float | None:
 
 # ── Position Sizing (LIVE margin based — no more fixed leverage) ─────────────
 def _order_margin_required(symbol: str, direction: str, qty: int) -> float | None:
-    """
-    Ask Kite's REAL margin calculator (order_margins()) what a MIS order of
-    this quantity would actually require. This is a READ-ONLY call — no order
-    is placed — so it's safe to call in paper mode too, which is exactly what
-    lets paper-mode sizing match live-mode sizing (same real per-stock
-    leverage figures either way). Returns None if the lookup fails.
-    """
     kite = state["kite"]
     if kite is None or qty <= 0:
         return None
@@ -919,24 +956,6 @@ def _order_margin_required(symbol: str, direction: str, qty: int) -> float | Non
 
 
 def calc_qty(symbol: str, direction: str, entry: float, sl: float) -> tuple[int, float]:
-    """
-    Return (quantity, margin_used) based on the configured sizing mode. ALL
-    modes (except "fixed") size off the LIVE available margin fetched from
-    Kite via fetch_margins()/max_capital_per_trade() — there is no fixed
-    CAPITAL_PER_TRADE / MIS_LEVERAGE constant anywhere in this calculation.
-
-    "capital" mode goes a step further: it doesn't just divide the cash slice
-    by the raw entry price (which implicitly assumes NO leverage) — it asks
-    Kite's real order_margins() what per-stock MIS leverage actually applies,
-    then scales the quantity UP to what that cash slice can really support.
-    A MAX_TRADE_LEVERAGE_MULTIPLIER safety cap still bounds the result so an
-    unusually high per-stock leverage figure can't balloon position size.
-
-    Returns margin_used alongside qty, so callers (paper_enter/live_enter)
-    reuse the already-computed real margin instead of calling
-    order_margins() a second/third time over the network for the same
-    symbol+qty.
-    """
     if entry <= 0:
         return 0, 0.0
 
@@ -949,10 +968,6 @@ def calc_qty(symbol: str, direction: str, entry: float, sl: float) -> tuple[int,
 
         required = _order_margin_required(symbol, direction, naive_qty)
         if required is None or required <= 0:
-            # Couldn't verify real leverage (no Kite session, API hiccup) —
-            # fall back to the conservative no-leverage figure. This is a
-            # FALLBACK, not a rejection, but it must still be visible in the
-            # log since it silently changes sizing behavior for this trade.
             log.warning(
                 f"⚠️ {symbol}: order margin verification failed (order_margins() "
                 f"returned no usable figure) — proceeding with conservative "
@@ -966,14 +981,9 @@ def calc_qty(symbol: str, direction: str, entry: float, sl: float) -> tuple[int,
 
         scaled_qty = max(1, int(per_trade_capital / margin_per_share))
 
-        # Safety cap: exposure (qty x entry) may never exceed
-        # MAX_TRADE_LEVERAGE_MULTIPLIER x the intended cash slice.
         max_qty_by_exposure_cap = max(1, int((per_trade_capital * MAX_TRADE_LEVERAGE_MULTIPLIER) / entry))
         final_qty = min(scaled_qty, max_qty_by_exposure_cap)
 
-        # Margin isn't always perfectly linear across quantity brackets —
-        # re-verify the scaled figure actually fits the cash slice and trim
-        # if it doesn't.
         final_margin = required
         recheck = _order_margin_required(symbol, direction, final_qty)
         if recheck is not None:
@@ -1003,7 +1013,7 @@ def calc_qty(symbol: str, direction: str, entry: float, sl: float) -> tuple[int,
         risk_amount = per_trade_capital * RISK_PER_TRADE_PCT / 100
         base_qty = max(1, int(risk_amount / risk_per_share))
         qty = max(1, base_qty * POSITION_QTY_MULTIPLIER)
-        return qty, entry * qty  # estimate; real check still happens in is_within_investment_limit
+        return qty, entry * qty
 
     qty = max(1, int(QTY_FIXED_SIZE))
     return qty, entry * qty
@@ -1011,15 +1021,6 @@ def calc_qty(symbol: str, direction: str, entry: float, sl: float) -> tuple[int,
 
 # ── Live Order-Margin Verification / Auto-Shrink ─────────────────────────────
 def verify_and_shrink_order_qty(symbol: str, direction: str, qty: int, price: float) -> int:
-    """
-    Before placing a LIVE order, ask Kite's OWN margin calculator
-    (kite.order_margins()) what this specific order will really require —
-    Zerodha's MIS margin is NOT a flat multiplier, it varies per stock. If
-    the required margin exceeds what's currently available, shrink the
-    quantity by ORDER_MARGIN_SHRINK_STEP_PCT and recheck, instead of
-    rejecting the signal outright. Returns the quantity that fits (possibly
-    reduced), or 0 if even 1 share doesn't fit.
-    """
     kite = state["kite"]
     if kite is None or qty <= 0:
         return qty
@@ -1059,7 +1060,6 @@ def verify_and_shrink_order_qty(symbol: str, direction: str, qty: int, price: fl
                 f"— shrinking qty {current_qty} → {shrunk} (attempt {attempt}/{ORDER_MARGIN_MAX_SHRINK_ATTEMPTS})"
             )
             if shrunk == current_qty:
-                # already at the floor (1 share) and it still doesn't fit
                 log_skip(
                     symbol,
                     f"Order margin verification failure — even 1 share requires more margin "
@@ -1117,11 +1117,8 @@ def paper_enter(signal: dict):
         initial_sl = round(entry_price - INITIAL_SL_R * risk, 2)
     else:
         initial_sl = round(entry_price + INITIAL_SL_R * risk, 2)
-    band = band_for_symbol(symbol)
+    band = band_for_symbol(symbol, entry_price)
 
-    # NOTE: deadlock fix retained — get_available_capital() (which re-
-    # acquires _state_lock internally) is called AFTER releasing the lock
-    # below, never while it's held.
     skip_reason = None
     with _state_lock:
         if len(state["positions"]) >= MAX_POSITIONS:
@@ -1149,14 +1146,12 @@ def paper_enter(signal: dict):
                     "tp":         signal["tp"],
                     "band":       band["name"] if band else None,
                     "qty":        qty,
-                    "margin_used": round(margin_used, 2),   # real margin consumed, NOT notional trade value
+                    "margin_used": round(margin_used, 2),
                     "open_time":  signal["time"],
+                    "trend_tier": signal.get("trend_tier"),
+                    "trend_score": signal.get("trend_score"),
                     "pnl":        0.0,
-                    "mfe":        0.0,
-                    "mae":        0.0,
                     "status":     "OPEN",
-                    "trend_score": trend_detector.get_trend_score(symbol, candles) if TREND_FILTER_ENABLED else None,
-                    "trend_state": trend_detector.get_market_state(symbol, candles) if TREND_FILTER_ENABLED else None,
                 }
                 state["deployed"] += margin_used
                 deployed_after = state["deployed"]
@@ -1169,7 +1164,8 @@ def paper_enter(signal: dict):
     trade_value = entry_price * qty
     log.info(
         f"📈 PAPER ENTER {direction} {symbol} @ {entry_price} (market) | "
-        f"1R={risk:.2f} | Initial SL {initial_sl} ({INITIAL_SL_R}R) | Ref target {signal['tp']} | Qty {qty}"
+        f"1R={risk:.2f} | Initial SL {initial_sl} ({INITIAL_SL_R}R) | Ref target {signal['tp']} | Qty {qty} | "
+        f"Trend {signal.get('trend_tier')} ({signal.get('trend_score')})"
     )
     log.info(
         f"   💰 Sizing: cash slice ₹{max_capital_per_trade():,.2f} "
@@ -1184,23 +1180,12 @@ def paper_enter(signal: dict):
             f"<b>{direction} {symbol}</b>\n"
             f"Qty {qty} @ ₹{entry_price}\n"
             f"SL ₹{initial_sl} ({INITIAL_SL_R}R) | Ref target ₹{signal['tp']}\n"
-            f"1R = ₹{risk:.2f} | Value ₹{trade_value:,.2f}"
+            f"1R = ₹{risk:.2f} | Value ₹{trade_value:,.2f}\n"
+            f"Trend {signal.get('trend_tier')} ({signal.get('trend_score')})"
         )
     _save_current_report()
 
 
-# ── Shared Exit Bookkeeping ────────────────────────────────────────────────
-# Every exit path — paper tick-triggered SL/trail exit, paper TIME_EXIT/EOD,
-# live market exit (TIME_EXIT/EOD/manual), live exchange-SL-fill (via
-# order-update push), and live emergency exit — funnels through this ONE
-# function for pnl/state/cooldown/SL-hit-counter/slippage/latency/Telegram/
-# report bookkeeping, so that logic is never duplicated (and never drifts
-# out of sync) across the different trigger paths.
-#
-# Callers are responsible for claiming/releasing engine.try_begin_exit() /
-# engine.end_exit() around their WHOLE exit sequence (order placement +
-# this call) — this function itself does not touch the guard, since some
-# callers need the guard held across an earlier order-placement step too.
 def _book_exit(symbol: str, exit_price: float, filled_qty: int | None, reason: str,
                 is_live: bool, latency_key: str | None = None):
     with _state_lock:
@@ -1224,19 +1209,10 @@ def _book_exit(symbol: str, exit_price: float, filled_qty: int | None, reason: s
             **pos, "exit": round(exit_price, 2), "pnl": round(pnl, 2),
             "result": result, "reason": reason,
             "close_time": datetime.now(IST).isoformat(),
-            "mfe": round(pos.get("mfe", 0.0), 2),
-            "mae": round(pos.get("mae", 0.0), 2),
-            "holding_minutes": round(minutes_held(pos), 1),
-            "trend_score": pos.get("trend_score"),
-            "trend_state": pos.get("trend_state"),
         }
 
-        # ── Slippage Logging ─────────────────────────────────────────────
-        # Only meaningful for a stop-loss exit (original or trailed) — the
-        # whole point is comparing what the CONFIGURED stop was against
-        # where the exit actually happened.
         if ENABLE_SLIPPAGE_MONITOR and reason in ("SL_HIT", "TRAIL_SL_HIT"):
-            configured_sl = pos["sl"]  # pos["sl"] always holds the currently active stop
+            configured_sl = pos["sl"]
             slip = engine.compute_slippage(pos["entry"], configured_sl, exit_price, qty, pos["direction"])
             trade_record.update(slip)
             if slip["slippage_points"] > MAX_SLIPPAGE_POINTS or slip["slippage_percent"] > MAX_SLIPPAGE_PERCENT:
@@ -1252,7 +1228,6 @@ def _book_exit(symbol: str, exit_price: float, filled_qty: int | None, reason: s
                         f"({slip['slippage_points']} pts, {slip['risk_multiple']}R vs expected loss)"
                     )
 
-        # ── Latency Logging ──────────────────────────────────────────────
         if ENABLE_LATENCY_LOG and latency_key:
             engine.mark(latency_key, "exit_filled")
             trade_record["latency"] = engine.get_latency_summary(latency_key)
@@ -1285,15 +1260,6 @@ def _book_exit(symbol: str, exit_price: float, filled_qty: int | None, reason: s
 
 
 def paper_exit(symbol: str, price: float, reason: str):
-    """
-    PAPER-mode exit. There is no real broker order to rest, so for SL/
-    TRAIL_SL exits this is called directly from the tick handler the
-    instant a tick crosses the configured stop (see
-    _process_tick_for_position) — not from a periodic REST poll — which is
-    the closest honest simulation of exchange-level execution achievable
-    without a real resting order. TIME_EXIT/EOD calls still come from the
-    position monitor loop, which is time-based rather than price-based.
-    """
     if not engine.try_begin_exit(symbol):
         return
     try:
@@ -1312,13 +1278,6 @@ def _round_to_tick(price: float, tick: float = None) -> float:
 
 
 def confirm_order_filled(order_id: str, what: str = "") -> dict | None:
-    """
-    Poll Zerodha for an order's ACTUAL status instead of assuming
-    place_order() succeeding means it filled. Returns
-    {"average_price": float, "filled_quantity": int} once status is
-    COMPLETE, or None if REJECTED/CANCELLED or never confirmed within
-    ORDER_CONFIRM_ATTEMPTS tries (caller must NOT treat the trade as open).
-    """
     kite = state["kite"]
     if kite is None or not order_id:
         return None
@@ -1422,8 +1381,6 @@ def live_enter(signal: dict):
         )
         return
 
-    # Final live re-check right before placing the real order (funds/margin
-    # can shift between signal time and order time) — shrinks further if needed.
     qty = verify_and_shrink_order_qty(symbol, direction, qty, entry_price)
     if qty <= 0:
         return
@@ -1445,7 +1402,7 @@ def live_enter(signal: dict):
         initial_sl = round(entry_price - INITIAL_SL_R * risk, 2)
     else:
         initial_sl = round(entry_price + INITIAL_SL_R * risk, 2)
-    band = band_for_symbol(symbol)
+    band = band_for_symbol(symbol, entry_price)
 
     with _state_lock:
         if len(state["positions"]) >= MAX_POSITIONS:
@@ -1468,10 +1425,6 @@ def live_enter(signal: dict):
         log_skip(symbol, skip_reason)
         return
 
-    # ── Latency tracking starts here: signal → entry order → entry fill →
-    # SL order → SL accepted. See execution.py / _book_exit for the rest of
-    # the chain (sl_trigger_time / exit_filled), recorded when the position
-    # eventually closes.
     latency_key = symbol if ENABLE_LATENCY_LOG else None
     if latency_key:
         try:
@@ -1495,10 +1448,6 @@ def live_enter(signal: dict):
         log.error(f"Live order error {symbol}: {e}")
         return
 
-    # Prefer the WebSocket order-update push (near-instant) over polling
-    # order_history() in a loop. confirm_order_filled() (REST poll) is kept
-    # ONLY as a one-shot fallback if the push doesn't arrive within the
-    # timeout — a safety net, not the primary mechanism.
     update = engine.await_order_update(oid, timeout=6.0) if USE_KITETICKER else None
     if update and update.get("status") == "COMPLETE":
         fill = {
@@ -1532,15 +1481,6 @@ def live_enter(signal: dict):
     else:
         initial_sl = round(filled_price + INITIAL_SL_R * risk, 2)
 
-    # ── Exchange-Native Stop-Loss ─────────────────────────────────────────
-    # This SL-M order is placed IMMEDIATELY after the entry fill is
-    # confirmed — it starts resting at the exchange right now, before
-    # anything else happens. From this point on, THE EXCHANGE owns the
-    # stop: its own matching engine watches every tick and fires the order
-    # the instant price crosses the trigger, with no Python polling loop
-    # anywhere in that path. Trailing later calls modify_order() on this
-    # SAME order (see _process_tick_for_position) — it is never cancelled
-    # and recreated.
     broker_sl_order_id = None
     if USE_BROKER_SL and USE_EXCHANGE_SL:
         if latency_key:
@@ -1559,7 +1499,7 @@ def live_enter(signal: dict):
 
     margin_used = _order_margin_required(symbol, direction, filled_qty)
     if margin_used is None or margin_used <= 0:
-        margin_used = filled_price * filled_qty  # fallback: conservative no-leverage figure
+        margin_used = filled_price * filled_qty
 
     with _state_lock:
         state["positions"][symbol] = {
@@ -1572,16 +1512,14 @@ def live_enter(signal: dict):
             "tp":                 signal["tp"],
             "band":               band["name"] if band else None,
             "qty":                filled_qty,
-            "margin_used":        round(margin_used, 2),   # real margin consumed, NOT notional trade value
+            "margin_used":        round(margin_used, 2),
             "order_id":           oid,
             "broker_sl_order_id": broker_sl_order_id,
             "open_time":          signal["time"],
+            "trend_tier":         signal.get("trend_tier"),
+            "trend_score":        signal.get("trend_score"),
             "pnl":                0.0,
-            "mfe":                0.0,
-            "mae":                0.0,
             "status":             "OPEN",
-            "trend_score":        trend_detector.get_trend_score(symbol, get_candles(symbol, 260) or []) if TREND_FILTER_ENABLED else None,
-            "trend_state":        trend_detector.get_market_state(symbol, get_candles(symbol, 260) or []) if TREND_FILTER_ENABLED else None,
         }
         state["deployed"] += margin_used
         deployed_after  = state["deployed"]
@@ -1606,16 +1544,6 @@ def live_enter(signal: dict):
 
 
 def live_exit(symbol: str, reason: str):
-    """
-    LIVE exit via an explicit MARKET order — used ONLY for reasons that are
-    not price-triggered: TIME_EXIT, EOD_SQUAREOFF, MANUAL_CLOSE_RECONCILED.
-    A normal SL/TRAIL_SL exit does NOT go through here anymore — that is
-    handled entirely by the resting exchange SL-M order + the order-update
-    push (see live_exit_broker_sl_filled), with no Python market order
-    involved at all. Guarded by engine.try_begin_exit so this can never run
-    at the same moment as a broker-SL-fill or emergency-exit for the same
-    symbol.
-    """
     if not engine.try_begin_exit(symbol):
         return
     try:
@@ -1672,13 +1600,6 @@ def live_exit(symbol: str, reason: str):
 
 
 def live_exit_broker_sl_filled(symbol: str, order_update: dict):
-    """
-    Called from _handle_order_update the instant the resting exchange SL-M
-    order for this symbol shows status COMPLETE. NO new order is placed
-    here — the exchange already filled it; this only books the outcome
-    (pnl/state/slippage/latency/cooldown/SL-hit-counter/Telegram/report).
-    This is the primary way a stop-loss exit happens in LIVE mode now.
-    """
     if not engine.try_begin_exit(symbol):
         return
     try:
@@ -1705,25 +1626,13 @@ def live_exit_broker_sl_filled(symbol: str, order_update: dict):
 
 
 def live_emergency_exit(symbol: str, trigger_reason: str):
-    """
-    Fail-safe (requirement: "never leave a position unprotected"). Fires
-    ONLY when the resting exchange SL order is observed to be REJECTED or
-    CANCELLED while a position on this symbol is STILL open in bot state.
-    That combination can only mean the SL protection genuinely disappeared
-    unexpectedly (margin issue, RMS action, a Zerodha-side problem, etc.) —
-    the bot's own intentional cancels (inside live_exit / 
-    live_exit_broker_sl_filled) always remove the position from state
-    BEFORE cancelling the SL order, so this function finding an open
-    position here means real, immediate danger. Places a MARKET exit right
-    away rather than waiting for the next monitor tick.
-    """
     if not engine.try_begin_exit(symbol):
         return
     try:
         with _state_lock:
             pos = state["positions"].get(symbol)
         if not pos:
-            return  # already closed through a normal path — nothing left to protect
+            return
 
         kite = state["kite"]
         log.error(f"🚨 EMERGENCY EXIT {symbol}: {trigger_reason} — position is UNPROTECTED, firing immediate MARKET exit.")
@@ -1776,25 +1685,6 @@ def live_emergency_exit(symbol: str, trigger_reason: str):
 
 # ── Tick-Driven Trailing / Paper-Exit Processing ─────────────────────────────
 def _process_tick_for_position(symbol: str, price: float):
-    """
-    The ONE place trailing math and (paper-only) SL/TRAIL_SL exit decisions
-    happen, called both from the tick stream (_handle_ticks, primary path)
-    and from the REST-poll backup (monitor_positions, used when ticks are
-    delayed/unavailable) — so the two paths can never disagree with each
-    other or duplicate an exit.
-
-      - PAPER mode: there is no real resting order, so this simulates the
-        SL/TRAIL_SL exit itself the instant price crosses the stop — the
-        closest honest approximation to exchange execution available
-        without a real order in the book.
-      - LIVE mode: this function ONLY computes/advances the trailing stop
-        and calls modify_broker_sl() on the resting exchange SL-M order.
-        It NEVER independently exits a live position on a price check —
-        that decision belongs exclusively to the exchange's own SL-M order
-        (booked via live_exit_broker_sl_filled) or an explicit TIME_EXIT/
-        EOD_SQUAREOFF (via live_exit). This is exactly what prevents the
-        old race between a Python price-poll exit and the resting SL order.
-    """
     with _state_lock:
         pos = state["positions"].get(symbol)
     if not pos:
@@ -1839,38 +1729,14 @@ def _process_tick_for_position(symbol: str, price: float):
                 paper_exit(symbol, price, reason)
                 return
 
-    # Mark-to-market for the dashboard only — never an exit decision on the
-    # LIVE side (paper falls through to here too when no exit fired above).
     with _state_lock:
         if symbol in state["positions"]:
             pnl = (price - pos["entry"]) * pos["qty"] if direction == "BUY" else (pos["entry"] - price) * pos["qty"]
             state["positions"][symbol]["pnl"] = round(pnl, 2)
-            if pnl > state["positions"][symbol].get("mfe", 0):
-                state["positions"][symbol]["mfe"] = round(pnl, 2)
-            if pnl < state["positions"][symbol].get("mae", 0):
-                state["positions"][symbol]["mae"] = round(pnl, 2)
     _save_current_report()
 
 
 def _handle_ticks(ticks: list):
-    """
-    Registered with engine.on_ticks_callback — fires on every batch of
-    ticks from the KiteTicker WebSocket. `ticks` is an ORDERED list of
-    (symbol, price) pairs exactly as received from the exchange feed — NOT
-    deduplicated to a single last-value-per-symbol dict.
-
-    FIXED: this used to receive a dict (tick_map[symbol] = price), which
-    silently drops earlier ticks for the same symbol if more than one
-    arrives in a single WebSocket batch (common during a fast reversal —
-    exactly the situation that produced an exit at 1928.70 instead of the
-    actual trailing-stop level of 1928.48). Processing every tick in order
-    guarantees the position check reacts to the FIRST tick that reaches
-    the stop, not whatever price happened to be last in that batch.
-    _process_tick_for_position already re-reads state["positions"] fresh
-    on every call and no-ops once a position is closed, so continuing to
-    iterate remaining ticks for an already-exited symbol within the same
-    batch is safe.
-    """
     try:
         with _state_lock:
             open_symbols = set(state["positions"].keys())
@@ -1882,23 +1748,6 @@ def _handle_ticks(ticks: list):
 
 
 def _handle_order_update(data: dict):
-    """
-    Registered with engine.on_order_update_callback — fires on every order
-    status push from Kite over the WebSocket. Routes:
-      - The resting exchange SL-M order for an open position reports
-        COMPLETE -> live_exit_broker_sl_filled (books the fill; places NO
-        new order, the exchange already executed it).
-      - That SAME SL-M order reports REJECTED/CANCELLED while the position
-        is STILL open in bot state -> live_emergency_exit. The bot's own
-        deliberate cancels (inside live_exit / live_exit_broker_sl_filled)
-        always remove the position from state BEFORE cancelling the SL
-        order, so finding the position still open here can only mean the
-        SL protection genuinely vanished unexpectedly.
-      - Anything else (entry orders, forced-exit market orders, etc.) is
-        handled synchronously by whoever is already awaiting that exact
-        order_id via engine.await_order_update() — nothing further to do
-        for those here.
-    """
     try:
         order_id = data.get("order_id")
         status = data.get("status")
@@ -1912,7 +1761,7 @@ def _handle_order_update(data: dict):
                     match_symbol = symbol
                     break
         if not match_symbol:
-            return  # not a resting SL order we're tracking (or already closed)
+            return
 
         if status == "COMPLETE":
             live_exit_broker_sl_filled(match_symbol, data)
@@ -1928,289 +1777,6 @@ def enter_trade(signal):
 
 def exit_trade(symbol, price, reason):
     paper_exit(symbol, price, reason) if PAPER_TRADING else live_exit(symbol, reason)
-
-
-def generate_market_trend_report() -> str:
-    """
-    Generate a clean, structured market trend report for ALL watchlist symbols,
-    grouped by TRENDING / NEUTRAL / CHOPPY, with tradable/skipped lists.
-    """
-    lines = [
-        "",
-        "=" * 50,
-        "MARKET TREND REPORT",
-        "=" * 50,
-        "",
-    ]
-
-    trending = []
-    neutral = []
-    choppy = []
-
-    for symbol in WATCHLIST:
-        try:
-            candles = get_candles(symbol, 260)
-            if not candles:
-                choppy.append((symbol, 0, "No candle data"))
-                continue
-            result = trend_detector.compute(symbol, candles)
-            if result.state == "TRENDING":
-                trending.append((symbol, result.score, result.reasons))
-            elif result.state == "NEUTRAL":
-                neutral.append((symbol, result.score, result.reasons))
-            else:
-                choppy.append((symbol, result.score, result.reasons))
-        except Exception as e:
-            choppy.append((symbol, 0, f"Error: {e}"))
-
-    lines.append("TRENDING")
-    lines.append("")
-    for sym, score, _ in trending:
-        lines.append(f"{sym:<16} Score {score}")
-
-    lines.append("")
-    lines.append("-" * 50)
-    lines.append("")
-    lines.append("NEUTRAL")
-    lines.append("")
-    for sym, score, _ in neutral:
-        lines.append(f"{sym:<16} Score {score}")
-
-    lines.append("")
-    lines.append("-" * 50)
-    lines.append("")
-    lines.append("CHOPPY")
-    lines.append("")
-    for sym, score, _ in choppy:
-        lines.append(f"{sym:<16} Score {score}")
-
-    lines.append("")
-    lines.append("=" * 50)
-    lines.append("")
-
-    tradable = [sym for sym, _, _ in trending]
-    if ALLOW_NEUTRAL_TRADES:
-        tradable.extend([sym for sym, _, _ in neutral])
-
-    skipped = [sym for sym, _, _ in choppy]
-    if not ALLOW_NEUTRAL_TRADES:
-        skipped.extend([sym for sym, _, _ in neutral])
-
-    lines.append("TRADABLE TODAY")
-    lines.append("")
-    if tradable:
-        for sym in tradable:
-            lines.append(f"  ✓ {sym}")
-    else:
-        lines.append("  (none)")
-
-    lines.append("")
-    lines.append("Skipped Today")
-    lines.append("")
-    if skipped:
-        for sym in skipped:
-            lines.append(f"  ✗ {sym}")
-        lines.append("")
-        lines.append("Reason:")
-        lines.append("Trend Score below 75")
-    else:
-        lines.append("  (none)")
-
-    lines.append("")
-    lines.append("=" * 50)
-    lines.append("")
-
-    return "\n".join(lines)
-
-
-def generate_trend_eod_report() -> str:
-    today_str = datetime.now(IST).strftime("%Y-%m-%d")
-    with _state_lock:
-        trades = list(state["trades"])
-        trend_scores = dict(state.get("trend_scores", {}))
-        trend_signals = dict(state.get("trend_signals_detected", {}))
-        trend_skips = dict(state.get("trend_skips", {}))
-        sl_hit_counts = dict(state.get("sl_hit_counts", {}))
-        wins, losses = state["wins"], state["losses"]
-
-    # Per-symbol stats from closed trades
-    symbol_stats: dict[str, dict] = {}
-    for t in trades:
-        sym = t["symbol"]
-        if sym not in symbol_stats:
-            symbol_stats[sym] = {
-                "trades": 0, "wins": 0, "losses": 0, "pnl": 0.0,
-                "sl_hits": 0, "trail_sl_hits": 0, "holding_minutes_sum": 0.0,
-            }
-        s = symbol_stats[sym]
-        s["trades"] += 1
-        if t["result"] == "WIN":
-            s["wins"] += 1
-        else:
-            s["losses"] += 1
-        s["pnl"] += t.get("pnl", 0.0)
-        s["holding_minutes_sum"] += t.get("holding_minutes", 0.0)
-        if t.get("reason") == "SL_HIT":
-            s["sl_hits"] += 1
-        elif t.get("reason") == "TRAIL_SL_HIT":
-            s["trail_sl_hits"] += 1
-
-    all_symbols = sorted(set(list(trend_scores.keys()) + list(symbol_stats.keys())))
-
-    trending_stocks = []
-    neutral_stocks = []
-    choppy_stocks = []
-    for sym in all_symbols:
-        ts = trend_scores.get(sym, {})
-        cls = ts.get("state", "CHOPPY")
-        if cls == "TRENDING":
-            trending_stocks.append(sym)
-        elif cls == "NEUTRAL":
-            neutral_stocks.append(sym)
-        else:
-            choppy_stocks.append(sym)
-
-    lines = [
-        "",
-        "=" * 40,
-        "MARKET ANALYSIS REPORT",
-        "=" * 40,
-        "",
-        "Trending Stocks",
-    ]
-    for sym in trending_stocks:
-        lines.append(f"  {sym}")
-    lines.append("")
-    lines.append("Neutral Stocks")
-    for sym in neutral_stocks:
-        lines.append(f"  {sym}")
-    lines.append("")
-    lines.append("Skipped Choppy Stocks")
-    for sym in choppy_stocks:
-        lines.append(f"  {sym}")
-
-    # Per-stock detail
-    lines.append("")
-    lines.append("-" * 40)
-    for sym in all_symbols:
-        ts = trend_scores.get(sym, {})
-        score = ts.get("score", 0)
-        cls = ts.get("state", "CHOPPY")
-        reasons = ", ".join(ts.get("reasons", [])[:3])
-        st = symbol_stats.get(sym, {})
-        trades = st.get("trades", 0)
-        wins = st.get("wins", 0)
-        losses = st.get("losses", 0)
-        pnl = st.get("pnl", 0.0)
-        avg_hold = (st["holding_minutes_sum"] / trades) if trades else 0.0
-        sl_hits = st.get("sl_hits", 0)
-        trail_sl_hits = st.get("trail_sl_hits", 0)
-        signals = trend_signals.get(sym, 0)
-        skips = trend_skips.get(sym, 0)
-
-        lines.append("")
-        lines.append(f"{sym}")
-        lines.append(f"  Trend Score  : {score}")
-        lines.append(f"  Classification: {cls}")
-        if cls == "CHOPPY":
-            lines.append(f"  Skipped      : {skips}")
-            lines.append(f"  Reason       : {reasons}")
-        else:
-            lines.append(f"  Signals      : {signals}")
-            lines.append(f"  Trades       : {trades}")
-            lines.append(f"  Wins         : {wins}")
-            lines.append(f"  Losses       : {losses}")
-            lines.append(f"  PnL          : {pnl:+,.2f}")
-            if trades:
-                lines.append(f"  Avg Hold     : {avg_hold:.1f} min")
-                lines.append(f"  Win Rate     : {wins/trades*100:.1f}%")
-            lines.append(f"  SL Hits      : {sl_hits}")
-            lines.append(f"  Trail SL Hits: {trail_sl_hits}")
-
-    # Analytics
-    def _bucket(syms, stats_map):
-        pnl_list, wr_list, dur_list, sl_list, trail_list = [], [], [], [], []
-        rr_list, mae_list, mfe_list = [], [], []
-        for sym in syms:
-            st = stats_map.get(sym, {})
-            t = st.get("trades", 0)
-            if t == 0:
-                continue
-            pnl_list.append(st.get("pnl", 0.0))
-            wr_list.append(st.get("wins", 0) / t)
-            dur_list.append(st.get("holding_minutes_sum", 0.0) / t)
-            sl_list.append(st.get("sl_hits", 0) / t)
-            trail_list.append(st.get("trail_sl_hits", 0) / t)
-        return pnl_list, wr_list, dur_list, sl_list, trail_list
-
-    # Calculate RR achieved, MAE, MFE from trades
-    def _trade_bucket(syms, trades_list):
-        pnl_list, rr_list, mae_list, mfe_list = [], [], [], []
-        for t in trades_list:
-            if t["symbol"] not in syms:
-                continue
-            pnl_list.append(t.get("pnl", 0.0))
-            risk = t.get("risk", 0)
-            if risk:
-                rr_list.append(t.get("pnl", 0.0) / risk)
-            mae_list.append(abs(t.get("mae", 0.0)))
-            mfe_list.append(abs(t.get("mfe", 0.0)))
-        return pnl_list, rr_list, mae_list, mfe_list
-
-    trend_pnl, trend_wr, trend_dur, trend_sl, trend_trail = _bucket(trending_stocks, symbol_stats)
-    choppy_pnl, choppy_wr, choppy_dur, choppy_sl, choppy_trail = _bucket(choppy_stocks, symbol_stats)
-
-    trend_trade_pnl, trend_rr, trend_mae, trend_mfe = _trade_bucket(trending_stocks, trades)
-    choppy_trade_pnl, choppy_rr, choppy_mae, choppy_mfe = _trade_bucket(choppy_stocks, trades)
-
-    def _avg(lst):
-        return sum(lst) / len(lst) if lst else 0.0
-
-    lines.append("")
-    lines.append("-" * 40)
-    lines.append("ANALYTICS")
-    lines.append("")
-    lines.append(f"Average PnL (TRENDING)     : {_avg(trend_pnl):+,.2f}")
-    lines.append(f"Average PnL (CHOPPY)       : {_avg(choppy_pnl):+,.2f}")
-    lines.append(f"Win Rate (TRENDING)        : {_avg(trend_wr)*100:.1f}%")
-    lines.append(f"Win Rate (CHOPPY)          : {_avg(choppy_wr)*100:.1f}%")
-    lines.append(f"Avg SL Hits/trade (TREND)  : {_avg(trend_sl):.2f}")
-    lines.append(f"Avg SL Hits/trade (CHOP)   : {_avg(choppy_sl):.2f}")
-    lines.append(f"Avg Trail SL Hits/trade    : {_avg(trend_trail):.2f}")
-    lines.append(f"Avg Duration (TREND)       : {_avg(trend_dur):.1f} min")
-    lines.append(f"Avg Duration (CHOP)        : {_avg(choppy_dur):.1f} min")
-    lines.append(f"Avg RR Achieved (TREND)    : {_avg(trend_rr):.2f}")
-    lines.append(f"Avg RR Achieved (CHOP)     : {_avg(choppy_rr):.2f}")
-    lines.append(f"Avg MAE (TREND)            : {_avg(trend_mae):,.2f}")
-    lines.append(f"Avg MAE (CHOP)             : {_avg(choppy_mae):,.2f}")
-    lines.append(f"Avg MFE (TREND)            : {_avg(trend_mfe):,.2f}")
-    lines.append(f"Avg MFE (CHOP)             : {_avg(choppy_mfe):,.2f}")
-
-    # PnL comparison
-    total_pnl_with_filter = sum(t.get("pnl", 0.0) for t in trades)
-    total_signals = sum(trend_signals.get(s, 0) for s in trend_signals)
-    total_skips = sum(trend_skips.get(s, 0) for s in trend_skips)
-
-    lines.append("")
-    lines.append("-" * 40)
-    lines.append("SUMMARY")
-    lines.append(f"Average Trend Score        : {_avg([ts.get('score', 0) for ts in trend_scores.values()]):.1f}")
-    lines.append(f"Total Trades Allowed       : {len(trades)}")
-    lines.append(f"Total Trades Skipped       : {total_skips}")
-    lines.append(f"PnL With Filter           : {total_pnl_with_filter:+,.2f}")
-    lines.append(f"PnL Without Filter        : N/A (no baseline data)")
-    lines.append(f"Improvement %             : N/A (no baseline)")
-    lines.append(f"Win Rate                   : {wins / (wins + losses) * 100:.1f}%" if (wins + losses) else "Win Rate: 0.0%")
-    lines.append(f"Drawdown Reduction %      : N/A (no baseline)")
-    lines.append("")
-    if _avg(trend_pnl) > _avg(choppy_pnl):
-        lines.append("Recommendation: Trend filter BENEFICIAL")
-    else:
-        lines.append("Recommendation: Trend filter NOT BENEFICIAL")
-    lines.append("=" * 40)
-    lines.append("")
-
-    return "\n".join(lines)
 
 
 # ── Force Square-Off (EOD) ────────────────────────────────────────────────────
@@ -2229,19 +1795,6 @@ def force_square_off_all(reason: str = "EOD_SQUAREOFF"):
 
 # ── Position Reconciliation (bot state <-> broker truth, LIVE mode only) ────
 def reconcile_positions_with_broker():
-    """
-    Pull REAL positions from Zerodha (kite.positions()) and reconcile the
-    bot's in-memory state against them. Never rely solely on in-memory state
-    for live trading:
-      - If the bot thinks a position is open but the broker shows it closed
-        (e.g. manually closed from the Kite app/web), remove it from the
-        bot's tracking and record it as closed using the broker's own last
-        traded price — no duplicate exit order is placed.
-      - If quantities differ (partial manual exit/addition), sync the bot's
-        qty to match the broker's real qty.
-      - If the broker has an OPEN position the bot isn't tracking at all,
-        flag it loudly — it is NEVER auto-adopted; manage/close it manually.
-    """
     kite = state["kite"]
     if kite is None:
         return
@@ -2336,12 +1889,6 @@ def reconcile_positions_with_broker():
 
 
 def reconcile_loop():
-    """
-    Independent background loop (separate from scan/monitor cadence) that
-    periodically checks broker truth against bot state. Only meaningful in
-    LIVE mode (paper positions don't exist at the broker), so it's a no-op
-    while PAPER_TRADING is True.
-    """
     log.info(f"🔄 Position reconciliation loop started — checking broker truth every {RECONCILE_INTERVAL_SEC}s")
     while True:
         try:
@@ -2427,17 +1974,6 @@ def print_open_mtm() -> str:
 
 # ── Position Monitor ──────────────────────────────────────────────────────────
 def monitor_positions():
-    """
-    Runs every MONITOR_INTERVAL_SEC as a REST-poll BACKUP to the tick-driven
-    path (_handle_ticks) — it exists for when ticks are delayed/unavailable
-    (USE_KITETICKER off, socket briefly reconnecting, etc.), not as the
-    primary exit mechanism. TIME_EXIT is the only exit decision made here
-    directly; everything else (trailing + paper SL/TRAIL_SL exits) is
-    delegated to _process_tick_for_position so the poll-driven and
-    tick-driven paths can never disagree or double-exit a position. LIVE
-    stop-loss exits are NEVER decided here — only by the resting exchange
-    SL-M order (see live_exit_broker_sl_filled).
-    """
     symbols = list(state["positions"].keys())
     if not symbols:
         return
@@ -2468,8 +2004,7 @@ def monitor_positions():
 
 # ── Zone Tracker ──────────────────────────────────────────────────────────────
 def update_zones():
-    zone_summary = {}
-    for symbol in WATCHLIST:
+    for symbol in _current_watchlist():
         try:
             candles = get_candles(symbol, 100)
             if not candles:
@@ -2478,21 +2013,18 @@ def update_zones():
             bull  = [z for z in zones if z["type"] == "BULL"]
             bear  = [z for z in zones if z["type"] == "BEAR"]
             if bull or bear:
-                zone_summary[symbol] = {
-                    "bull": len(bull), "bear": len(bear),
-                    "last_type": zones[-1]["type"] if zones else "NONE",
-                }
+                with _state_lock:
+                    state["zones"][symbol] = {
+                        "bull": len(bull), "bear": len(bear),
+                        "last_type": zones[-1]["type"] if zones else "NONE",
+                    }
         except Exception as e:
             log.warning(f"Zone update error {symbol}: {e}")
         time.sleep(0.4)
-    with _state_lock:
-        state["zones"] = zone_summary
 
 
 # ── Fast Position Monitor Loop (independent of the signal scan cadence) ──────
 def _maybe_send_eod_summary():
-    """Send exactly one Telegram end-of-day P&L summary per calendar day,
-    once SQUARE_OFF_TIME has passed. Safe to call every monitor tick."""
     if not TELEGRAM_NOTIFY_EOD_SUMMARY:
         return
     today_str = datetime.now(IST).strftime("%Y-%m-%d")
@@ -2501,36 +2033,14 @@ def _maybe_send_eod_summary():
             return
         state["eod_summary_date_sent"] = today_str
         wins, losses, pnl_today = state["wins"], state["losses"], state["pnl_today"]
-        trend_scores = dict(state.get("trend_scores", {}))
-        trades = list(state.get("trades", []))
     total = wins + losses
     wr = round(wins / total * 100, 1) if total else 0
     mode_tag = "📝 PAPER" if PAPER_TRADING else "💰 LIVE"
-
-    market_trend_report = generate_market_trend_report()
-
-    has_trade_data = total > 0 or len(trades) > 0
-    if not has_trade_data:
-        send_telegram(
-            f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
-            f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
-            f"PnL today: ₹{pnl_today:,.2f}\n\n"
-            f"{market_trend_report}"
-        )
-        log.info(market_trend_report)
-        log.info(f"EOD summary sent | Trades: {total} | PnL: ₹{pnl_today:,.2f}")
-        return
-
-    trend_report = generate_trend_eod_report()
     send_telegram(
         f"📊 EOD SUMMARY ({today_str}) — {mode_tag}\n"
         f"Trades: {total} | Wins: {wins} | Losses: {losses} | Win rate: {wr}%\n"
-        f"PnL today: ₹{pnl_today:,.2f}\n\n"
-        f"{market_trend_report}\n\n"
-        f"{trend_report}"
+        f"PnL today: ₹{pnl_today:,.2f}"
     )
-    log.info(market_trend_report)
-    log.info(trend_report)
 
 
 def position_monitor_loop():
@@ -2550,6 +2060,77 @@ def position_monitor_loop():
 
 
 # ── Main Scan Loop ────────────────────────────────────────────────────────────
+def _run_static_watchlist_scan(current_scan_num: int, is_warmup: bool):
+    """Serial per-symbol scan over the fixed config.py WATCHLIST. Each
+    symbol goes through check_signal() (EMA200 + wick-zone + the 4-tier
+    trend-score gate), then the same cooldown/SL-hit-limit/band-capacity/
+    MAX_POSITIONS checks as before."""
+    cap_hit_logged = False
+    for symbol in WATCHLIST:
+        if len(state["positions"]) >= MAX_POSITIONS:
+            if not cap_hit_logged:
+                log.info(
+                    f"🛑 Max positions cap reached ({MAX_POSITIONS}/{MAX_POSITIONS}) — "
+                    f"stopping scan for remaining symbols this cycle."
+                )
+                cap_hit_logged = True
+            break
+        try:
+            scan_started = time.monotonic()
+            candles = get_candles(symbol, EMA_LENGTH + 60)
+            if not candles:
+                log.debug(f"{symbol}: no candle data returned — skipping evaluation this cycle.")
+                continue
+            signal = check_signal(symbol, candles)
+            if signal:
+                log.info(
+                    f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']} | "
+                    f"Trend {signal['trend_tier']} ({signal['trend_score']})"
+                )
+
+                if is_warmup:
+                    log_skip(
+                        symbol,
+                        f"Warm-up mode active (scan {current_scan_num}/{WARMUP_SCANS}) — "
+                        f"signal noted, no trades placed this cycle"
+                    )
+                    continue
+
+                remaining = cooldown_remaining_min(symbol)
+                if remaining > 0:
+                    log_skip(symbol, f"Cooldown {_fmt_remaining(remaining)} remaining")
+                    continue
+
+                if sl_hit_limit_reached(symbol):
+                    log_skip(
+                        symbol,
+                        f"Daily SL-hit limit reached ({sl_hit_count_today(symbol)}/"
+                        f"{MAX_SL_HITS_PER_DAY} today) — blocked for the rest of today, "
+                        f"resumes fresh tomorrow (or on bot restart)"
+                    )
+                    continue
+
+                if not band_capacity_available(symbol, signal["entry"]):
+                    band = band_for_symbol(symbol, signal["entry"])
+                    band_name = band["name"] if band else "n/a"
+                    band_count = band_open_positions_count(band_name)
+                    log_skip(
+                        symbol,
+                        f"Band ₹{band_name} limit reached ({band_count}/{band['max_positions']})"
+                    )
+                    continue
+
+                enter_trade(signal)
+                elapsed = time.monotonic() - scan_started
+                if elapsed > 5:
+                    log.info(f"⏱️ {symbol}: full signal→entry pipeline took {elapsed:.1f}s")
+            else:
+                log.debug(f"No signal: {symbol}")
+        except Exception as e:
+            log.warning(f"Scan error {symbol}: {e}")
+        time.sleep(0.4)
+
+
 def scan_loop():
     log.info("🔍 Scan loop started (signal detection — 5-min candles)")
     log.info(f"   EMA_LENGTH={EMA_LENGTH} | MIN_WICK_PCT={MIN_WICK_PCT} | MAX_POSITIONS={MAX_POSITIONS}")
@@ -2558,8 +2139,17 @@ def scan_loop():
     log.info(f"   Capital sizing: {capital_source_desc} | Per-trade cap: {MAX_MARGIN_PER_TRADE_PCT}% of usable margin | Safety buffer: {MARGIN_SAFETY_BUFFER_PCT}%")
     log.info(f"   Cooldown after exit: {COOLDOWN_MINUTES} min | Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} | Startup warm-up (analysis only): {WARMUP_SCANS} scan(s)")
     log.info(f"   Trailing SL: initial {INITIAL_SL_R}R → " + " → ".join(f"{s['trigger_r']}R⇒SL{s['sl_r']}R" for s in TRAIL_STAGES))
+    log.info(
+        f"   Trend-score gate: TRENDING >= {TRENDING_MIN_SCORE} | STRONG_NEUTRAL "
+        f"{STRONG_NEUTRAL_MIN_SCORE}-{TRENDING_MIN_SCORE - 0.01:.0f} (allow_strong_neutral="
+        f"{ALLOW_STRONG_NEUTRAL_TRADES}) | WEAK_NEUTRAL {CHOPPY_MAX_SCORE}-{STRONG_NEUTRAL_MIN_SCORE - 0.01:.0f} "
+        f"(always skip) | CHOPPY < {CHOPPY_MAX_SCORE} (always skip) | smoothing alpha {SCORE_SMOOTHING_ALPHA}"
+    )
+    log.info(f"   Universe mode: 📌 static WATCHLIST ({len(WATCHLIST)} symbols) — dynamic NSE-wide scanner removed")
     for band in PRICE_BANDS:
         log.info(f"   Band ₹{band['name']}: max {band['max_positions']} positions | {', '.join(band['symbols'])}")
+
+    scan_interval = SCAN_INTERVAL_SEC
 
     while True:
         if not is_market_open():
@@ -2576,7 +2166,7 @@ def scan_loop():
                 time.sleep(30)
                 continue
             load_instruments()
-            fetch_margins()   # prime the live margin cache right after connecting
+            fetch_margins()
             start_execution_engine_if_needed()
 
         with _state_lock:
@@ -2601,100 +2191,13 @@ def scan_loop():
                 f"Open positions ({len(state['positions'])}) continue to run to SL/trail/square-off."
             )
         else:
-            cap_hit_logged = False
-            for symbol in WATCHLIST:
-                if len(state["positions"]) >= MAX_POSITIONS:
-                    if not cap_hit_logged:
-                        log.info(
-                            f"🛑 Max positions cap reached ({MAX_POSITIONS}/{MAX_POSITIONS}) — "
-                            f"stopping scan for remaining symbols this cycle."
-                        )
-                        cap_hit_logged = True
-                    break
-                try:
-                    scan_started = time.monotonic()
-                    candles = get_candles(symbol, EMA_LENGTH + 60)
-                    if not candles:
-                        log.debug(f"{symbol}: no candle data returned — skipping evaluation this cycle.")
-                        continue
-
-                    trend_result = trend_detector.compute(symbol, candles)
-                    record_trend_score(symbol, trend_result)
-
-                    if TREND_FILTER_ENABLED:
-                        if trend_result.state == "CHOPPY":
-                            log_skip(
-                                symbol,
-                                f"Trend filter: CHOPPY (score {trend_result.score}/100) — "
-                                f"reasons: {', '.join(trend_result.reasons[:3])}"
-                            )
-                            record_trend_skip(symbol)
-                            continue
-                        if trend_result.state == "NEUTRAL" and not ALLOW_NEUTRAL_TRADES:
-                            log_skip(
-                                symbol,
-                                f"Trend filter: NEUTRAL (score {trend_result.score}/100) — "
-                                f"skipping neutral unless ALLOW_NEUTRAL_TRADES=True"
-                            )
-                            record_trend_skip(symbol)
-                            continue
-
-                    signal = check_signal(symbol, candles)
-                    if signal:
-                        trend_tag = f"Trend: {trend_result.state} ({trend_result.score})" if TREND_FILTER_ENABLED else "Trend: N/A"
-                        log.info(f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']} | {trend_tag}")
-                        record_trend_signal(symbol)
-
-                        if is_warmup:
-                            log_skip(
-                                symbol,
-                                f"Warm-up mode active (scan {current_scan_num}/{WARMUP_SCANS}) — "
-                                f"signal noted, no trades placed this cycle"
-                            )
-                            continue
-
-                        remaining = cooldown_remaining_min(symbol)
-                        if remaining > 0:
-                            log_skip(symbol, f"Cooldown {_fmt_remaining(remaining)} remaining")
-                            continue
-
-                        # NEW: daily per-symbol SL-hit circuit breaker — checked
-                        # right alongside cooldown/band checks, before any entry
-                        # attempt is made. Other symbols are completely unaffected.
-                        if sl_hit_limit_reached(symbol):
-                            log_skip(
-                                symbol,
-                                f"Daily SL-hit limit reached ({sl_hit_count_today(symbol)}/"
-                                f"{MAX_SL_HITS_PER_DAY} today) — blocked for the rest of today, "
-                                f"resumes fresh tomorrow (or on bot restart)"
-                            )
-                            continue
-
-                        if not band_capacity_available(symbol):
-                            band = band_for_symbol(symbol)
-                            band_name = band["name"] if band else "n/a"
-                            band_count = band_open_positions_count(band_name)
-                            log_skip(
-                                symbol,
-                                f"Band ₹{band_name} limit reached ({band_count}/{band['max_positions']})"
-                            )
-                            continue
-
-                        enter_trade(signal)
-                        elapsed = time.monotonic() - scan_started
-                        if elapsed > 5:
-                            log.info(f"⏱️ {symbol}: full signal→entry pipeline took {elapsed:.1f}s")
-                    else:
-                        log.debug(f"No signal: {symbol}")
-                except Exception as e:
-                    log.warning(f"Scan error {symbol}: {e}")
-                time.sleep(0.4)
+            _run_static_watchlist_scan(current_scan_num, is_warmup)
 
         safe_state_update({"scan_status": "RUNNING"})
         log.info(f"Scan done | Positions: {len(state['positions'])}/{MAX_POSITIONS} | Watchlist: {len(WATCHLIST)} symbols | PnL: ₹{state['pnl_today']:.2f}")
         if state["positions"]:
             print_open_mtm()
-        time.sleep(SCAN_INTERVAL_SEC)
+        time.sleep(scan_interval)
 
 
 # ── Dashboard State API ───────────────────────────────────────────────────────
@@ -2703,9 +2206,6 @@ def get_dashboard_state() -> dict:
         total = state["wins"] + state["losses"]
         wr    = round(state["wins"] / total * 100, 1) if total else 0
         mtm   = _compute_open_mtm_breakdown_locked()
-        trend_scores = dict(state.get("trend_scores", {}))
-        trend_signals = dict(state.get("trend_signals_detected", {}))
-        trend_skips = dict(state.get("trend_skips", {}))
         return {
             "connected":         state["connected"],
             "scan_status":       state["scan_status"],
@@ -2733,11 +2233,13 @@ def get_dashboard_state() -> dict:
             "paper_mode":        PAPER_TRADING,
             "no_new_entries_after": NO_NEW_ENTRIES_AFTER,
             "square_off_time":      SQUARE_OFF_TIME,
-            "trend_filter_enabled": TREND_FILTER_ENABLED,
-            "trend_scores":      trend_scores,
-            "trend_signals_detected": trend_signals,
-            "trend_skips":       trend_skips,
-            "market_trend_report": generate_market_trend_report(),
+            "watchlist_size":       len(WATCHLIST),
+            "trend_scores":         dict(state["trend_scores"]),
+            "trend_tiers":          dict(state["trend_tiers"]),
+            "trending_min_score":   TRENDING_MIN_SCORE,
+            "strong_neutral_min_score": STRONG_NEUTRAL_MIN_SCORE,
+            "choppy_max_score":     CHOPPY_MAX_SCORE,
+            "allow_strong_neutral_trades": ALLOW_STRONG_NEUTRAL_TRADES,
         }
 
 
@@ -2753,19 +2255,23 @@ if __name__ == "__main__":
     log.info(f"EMA Length     : {EMA_LENGTH}")
     log.info(f"Min Wick %     : {MIN_WICK_PCT}")
     log.info(f"Risk:Reward    : 1:{RISK_REWARD}")
+    log.info(
+        f"Trend gate     : TRENDING>={TRENDING_MIN_SCORE} | STRONG_NEUTRAL>={STRONG_NEUTRAL_MIN_SCORE} "
+        f"(allow={ALLOW_STRONG_NEUTRAL_TRADES}) | CHOPPY<{CHOPPY_MAX_SCORE}"
+    )
+    log.info(f"Universe mode  : 📌 static WATCHLIST ({len(WATCHLIST)} symbols) — dynamic NSE scanner removed")
     log.info(f"Max Positions  : {MAX_POSITIONS} (" + " + ".join(f"{b['max_positions']} in ₹{b['name']}" for b in PRICE_BANDS) + ")")
     log.info(f"Trading start  : {TRADING_START_TIME} IST (market-open delay)")
     log.info(f"Entries cutoff : {NO_NEW_ENTRIES_AFTER} IST")
     log.info(f"Square-off at  : {SQUARE_OFF_TIME} IST")
     log.info(f"Max hold time  : {MAX_HOLD_MINUTES} min")
-    log.info(f"Position check : every {MONITOR_INTERVAL_SEC}s (independent of the {SCAN_INTERVAL_SEC}s signal scan)")
+    log.info(f"Position check : every {MONITOR_INTERVAL_SEC}s (independent of the signal scan)")
     log.info(f"Reconciliation : every {RECONCILE_INTERVAL_SEC}s (bot state vs real Kite positions, live mode only)")
     log.info(f"Cooldown       : {COOLDOWN_MINUTES} min after exit")
     log.info(f"Daily SL limit : {MAX_SL_HITS_PER_DAY} stop-loss exits per symbol per day (resets on new day / bot restart)")
     log.info(f"Warm-up scans  : {WARMUP_SCANS} (analysis only, no trades)")
     log.info(f"Trailing SL    : initial {INITIAL_SL_R}R, ladder " + " → ".join(f"{s['trigger_r']}R⇒{s['sl_r']}R" for s in TRAIL_STAGES))
     log.info(f"Kite HTTP timeout: {KITE_REQUEST_TIMEOUT_SEC}s (prevents hung network calls from stalling the scan)")
-    log.info(f"Trend filter   : {'ENABLED' if TREND_FILTER_ENABLED else 'DISABLED'} | Min trending: {TREND_MIN_SCORE_TRENDING} | Min neutral: {TREND_MIN_SCORE_NEUTRAL} | Allow neutral: {ALLOW_NEUTRAL_TRADES}")
 
     if not connect_kite():
         log.warning("Initial connection failed — will retry in scan loop")
@@ -2776,23 +2282,16 @@ if __name__ == "__main__":
         fetch_margins()
         start_execution_engine_if_needed()
 
-    if TREND_FILTER_ENABLED:
-        try:
-            market_report = generate_market_trend_report()
-            log.info(market_report)
-        except Exception as e:
-            log.warning(f"Market trend report generation failed at startup: {e}")
-
     if TELEGRAM_NOTIFY_STARTUP:
         mode_tag = "📝 PAPER TRADING" if PAPER_TRADING else "💰 LIVE TRADING"
-        trend_tag = f"Trend filter: {'ON' if TREND_FILTER_ENABLED else 'OFF'} (min trending {TREND_MIN_SCORE_TRENDING})"
         send_telegram(
             f"🚀 WickFill Auto-Trader started\n"
             f"Mode: {mode_tag}\n"
-            f"Watchlist: {len(WATCHLIST)} symbols | Max positions: {MAX_POSITIONS}\n"
+            f"Universe: {len(WATCHLIST)} symbols (static watchlist) | Max positions: {MAX_POSITIONS}\n"
+            f"Trend gate: TRENDING>={TRENDING_MIN_SCORE} | STRONG_NEUTRAL>={STRONG_NEUTRAL_MIN_SCORE} "
+            f"(allow={ALLOW_STRONG_NEUTRAL_TRADES}) | CHOPPY<{CHOPPY_MAX_SCORE}\n"
             f"Window: {TRADING_START_TIME}–{NO_NEW_ENTRIES_AFTER} IST | Square-off: {SQUARE_OFF_TIME} IST\n"
-            f"Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} (fresh count today)\n"
-            f"{trend_tag}"
+            f"Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} (fresh count today)"
         )
 
     scan_thread = threading.Thread(target=scan_loop, daemon=True)

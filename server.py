@@ -136,6 +136,11 @@ MOBILE_PAGE = """
     <pre id="market-trend" style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:12px;font-size:12px;white-space:pre-wrap;color:#e6edf3;"></pre>
   </section>
 
+  <section>
+    <h2>Dynamic Scanner</h2>
+    <div id="scanner"></div>
+  </section>
+
 <script>
 function money(v) {
   const n = Number(v) || 0;
@@ -208,6 +213,42 @@ async function refresh() {
 
     const marketTrend = d.market_trend_report || "";
     document.getElementById("market-trend").textContent = marketTrend || "No market trend report available yet.";
+
+    const scannerEnabled = d.dynamic_scanner_enabled || false;
+    const dynamicWatchlist = d.dynamic_watchlist || [];
+    const scanStats = d.scan_stats || {};
+    const lastMarketScan = d.last_market_scan || "-";
+    const scannerDiv = document.getElementById("scanner");
+    if (scannerEnabled) {
+      const statsHtml = `
+        <div class="cards">
+          <div class="card"><div class="label">NSE Equities</div><div class="value">${scanStats.total_nse ?? 0}</div></div>
+          <div class="card"><div class="label">Scanned</div><div class="value">${scanStats.scanned ?? 0}</div></div>
+          <div class="card"><div class="label">Qualified</div><div class="value">${scanStats.qualified ?? 0}</div></div>
+          <div class="card"><div class="label">Ranked</div><div class="value">${scanStats.ranked ?? 0}</div></div>
+          <div class="card"><div class="label">Scan Duration</div><div class="value">${scanStats.scan_duration_sec ?? 0}s</div></div>
+          <div class="card"><div class="label">Last Scan</div><div class="value">${lastMarketScan ? new Date(lastMarketScan).toLocaleTimeString("en-IN") : "-"}</div></div>
+        </div>
+      `;
+      const rankedHtml = dynamicWatchlist.length ? `
+        <table><thead><tr><th>Rank</th><th>Symbol</th><th>Score</th><th>Trend</th><th>ADX</th><th>Vol</th><th>Mom</th><th>EMA</th><th>ATR</th></tr></thead>
+        <tbody>${dynamicWatchlist.map((s, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${s}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>`).join("")}
+        </tbody></table>` : `<div class="empty">No ranked candidates yet.</div>`;
+      scannerDiv.innerHTML = statsHtml + rankedHtml;
+    } else {
+      scannerDiv.innerHTML = `<div class="empty">Dynamic scanner is disabled. Enable ENABLE_DYNAMIC_SCANNER in config to use.</div>`;
+    }
 
   } catch (e) {
     document.getElementById("status-dot").classList.remove("live");
