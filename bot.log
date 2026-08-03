@@ -21593,3 +21593,2692 @@ Trend Score below 75
 2026-07-28 11:46:08,027 [INFO] ❌ Skipping TVSMOTOR: Trend filter: CHOPPY (score 47/100) — reasons: Strong ADX (39.9 > 25), ATR contracting, Flat EMA200 slope (+0.05%)
 2026-07-28 11:46:08,206 [INFO] ❌ Skipping M&M: Trend filter: CHOPPY (score 45/100) — reasons: Strong ADX (41.1 > 25), ATR contracting, Flat EMA200 slope (+0.07%)
 2026-07-28 11:46:08,206 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-28 15:26:43,350 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-28 15:26:43,351 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-28 15:26:43,351 [INFO] Product        : MIS (intraday)
+2026-07-28 15:26:43,351 [INFO] Order type     : MARKET
+2026-07-28 15:26:43,351 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-28 15:26:43,351 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-28 15:26:43,351 [INFO] EMA Length     : 200
+2026-07-28 15:26:43,351 [INFO] Min Wick %     : 50
+2026-07-28 15:26:43,351 [INFO] Risk:Reward    : 1:2.0
+2026-07-28 15:26:43,351 [INFO] Trend gate     : TRENDING>=70 | STRONG_NEUTRAL>=50 (allow=True) | CHOPPY<30
+2026-07-28 15:26:43,351 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-28 15:26:43,351 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-28 15:26:43,351 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-28 15:26:43,351 [INFO] Entries cutoff : 14:45 IST
+2026-07-28 15:26:43,351 [INFO] Square-off at  : 15:20 IST
+2026-07-28 15:26:43,351 [INFO] Max hold time  : 120 min
+2026-07-28 15:26:43,352 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-28 15:26:43,352 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-28 15:26:43,352 [INFO] Cooldown       : 5 min after exit
+2026-07-28 15:26:43,352 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-28 15:26:43,352 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-28 15:26:43,352 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-28 15:26:43,352 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-28 15:26:43,352 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-28 15:26:43,352 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-28 15:26:43,647 [INFO] ✅ Loaded 9969 NSE instruments
+2026-07-28 15:26:43,656 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-28 15:26:43,777 [INFO] ✅ KiteTicker connected
+2026-07-28 15:26:44,658 [INFO] 📡 KiteTicker subscribed to 22 symbols (FULL mode)
+2026-07-28 15:26:44,660 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-28 15:26:44,661 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-28 15:26:44,662 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-28 15:26:44,664 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-28 15:26:44,664 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-28 15:26:44,667 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-28 15:26:44,667 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-28 15:26:44,668 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-28 15:26:44,668 [INFO]    Trend-score gate: TRENDING >= 70 | STRONG_NEUTRAL 50-70 (allow_strong_neutral=True) | WEAK_NEUTRAL 30-50 (always skip) | CHOPPY < 30 (always skip) | smoothing alpha 0.3
+2026-07-28 15:26:44,669 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-28 15:26:44,669 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, Union Bank of India, POLYCAB, Bank of India, COALINDIA, MUTHOOTFIN
+2026-07-28 15:26:44,669 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-28 15:26:44,670 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-28 15:26:44,670 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-28 15:26:44,671 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-28 15:26:44,672 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-28 15:26:45,249 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-28 15:26:45,265 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-28 15:26:45,265 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-29 00:28:59,466 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-29 00:28:59,467 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-29 00:28:59,467 [INFO] Product        : MIS (intraday)
+2026-07-29 00:28:59,467 [INFO] Order type     : MARKET
+2026-07-29 00:28:59,467 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-29 00:28:59,467 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-29 00:28:59,467 [INFO] EMA Length     : 200
+2026-07-29 00:28:59,467 [INFO] Min Wick %     : 50
+2026-07-29 00:28:59,467 [INFO] Risk:Reward    : 1:2.0
+2026-07-29 00:28:59,467 [INFO] Trend gate     : ranked entry, eligible >= 60, ranked by score within each band
+2026-07-29 00:28:59,467 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-29 00:28:59,467 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-29 00:28:59,467 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-29 00:28:59,467 [INFO] Entries cutoff : 14:45 IST
+2026-07-29 00:28:59,467 [INFO] Square-off at  : 15:20 IST
+2026-07-29 00:28:59,467 [INFO] Max hold time  : 120 min
+2026-07-29 00:28:59,467 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-29 00:28:59,468 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-29 00:28:59,468 [INFO] Cooldown       : 5 min after exit
+2026-07-29 00:28:59,468 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-29 00:28:59,468 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-29 00:28:59,468 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-29 00:28:59,468 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-29 00:28:59,468 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-29 00:28:59,468 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-29 00:28:59,700 [INFO] ✅ Loaded 9969 NSE instruments
+2026-07-29 00:28:59,709 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-29 00:28:59,855 [INFO] ✅ KiteTicker connected
+2026-07-29 00:29:00,712 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-29 00:29:00,714 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-29 00:29:00,716 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-29 00:29:00,718 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-29 00:29:00,718 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-29 00:29:00,719 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-29 00:29:00,720 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-29 00:29:00,720 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-29 00:29:00,721 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-29 00:29:00,721 [INFO]    Trend-score ranked entry: eligible >= 60 (else skipped outright, smoothing alpha 0.3) — eligible candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-29 00:29:00,722 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-29 00:29:00,723 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-29 00:29:00,725 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-29 00:29:00,725 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-29 00:29:00,726 [INFO] Market closed. Opens in ~525 min. Sleeping 60 s…
+2026-07-29 00:29:00,941 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-29 00:29:00,952 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-29 00:29:00,953 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-29 09:30:03,071 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-29 09:30:03,071 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-29 09:30:03,071 [INFO] Product        : MIS (intraday)
+2026-07-29 09:30:03,071 [INFO] Order type     : MARKET
+2026-07-29 09:30:03,071 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-29 09:30:03,071 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-29 09:30:03,071 [INFO] EMA Length     : 200
+2026-07-29 09:30:03,071 [INFO] Min Wick %     : 50
+2026-07-29 09:30:03,071 [INFO] Risk:Reward    : 1:2.0
+2026-07-29 09:30:03,071 [INFO] Trend gate     : ranked entry, eligible >= 60, ranked by score within each band
+2026-07-29 09:30:03,072 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-29 09:30:03,072 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-29 09:30:03,072 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-29 09:30:03,072 [INFO] Entries cutoff : 14:45 IST
+2026-07-29 09:30:03,072 [INFO] Square-off at  : 15:20 IST
+2026-07-29 09:30:03,072 [INFO] Max hold time  : 120 min
+2026-07-29 09:30:03,072 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-29 09:30:03,072 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-29 09:30:03,072 [INFO] Cooldown       : 5 min after exit
+2026-07-29 09:30:03,072 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-29 09:30:03,072 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-29 09:30:03,072 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-29 09:30:03,072 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-29 09:30:03,072 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-29 09:30:03,073 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-29 09:30:03,256 [INFO] ✅ Loaded 9970 NSE instruments
+2026-07-29 09:30:03,264 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-29 09:30:03,398 [INFO] ✅ KiteTicker connected
+2026-07-29 09:30:04,268 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-29 09:30:04,271 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-29 09:30:04,273 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-29 09:30:04,273 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-29 09:30:04,275 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-29 09:30:04,276 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-29 09:30:04,277 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-29 09:30:04,277 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-29 09:30:04,277 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-29 09:30:04,278 [INFO]    Trend-score ranked entry: eligible >= 60 (else skipped outright, smoothing alpha 0.3) — eligible candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-29 09:30:04,279 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-29 09:30:04,279 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-29 09:30:04,280 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-29 09:30:04,280 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-29 09:30:04,281 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-29 09:30:04,499 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-29 09:30:04,510 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-29 09:30:04,510 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-29 09:30:16,628 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 09:30:16,628 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-29 09:35:28,860 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 09:35:28,860 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-29 09:40:41,037 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 09:40:41,038 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-29 09:45:54,056 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 09:45:54,057 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-29 11:41:30,074 [WARNING] ⏱️ Kite API timeout (candles TATASTEEL) after 0.0s [attempt 1/5] — retrying in 3s: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-07-29 11:41:35,551 [INFO] 🎯 Signal: SELL BEL | EMA=395.58 | Trend score 60.04 (>= 60)
+2026-07-29 11:41:41,433 [INFO] 🎯 Signal: BUY INFY | EMA=1096.09 | Trend score 62.66 (>= 60)
+2026-07-29 11:41:44,995 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=3947.37 | Trend score 63.01 (>= 60)
+2026-07-29 11:41:45,906 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — BEL(60.04)
+2026-07-29 11:41:46,035 [INFO] 📐 BEL: real-leverage sizing — naive (no-leverage) qty 128 (₹9,839.36 margin) → scaled qty 643 using real per-share margin ₹76.87 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-29 11:41:46,036 [INFO] 📈 PAPER ENTER SELL BEL @ 384.35 (market) | 1R=0.60 | Initial SL 384.95 (1.0R) | Ref target 383.1 | Qty 643 | Trend ELIGIBLE (60.04)
+2026-07-29 11:41:46,036 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹384.35 | Qty = 643 shares | Notional value ₹247,137.05 | Real margin used ₹49,427.41 | Deployed ₹49,427.41 | Available ₹400,572.59 | Band 500-1000
+2026-07-29 11:41:46,036 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — INFY(62.66)
+2026-07-29 11:41:46,147 [INFO] 📐 INFY: real-leverage sizing — naive (no-leverage) qty 42 (₹9,733.92 margin) → scaled qty 213 using real per-share margin ₹231.76 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-29 11:41:46,147 [INFO] 📈 PAPER ENTER BUY INFY @ 1158.8 (market) | 1R=2.80 | Initial SL 1156.0 (1.0R) | Ref target 1164.5 | Qty 213 | Trend ELIGIBLE (62.66)
+2026-07-29 11:41:46,148 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹1,158.80 | Qty = 213 shares | Notional value ₹246,824.40 | Real margin used ₹49,364.88 | Deployed ₹98,792.29 | Available ₹351,207.71 | Band 1000-2000
+2026-07-29 11:41:46,149 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(63.01)
+2026-07-29 11:41:46,264 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 12 (₹9,735.84 margin) → scaled qty 61 using real per-share margin ₹811.32 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-29 11:41:46,264 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4056.6 (market) | 1R=9.60 | Initial SL 4047.0 (1.0R) | Ref target 4077.2 | Qty 61 | Trend ELIGIBLE (63.01)
+2026-07-29 11:41:46,264 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹4,056.60 | Qty = 61 shares | Notional value ₹247,452.60 | Real margin used ₹49,490.52 | Deployed ₹148,282.81 | Available ₹301,717.19 | Band 2000-4000
+2026-07-29 11:41:46,265 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-29 11:41:46,303 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.35
+LTP   : 384.35
+Qty   : 643
+MTM   : +0.0
+
+INFY
+BUY
+Entry : 1158.8
+LTP   : 1158.8
+Qty   : 213
+MTM   : +0.0
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.6
+Qty   : 61
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
++0.0
+
+Dashboard
++0.0
+2026-07-29 11:46:40,233 [INFO] 🔢 INFY: SL-hit count today = 1/5
+2026-07-29 11:46:40,234 [INFO] 📉 PAPER EXIT INFY @ 1155.4 | PnL ₹-724.20 | SL_HIT
+2026-07-29 11:46:40,234 [INFO]    💰 Freed ₹49,364.88 | Deployed ₹98,917.93 | Available ₹350,430.29
+2026-07-29 11:46:40,234 [INFO]    🧊 INFY on cooldown for 5 min — no re-entry until then.
+2026-07-29 11:47:00,419 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 11:47:00,420 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-724.20
+2026-07-29 11:47:00,459 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.35
+LTP   : 383.9
+Qty   : 643
+MTM   : +289.35
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.1
+Qty   : 61
+MTM   : -30.5
+
+Total Open MTM
++258.85
+
+Closed PnL
+-724.2
+
+Dashboard
+-465.35
+2026-07-29 11:52:12,803 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 11:52:12,804 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-724.20
+2026-07-29 11:52:12,839 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.35
+LTP   : 384.1
+Qty   : 643
+MTM   : +160.75
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.0
+Qty   : 61
+MTM   : -36.6
+
+Total Open MTM
++124.15
+
+Closed PnL
+-724.2
+
+Dashboard
+-600.05
+2026-07-29 11:57:25,307 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 11:57:25,308 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-724.20
+2026-07-29 11:57:25,344 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.35
+LTP   : 383.9
+Qty   : 643
+MTM   : +289.35
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4062.9
+Qty   : 61
+MTM   : +384.3
+
+Total Open MTM
++673.65
+
+Closed PnL
+-724.2
+
+Dashboard
+-50.55
+2026-07-29 12:02:37,888 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:02:37,889 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-724.20
+2026-07-29 12:02:37,935 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.35
+LTP   : 383.95
+Qty   : 643
+MTM   : +257.2
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4058.5
+Qty   : 61
+MTM   : +115.9
+
+Total Open MTM
++373.1
+
+Closed PnL
+-724.2
+
+Dashboard
+-351.1
+2026-07-29 12:05:15,799 [INFO] 🔢 BEL: SL-hit count today = 1/5
+2026-07-29 12:05:15,799 [INFO] 📉 PAPER EXIT BEL @ 385.35 | PnL ₹-643.00 | SL_HIT
+2026-07-29 12:05:15,799 [INFO]    💰 Freed ₹49,427.41 | Deployed ₹49,490.52 | Available ₹399,279.00
+2026-07-29 12:05:15,800 [INFO]    🧊 BEL on cooldown for 5 min — no re-entry until then.
+2026-07-29 12:07:50,368 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:07:50,368 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:07:50,406 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.4
+Qty   : 61
+MTM   : -12.2
+
+Total Open MTM
+-12.2
+
+Closed PnL
+-1367.2
+
+Dashboard
+-1379.4
+2026-07-29 12:13:02,924 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:13:02,924 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:13:02,971 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4063.9
+Qty   : 61
+MTM   : +445.3
+
+Total Open MTM
++445.3
+
+Closed PnL
+-1367.2
+
+Dashboard
+-921.9
+2026-07-29 12:18:15,517 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:18:15,518 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:18:15,556 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4063.0
+Qty   : 61
+MTM   : +390.4
+
+Total Open MTM
++390.4
+
+Closed PnL
+-1367.2
+
+Dashboard
+-976.8
+2026-07-29 12:23:27,942 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:23:27,942 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:23:27,980 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4061.5
+Qty   : 61
+MTM   : +298.9
+
+Total Open MTM
++298.9
+
+Closed PnL
+-1367.2
+
+Dashboard
+-1068.3
+2026-07-29 12:28:35,762 [INFO] 🎯 Signal: BUY INFY | EMA=1100.71 | Trend score 61.51 (>= 60)
+2026-07-29 12:28:40,266 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — INFY(61.51)
+2026-07-29 12:28:40,415 [INFO] 📐 INFY: real-leverage sizing — naive (no-leverage) qty 42 (₹9,694.44 margin) → scaled qty 213 using real per-share margin ₹230.82 (cash slice ₹49,364.65, exposure cap 5.0x)
+2026-07-29 12:28:40,416 [INFO] 📈 PAPER ENTER BUY INFY @ 1154.1 (market) | 1R=2.70 | Initial SL 1151.4 (1.0R) | Ref target 1159.2 | Qty 213 | Trend ELIGIBLE (61.51)
+2026-07-29 12:28:40,416 [INFO]    💰 Sizing: cash slice ₹49,364.65 (11.0% of usable capital) | Entry ₹1,154.10 | Qty = 213 shares | Notional value ₹245,823.30 | Real margin used ₹49,164.66 | Deployed ₹98,655.18 | Available ₹350,114.34 | Band 1000-2000
+2026-07-29 12:28:40,417 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:28:40,463 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4060.7
+Qty   : 61
+MTM   : +250.1
+
+INFY
+BUY
+Entry : 1154.1
+LTP   : 1154.1
+Qty   : 213
+MTM   : +0.0
+
+Total Open MTM
++250.1
+
+Closed PnL
+-1367.2
+
+Dashboard
+-1117.1
+2026-07-29 12:33:40,685 [INFO] 🎯 Signal: BUY TATASTEEL | EMA=184.58 | Trend score 63.57 (>= 60)
+2026-07-29 12:33:53,095 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — TATASTEEL(63.57)
+2026-07-29 12:33:53,241 [INFO] 📐 TATASTEEL: real-leverage sizing — naive (no-leverage) qty 263 (₹9,864.60 margin) → scaled qty 1316 using real per-share margin ₹37.51 (cash slice ₹49,364.65, exposure cap 5.0x)
+2026-07-29 12:33:53,242 [INFO] 📈 PAPER ENTER BUY TATASTEEL @ 187.54 (market) | 1R=0.19 | Initial SL 187.35 (1.0R) | Ref target 187.93 | Qty 1316 | Trend ELIGIBLE (63.57)
+2026-07-29 12:33:53,242 [INFO]    💰 Sizing: cash slice ₹49,364.65 (11.0% of usable capital) | Entry ₹187.54 | Qty = 1316 shares | Notional value ₹246,802.64 | Real margin used ₹49,360.53 | Deployed ₹148,015.71 | Available ₹300,753.81 | Band 500-1000
+2026-07-29 12:33:53,244 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1367.20
+2026-07-29 12:33:53,292 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4059.6
+Qty   : 61
+MTM   : +183.0
+
+INFY
+BUY
+Entry : 1154.1
+LTP   : 1152.5
+Qty   : 213
+MTM   : -340.8
+
+TATASTEEL
+BUY
+Entry : 187.54
+LTP   : 187.54
+Qty   : 1316
+MTM   : +0.0
+
+Total Open MTM
+-157.8
+
+Closed PnL
+-1367.2
+
+Dashboard
+-1525.0
+2026-07-29 12:38:53,492 [INFO] 🎯 Signal: BUY TATASTEEL | EMA=184.62 | Trend score 61.69 (>= 60)
+2026-07-29 12:38:54,216 [INFO] 🔢 TATASTEEL: SL-hit count today = 1/5
+2026-07-29 12:38:54,216 [INFO] 📉 PAPER EXIT TATASTEEL @ 187.35 | PnL ₹-250.04 | SL_HIT
+2026-07-29 12:38:54,216 [INFO]    💰 Freed ₹49,360.53 | Deployed ₹98,655.18 | Available ₹349,889.31
+2026-07-29 12:38:54,216 [INFO]    🧊 TATASTEEL on cooldown for 5 min — no re-entry until then.
+2026-07-29 12:39:06,329 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — TATASTEEL(61.69)
+2026-07-29 12:39:06,329 [INFO] ❌ Skipping TATASTEEL: Cooldown 4m 48s remaining
+2026-07-29 12:39:06,329 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-1617.24
+2026-07-29 12:39:06,375 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4061.2
+Qty   : 61
+MTM   : +280.6
+
+INFY
+BUY
+Entry : 1154.1
+LTP   : 1152.2
+Qty   : 213
+MTM   : -404.7
+
+Total Open MTM
+-124.1
+
+Closed PnL
+-1617.24
+
+Dashboard
+-1741.34
+2026-07-29 12:44:18,986 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:44:18,986 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-1617.24
+2026-07-29 12:44:19,033 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.0
+Qty   : 61
+MTM   : -36.6
+
+INFY
+BUY
+Entry : 1154.1
+LTP   : 1153.4
+Qty   : 213
+MTM   : -149.1
+
+Total Open MTM
+-185.7
+
+Closed PnL
+-1617.24
+
+Dashboard
+-1802.94
+2026-07-29 12:49:16,150 [INFO] 🔢 INFY: SL-hit count today = 2/5
+2026-07-29 12:49:16,150 [INFO] 📉 PAPER EXIT INFY @ 1151.4 | PnL ₹-575.10 | SL_HIT
+2026-07-29 12:49:16,151 [INFO]    💰 Freed ₹49,164.66 | Deployed ₹49,490.52 | Available ₹398,536.38
+2026-07-29 12:49:16,151 [INFO]    🧊 INFY on cooldown for 5 min — no re-entry until then.
+2026-07-29 12:49:31,662 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:49:31,663 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 12:49:31,711 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.5
+Qty   : 61
+MTM   : +54.9
+
+Total Open MTM
++54.9
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2137.44
+2026-07-29 12:54:44,362 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:54:44,362 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 12:54:44,402 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4069.0
+Qty   : 61
+MTM   : +756.4
+
+Total Open MTM
++756.4
+
+Closed PnL
+-2192.34
+
+Dashboard
+-1435.94
+2026-07-29 12:59:56,876 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 12:59:56,876 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 12:59:56,918 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4064.6
+Qty   : 61
+MTM   : +488.0
+
+Total Open MTM
++488.0
+
+Closed PnL
+-2192.34
+
+Dashboard
+-1704.34
+2026-07-29 13:05:09,355 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 13:05:09,356 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:05:09,394 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.8
+Qty   : 61
+MTM   : +73.2
+
+Total Open MTM
++73.2
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2119.14
+2026-07-29 13:10:21,998 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 13:10:21,998 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:10:22,040 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4058.1
+Qty   : 61
+MTM   : +91.5
+
+Total Open MTM
++91.5
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2100.84
+2026-07-29 13:15:34,448 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 13:15:34,449 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:15:34,487 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.9
+Qty   : 61
+MTM   : +79.3
+
+Total Open MTM
++79.3
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2113.04
+2026-07-29 13:20:47,041 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 13:20:47,042 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:20:47,082 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.8
+Qty   : 61
+MTM   : +73.2
+
+Total Open MTM
++73.2
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2119.14
+2026-07-29 13:25:59,515 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 13:25:59,515 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:25:59,556 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4058.5
+Qty   : 61
+MTM   : +115.9
+
+Total Open MTM
++115.9
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2076.44
+2026-07-29 13:31:09,077 [INFO] 🎯 Signal: BUY TRENT | EMA=2937.87 | Trend score 72.75 (>= 60)
+2026-07-29 13:31:12,069 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(72.75)
+2026-07-29 13:31:12,192 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,575.36 margin) → scaled qty 82 using real per-share margin ₹598.46 (cash slice ₹49,282.96, exposure cap 5.0x)
+2026-07-29 13:31:12,193 [INFO] 📈 PAPER ENTER BUY TRENT @ 2992.3 (market) | 1R=1.90 | Initial SL 2990.4 (1.0R) | Ref target 2996.0 | Qty 82 | Trend ELIGIBLE (72.75)
+2026-07-29 13:31:12,193 [INFO]    💰 Sizing: cash slice ₹49,282.96 (11.0% of usable capital) | Entry ₹2,992.30 | Qty = 82 shares | Notional value ₹245,368.60 | Real margin used ₹49,073.72 | Deployed ₹98,564.24 | Available ₹349,462.65 | Band 1000-2000
+2026-07-29 13:31:12,196 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:31:12,236 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4056.3
+Qty   : 61
+MTM   : -18.3
+
+TRENT
+BUY
+Entry : 2992.3
+LTP   : 2992.3
+Qty   : 82
+MTM   : +0.0
+
+Total Open MTM
+-18.3
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2210.64
+2026-07-29 13:36:21,767 [INFO] 🎯 Signal: BUY TRENT | EMA=2938.57 | Trend score 73.19 (>= 60)
+2026-07-29 13:36:24,755 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(73.19)
+2026-07-29 13:36:24,870 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,576.96 margin) → scaled qty 82 using real per-share margin ₹598.56 (cash slice ₹49,282.96, exposure cap 5.0x)
+2026-07-29 13:36:24,871 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 13:36:24,871 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:36:24,913 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.7
+Qty   : 61
+MTM   : +67.1
+
+TRENT
+BUY
+Entry : 2992.3
+LTP   : 2992.8
+Qty   : 82
+MTM   : +41.0
+
+Total Open MTM
++108.1
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2084.24
+2026-07-29 13:41:34,424 [INFO] 🎯 Signal: BUY TRENT | EMA=2939.22 | Trend score 73.58 (>= 60)
+2026-07-29 13:41:37,437 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(73.58)
+2026-07-29 13:41:37,564 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,577.60 margin) → scaled qty 82 using real per-share margin ₹598.60 (cash slice ₹49,282.96, exposure cap 5.0x)
+2026-07-29 13:41:37,565 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 13:41:37,565 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2192.34
+2026-07-29 13:41:37,605 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4056.6
+LTP   : 4057.0
+Qty   : 61
+MTM   : +24.4
+
+TRENT
+BUY
+Entry : 2992.3
+LTP   : 2993.0
+Qty   : 82
+MTM   : +57.4
+
+Total Open MTM
++81.8
+
+Closed PnL
+-2192.34
+
+Dashboard
+-2110.54
+2026-07-29 13:41:48,009 [INFO] ⏳ TIME EXIT TVSMOTOR @ 4057.1 (market) | held 120.1 min (limit 120)
+2026-07-29 13:41:48,010 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4057.1 | PnL ₹30.50 | TIME_EXIT
+2026-07-29 13:41:48,010 [INFO]    💰 Freed ₹49,490.52 | Deployed ₹49,073.72 | Available ₹398,953.17
+2026-07-29 13:41:48,010 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-29 13:46:47,181 [INFO] 🎯 Signal: BUY TRENT | EMA=2939.87 | Trend score 73.75 (>= 60)
+2026-07-29 13:46:50,193 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(73.75)
+2026-07-29 13:46:50,333 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,579.52 margin) → scaled qty 82 using real per-share margin ₹598.72 (cash slice ₹49,285.98, exposure cap 5.0x)
+2026-07-29 13:46:50,334 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 13:46:50,334 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2161.84
+2026-07-29 13:46:50,380 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.3
+LTP   : 2993.6
+Qty   : 82
+MTM   : +106.6
+
+Total Open MTM
++106.6
+
+Closed PnL
+-2161.84
+
+Dashboard
+-2055.24
+2026-07-29 13:47:20,688 [INFO] 🪜 TRAIL TRENT | reached 1.89R → SL moved to 2994.2 (1.0R)
+2026-07-29 13:48:38,423 [INFO] 🪜 TRAIL TRENT | reached 2.74R → SL moved to 2996.48 (2.2R)
+2026-07-29 13:49:13,706 [INFO] 🔢 TRENT: SL-hit count today = 1/5
+2026-07-29 13:49:13,706 [INFO] 📉 PAPER EXIT TRENT @ 2996.3 | PnL ₹328.00 | TRAIL_SL_HIT
+2026-07-29 13:49:13,707 [INFO]    💰 Freed ₹49,073.72 | Deployed ₹-0.00 | Available ₹448,349.55
+2026-07-29 13:49:13,707 [INFO]    🧊 TRENT on cooldown for 5 min — no re-entry until then.
+2026-07-29 13:52:00,111 [INFO] 🎯 Signal: BUY TRENT | EMA=2940.58 | Trend score 74.08 (>= 60)
+2026-07-29 13:52:03,157 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(74.08)
+2026-07-29 13:52:03,157 [INFO] ❌ Skipping TRENT: Cooldown 2m 11s remaining
+2026-07-29 13:52:03,158 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 13:57:12,694 [INFO] 🎯 Signal: BUY TRENT | EMA=2941.26 | Trend score 74.39 (>= 60)
+2026-07-29 13:57:15,719 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(74.39)
+2026-07-29 13:57:15,866 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,576.64 margin) → scaled qty 82 using real per-share margin ₹598.54 (cash slice ₹49,318.45, exposure cap 5.0x)
+2026-07-29 13:57:15,867 [INFO] 📈 PAPER ENTER BUY TRENT @ 2992.7 (market) | 1R=2.90 | Initial SL 2989.8 (1.0R) | Ref target 2998.8 | Qty 82 | Trend ELIGIBLE (74.39)
+2026-07-29 13:57:15,867 [INFO]    💰 Sizing: cash slice ₹49,318.45 (11.0% of usable capital) | Entry ₹2,992.70 | Qty = 82 shares | Notional value ₹245,401.40 | Real margin used ₹49,080.28 | Deployed ₹49,080.28 | Available ₹399,269.26 | Band 1000-2000
+2026-07-29 13:57:15,870 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 13:57:15,918 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.7
+LTP   : 2992.7
+Qty   : 82
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-1833.84
+
+Dashboard
+-1833.84
+2026-07-29 14:02:25,584 [INFO] 🎯 Signal: BUY TRENT | EMA=2941.85 | Trend score 74.19 (>= 60)
+2026-07-29 14:02:28,628 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(74.19)
+2026-07-29 14:02:28,770 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,577.60 margin) → scaled qty 82 using real per-share margin ₹598.60 (cash slice ₹49,318.45, exposure cap 5.0x)
+2026-07-29 14:02:28,771 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 14:02:28,771 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 14:02:28,819 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.7
+LTP   : 2993.0
+Qty   : 82
+MTM   : +24.6
+
+Total Open MTM
++24.6
+
+Closed PnL
+-1833.84
+
+Dashboard
+-1809.24
+2026-07-29 14:07:38,433 [INFO] 🎯 Signal: BUY TRENT | EMA=2942.45 | Trend score 73.79 (>= 60)
+2026-07-29 14:07:41,446 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(73.79)
+2026-07-29 14:07:41,586 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,573.12 margin) → scaled qty 82 using real per-share margin ₹598.32 (cash slice ₹49,318.45, exposure cap 5.0x)
+2026-07-29 14:07:41,587 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 14:07:41,588 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 14:07:41,636 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.7
+LTP   : 2991.6
+Qty   : 82
+MTM   : -90.2
+
+Total Open MTM
+-90.2
+
+Closed PnL
+-1833.84
+
+Dashboard
+-1924.04
+2026-07-29 14:12:51,289 [INFO] 🎯 Signal: BUY TRENT | EMA=2943.09 | Trend score 73.31 (>= 60)
+2026-07-29 14:12:54,317 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(73.31)
+2026-07-29 14:12:54,458 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,581.44 margin) → scaled qty 82 using real per-share margin ₹598.84 (cash slice ₹49,318.45, exposure cap 5.0x)
+2026-07-29 14:12:54,458 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 14:12:54,458 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 14:12:54,505 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.7
+LTP   : 2994.2
+Qty   : 82
+MTM   : +123.0
+
+Total Open MTM
++123.0
+
+Closed PnL
+-1833.84
+
+Dashboard
+-1710.84
+2026-07-29 14:18:04,141 [INFO] 🎯 Signal: BUY TRENT | EMA=2943.7 | Trend score 72.81 (>= 60)
+2026-07-29 14:18:07,170 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(72.81)
+2026-07-29 14:18:07,314 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,587.20 margin) → scaled qty 82 using real per-share margin ₹599.20 (cash slice ₹49,318.45, exposure cap 5.0x)
+2026-07-29 14:18:07,315 [INFO] ❌ Skipping TRENT: Duplicate trade — a position on this symbol is already open
+2026-07-29 14:18:07,315 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1833.84
+2026-07-29 14:18:07,361 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2992.7
+LTP   : 2996.0
+Qty   : 82
+MTM   : +270.6
+
+Total Open MTM
++270.6
+
+Closed PnL
+-1833.84
+
+Dashboard
+-1563.24
+2026-07-29 14:19:10,322 [INFO] 🪜 TRAIL TRENT | reached 2.00R → SL moved to 2997.05 (1.5R)
+2026-07-29 14:20:06,785 [INFO] 🪜 TRAIL TRENT | reached 3.21R → SL moved to 3000.24 (2.6R)
+2026-07-29 14:20:13,840 [INFO] 🔢 TRENT: SL-hit count today = 2/5
+2026-07-29 14:20:13,841 [INFO] 📉 PAPER EXIT TRENT @ 2999.3 | PnL ₹541.20 | TRAIL_SL_HIT
+2026-07-29 14:20:13,841 [INFO]    💰 Freed ₹49,080.28 | Deployed ₹-0.00 | Available ₹448,836.63
+2026-07-29 14:20:13,841 [INFO]    🧊 TRENT on cooldown for 5 min — no re-entry until then.
+2026-07-29 14:23:16,920 [INFO] 🎯 Signal: BUY TRENT | EMA=2944.4 | Trend score 72.57 (>= 60)
+2026-07-29 14:23:19,940 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(72.57)
+2026-07-29 14:23:19,941 [INFO] ❌ Skipping TRENT: Cooldown 1m 54s remaining
+2026-07-29 14:23:19,941 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-1292.64
+2026-07-29 14:28:32,535 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 14:28:32,536 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-1292.64
+2026-07-29 14:33:42,240 [INFO] 🎯 Signal: BUY TRENT | EMA=2945.67 | Trend score 71.79 (>= 60)
+2026-07-29 14:33:45,257 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(71.79)
+2026-07-29 14:33:45,399 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,571.20 margin) → scaled qty 82 using real per-share margin ₹598.20 (cash slice ₹49,372.03, exposure cap 5.0x)
+2026-07-29 14:33:45,400 [INFO] 📈 PAPER ENTER BUY TRENT @ 2991.0 (market) | 1R=1.70 | Initial SL 2989.3 (1.0R) | Ref target 2995.2 | Qty 82 | Trend ELIGIBLE (71.79)
+2026-07-29 14:33:45,400 [INFO]    💰 Sizing: cash slice ₹49,372.03 (11.0% of usable capital) | Entry ₹2,991.00 | Qty = 82 shares | Notional value ₹245,262.00 | Real margin used ₹49,052.40 | Deployed ₹49,052.40 | Available ₹399,784.22 | Band 1000-2000
+2026-07-29 14:33:45,403 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1292.64
+2026-07-29 14:33:45,451 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2991.0
+LTP   : 2990.6
+Qty   : 82
+MTM   : -32.8
+
+Total Open MTM
+-32.8
+
+Closed PnL
+-1292.64
+
+Dashboard
+-1325.44
+2026-07-29 14:34:36,044 [INFO] 🔢 TRENT: SL-hit count today = 3/5
+2026-07-29 14:34:36,044 [INFO] 📉 PAPER EXIT TRENT @ 2988.4 | PnL ₹-213.20 | SL_HIT
+2026-07-29 14:34:36,044 [INFO]    💰 Freed ₹49,052.40 | Deployed ₹-0.00 | Available ₹448,644.75
+2026-07-29 14:34:36,044 [INFO]    🧊 TRENT on cooldown for 5 min — no re-entry until then.
+2026-07-29 14:38:58,221 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-29 14:38:58,222 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 14:44:08,167 [INFO] 🎯 Signal: BUY TRENT | EMA=2946.66 | Trend score 68.06 (>= 60)
+2026-07-29 14:44:11,201 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — TRENT(68.06)
+2026-07-29 14:44:11,343 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,564.48 margin) → scaled qty 82 using real per-share margin ₹597.78 (cash slice ₹49,350.92, exposure cap 5.0x)
+2026-07-29 14:44:11,343 [INFO] 📈 PAPER ENTER BUY TRENT @ 2988.9 (market) | 1R=12.60 | Initial SL 2976.3 (1.0R) | Ref target 3012.8 | Qty 82 | Trend ELIGIBLE (68.06)
+2026-07-29 14:44:11,343 [INFO]    💰 Sizing: cash slice ₹49,350.92 (11.0% of usable capital) | Entry ₹2,988.90 | Qty = 82 shares | Notional value ₹245,089.80 | Real margin used ₹49,017.96 | Deployed ₹49,017.96 | Available ₹399,626.78 | Band 1000-2000
+2026-07-29 14:44:11,345 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 14:44:11,391 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 2988.9
+Qty   : 82
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-1505.84
+
+Dashboard
+-1505.84
+2026-07-29 14:49:11,492 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 14:49:11,492 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 14:49:11,542 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 2992.1
+Qty   : 82
+MTM   : +262.4
+
+Total Open MTM
++262.4
+
+Closed PnL
+-1505.84
+
+Dashboard
+-1243.44
+2026-07-29 14:54:11,602 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 14:54:11,602 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 14:54:11,649 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 2998.4
+Qty   : 82
+MTM   : +779.0
+
+Total Open MTM
++779.0
+
+Closed PnL
+-1505.84
+
+Dashboard
+-726.84
+2026-07-29 14:59:11,750 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 14:59:11,750 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 14:59:11,796 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 3003.3
+Qty   : 82
+MTM   : +1180.8
+
+Total Open MTM
++1180.8
+
+Closed PnL
+-1505.84
+
+Dashboard
+-325.04
+2026-07-29 15:04:11,897 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 15:04:11,898 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 15:04:11,946 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 3003.1
+Qty   : 82
+MTM   : +1164.4
+
+Total Open MTM
++1164.4
+
+Closed PnL
+-1505.84
+
+Dashboard
+-341.44
+2026-07-29 15:09:12,033 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 15:09:12,033 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 15:09:12,081 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 3004.4
+Qty   : 82
+MTM   : +1271.0
+
+Total Open MTM
++1271.0
+
+Closed PnL
+-1505.84
+
+Dashboard
+-234.84
+2026-07-29 15:14:12,144 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 15:14:12,145 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 15:14:12,192 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 3005.9
+Qty   : 82
+MTM   : +1394.0
+
+Total Open MTM
++1394.0
+
+Closed PnL
+-1505.84
+
+Dashboard
+-111.84
+2026-07-29 15:19:12,293 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-29 15:19:12,293 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1505.84
+2026-07-29 15:19:12,341 [INFO] 
+======== OPEN MTM ========
+
+TRENT
+BUY
+Entry : 2988.9
+LTP   : 3003.0
+Qty   : 82
+MTM   : +1156.2
+
+Total Open MTM
++1156.2
+
+Closed PnL
+-1505.84
+
+Dashboard
+-349.64
+2026-07-29 15:20:03,327 [INFO] ⏰ EOD SQUARE-OFF TRENT @ 3003.7 (market)
+2026-07-29 15:20:03,328 [INFO] 📉 PAPER EXIT TRENT @ 3003.7 | PnL ₹1213.60 | EOD_SQUAREOFF
+2026-07-29 15:20:03,328 [INFO]    💰 Freed ₹49,017.96 | Deployed ₹-0.00 | Available ₹449,736.99
+2026-07-29 15:20:03,328 [INFO]    🧊 TRENT on cooldown for 5 min — no re-entry until then.
+2026-07-29 15:24:12,363 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-29 15:24:12,363 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-292.24
+2026-07-29 15:29:12,452 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-29 15:29:12,452 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-292.24
+2026-07-29 15:34:12,552 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:35:12,612 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:36:12,668 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:37:12,690 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:38:12,750 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:39:12,761 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:40:12,822 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:41:12,882 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:42:12,904 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:43:12,961 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:44:12,989 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:45:13,005 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:46:13,065 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:57:20,543 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:58:20,565 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 15:59:20,595 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:00:20,656 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:01:20,704 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:02:20,757 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:03:20,810 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:04:20,834 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:05:20,878 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:06:20,939 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:07:20,950 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:08:21,010 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:09:21,059 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:10:21,120 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:11:21,169 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:12:21,230 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:13:21,291 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:14:21,320 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:15:21,376 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-29 16:16:21,397 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-30 09:49:56,507 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-30 09:49:56,507 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-30 09:49:56,507 [INFO] Product        : MIS (intraday)
+2026-07-30 09:49:56,507 [INFO] Order type     : MARKET
+2026-07-30 09:49:56,507 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-30 09:49:56,507 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-30 09:49:56,507 [INFO] EMA Length     : 200
+2026-07-30 09:49:56,507 [INFO] Min Wick %     : 50
+2026-07-30 09:49:56,507 [INFO] Risk:Reward    : 1:2.0
+2026-07-30 09:49:56,507 [INFO] Trend gate     : ranked entry, eligible >= 60, ranked by score within each band
+2026-07-30 09:49:56,508 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-30 09:49:56,508 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-30 09:49:56,508 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-30 09:49:56,508 [INFO] Entries cutoff : 14:45 IST
+2026-07-30 09:49:56,508 [INFO] Square-off at  : 15:20 IST
+2026-07-30 09:49:56,508 [INFO] Max hold time  : 120 min
+2026-07-30 09:49:56,508 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-30 09:49:56,508 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-30 09:49:56,508 [INFO] Cooldown       : 5 min after exit
+2026-07-30 09:49:56,508 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-30 09:49:56,508 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-30 09:49:56,508 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-30 09:49:56,508 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-30 09:49:56,509 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-30 09:49:56,509 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-30 09:49:56,795 [INFO] ✅ Loaded 9976 NSE instruments
+2026-07-30 09:49:56,809 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-30 09:49:56,936 [INFO] ✅ KiteTicker connected
+2026-07-30 09:49:57,812 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-30 09:49:57,815 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-30 09:49:57,817 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=50 | MAX_POSITIONS=9
+2026-07-30 09:49:57,817 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-30 09:49:57,818 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-30 09:49:57,820 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-30 09:49:57,820 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-30 09:49:57,821 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-30 09:49:57,821 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-30 09:49:57,822 [INFO]    Trend-score ranked entry: eligible >= 60 (else skipped outright, smoothing alpha 0.3) — eligible candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-30 09:49:57,822 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-30 09:49:57,823 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-30 09:49:57,823 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-30 09:49:57,823 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-30 09:49:57,824 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-30 09:49:58,263 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-30 09:49:58,279 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-30 09:49:58,279 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-30 09:50:10,588 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 09:50:10,589 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 09:55:23,248 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 09:55:23,249 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:00:35,935 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:00:35,936 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:05:48,648 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:05:48,648 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:11:01,379 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:11:01,380 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:16:14,169 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:16:14,169 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:21:26,923 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:21:26,923 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:26:39,671 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:26:39,672 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:31:52,358 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 10:31:52,358 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:37:02,572 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5457.76 | Trend score 75.36 (>= 60)
+2026-07-30 10:37:04,165 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4006.1 | Trend score 83.94 (>= 60)
+2026-07-30 10:37:05,097 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(75.36)
+2026-07-30 10:37:05,236 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,089.28 margin) → scaled qty 43 using real per-share margin ₹1,136.16 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 10:37:05,236 [INFO] 📈 PAPER ENTER BUY PERSISTENT @ 5680.8 (market) | 1R=16.50 | Initial SL 5664.3 (1.0R) | Ref target 5715.0 | Qty 43 | Trend ELIGIBLE (75.36)
+2026-07-30 10:37:05,236 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹5,680.80 | Qty = 43 shares | Notional value ₹244,274.40 | Real margin used ₹48,854.88 | Deployed ₹48,854.88 | Available ₹401,145.12 | Band 1000-2000
+2026-07-30 10:37:05,238 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(83.94)
+2026-07-30 10:37:05,378 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,174.00 margin) → scaled qty 59 using real per-share margin ₹834.00 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 10:37:05,378 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4170.0 (market) | 1R=15.60 | Initial SL 4154.4 (1.0R) | Ref target 4201.2 | Qty 59 | Trend ELIGIBLE (83.94)
+2026-07-30 10:37:05,379 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹4,170.00 | Qty = 59 shares | Notional value ₹246,030.00 | Real margin used ₹49,206.00 | Deployed ₹98,060.88 | Available ₹351,939.12 | Band 2000-4000
+2026-07-30 10:37:05,380 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:37:05,423 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5680.8
+LTP   : 5680.8
+Qty   : 43
+MTM   : +0.0
+
+TVSMOTOR
+BUY
+Entry : 4170.0
+LTP   : 4170.0
+Qty   : 59
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
++0.0
+
+Dashboard
++0.0
+2026-07-30 10:42:15,550 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5460.06 | Trend score 76.29 (>= 60)
+2026-07-30 10:42:17,126 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4007.36 | Trend score 84.49 (>= 60)
+2026-07-30 10:42:18,053 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(76.29)
+2026-07-30 10:42:18,194 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,071.20 margin) → scaled qty 43 using real per-share margin ₹1,133.90 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 10:42:18,195 [INFO] ❌ Skipping PERSISTENT: Duplicate trade — a position on this symbol is already open
+2026-07-30 10:42:18,195 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(84.49)
+2026-07-30 10:42:18,330 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,152.00 margin) → scaled qty 59 using real per-share margin ₹832.00 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 10:42:18,331 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 10:42:18,331 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 10:42:18,374 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5680.8
+LTP   : 5665.0
+Qty   : 43
+MTM   : -679.4
+
+TVSMOTOR
+BUY
+Entry : 4170.0
+LTP   : 4160.0
+Qty   : 59
+MTM   : -590.0
+
+Total Open MTM
+-1269.4
+
+Closed PnL
++0.0
+
+Dashboard
+-1269.4
+2026-07-30 10:42:47,554 [INFO] 🔢 PERSISTENT: SL-hit count today = 1/5
+2026-07-30 10:42:47,554 [INFO] 📉 PAPER EXIT PERSISTENT @ 5664.0 | PnL ₹-722.40 | SL_HIT
+2026-07-30 10:42:47,554 [INFO]    💰 Freed ₹48,854.88 | Deployed ₹49,206.00 | Available ₹400,794.00
+2026-07-30 10:42:47,554 [INFO]    🧊 PERSISTENT on cooldown for 5 min — no re-entry until then.
+2026-07-30 10:43:13,297 [INFO] 🔢 TVSMOTOR: SL-hit count today = 1/5
+2026-07-30 10:43:13,297 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4153.2 | PnL ₹-991.20 | SL_HIT
+2026-07-30 10:43:13,298 [INFO]    💰 Freed ₹49,206.00 | Deployed ₹0.00 | Available ₹448,457.76
+2026-07-30 10:43:13,298 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-30 10:47:28,693 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5462.33 | Trend score 76.69 (>= 60)
+2026-07-30 10:47:30,275 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4008.6 | Trend score 84.46 (>= 60)
+2026-07-30 10:47:31,205 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(76.69)
+2026-07-30 10:47:31,205 [INFO] ❌ Skipping PERSISTENT: Cooldown 0m 16s remaining
+2026-07-30 10:47:31,205 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(84.46)
+2026-07-30 10:47:31,206 [INFO] ❌ Skipping TVSMOTOR: Cooldown 0m 42s remaining
+2026-07-30 10:47:31,206 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-1713.60
+2026-07-30 10:52:42,938 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4009.88 | Trend score 84.15 (>= 60)
+2026-07-30 10:52:43,865 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(84.15)
+2026-07-30 10:52:44,008 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,145.62 margin) → scaled qty 59 using real per-share margin ₹831.42 (cash slice ₹49,330.35, exposure cap 5.0x)
+2026-07-30 10:52:44,008 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4157.1 (market) | 1R=1.60 | Initial SL 4155.5 (1.0R) | Ref target 4159.2 | Qty 59 | Trend ELIGIBLE (84.15)
+2026-07-30 10:52:44,009 [INFO]    💰 Sizing: cash slice ₹49,330.35 (11.0% of usable capital) | Entry ₹4,157.10 | Qty = 59 shares | Notional value ₹245,268.90 | Real margin used ₹49,053.78 | Deployed ₹49,053.78 | Available ₹399,403.98 | Band 2000-4000
+2026-07-30 10:52:44,010 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1713.60
+2026-07-30 10:52:44,056 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4157.1
+LTP   : 4157.1
+Qty   : 59
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-1713.6
+
+Dashboard
+-1713.6
+2026-07-30 10:54:03,918 [INFO] 🪜 TRAIL TVSMOTOR | reached 1.56R → SL moved to 4158.7 (1.0R)
+2026-07-30 10:54:09,035 [INFO] 🔢 TVSMOTOR: SL-hit count today = 2/5
+2026-07-30 10:54:09,036 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4158.0 | PnL ₹53.10 | TRAIL_SL_HIT
+2026-07-30 10:54:09,036 [INFO]    💰 Freed ₹49,053.78 | Deployed ₹0.00 | Available ₹448,505.55
+2026-07-30 10:54:09,036 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-30 10:57:54,279 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5466.24 | Trend score 75.21 (>= 60)
+2026-07-30 10:57:55,851 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4011.14 | Trend score 83.53 (>= 60)
+2026-07-30 10:57:56,774 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(75.21)
+2026-07-30 10:57:56,907 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,018.72 margin) → scaled qty 43 using real per-share margin ₹1,127.34 (cash slice ₹49,335.61, exposure cap 5.0x)
+2026-07-30 10:57:56,907 [INFO] 📈 PAPER ENTER BUY PERSISTENT @ 5636.7 (market) | 1R=10.70 | Initial SL 5626.0 (1.0R) | Ref target 5655.3 | Qty 43 | Trend ELIGIBLE (75.21)
+2026-07-30 10:57:56,907 [INFO]    💰 Sizing: cash slice ₹49,335.61 (11.0% of usable capital) | Entry ₹5,636.70 | Qty = 43 shares | Notional value ₹242,378.10 | Real margin used ₹48,475.62 | Deployed ₹48,475.62 | Available ₹400,029.93 | Band 1000-2000
+2026-07-30 10:57:56,909 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(83.53)
+2026-07-30 10:57:56,910 [INFO] ❌ Skipping TVSMOTOR: Cooldown 1m 12s remaining
+2026-07-30 10:57:56,910 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-1660.50
+2026-07-30 10:57:56,953 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5636.7
+LTP   : 5636.7
+Qty   : 43
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-1660.5
+
+Dashboard
+-1660.5
+2026-07-30 11:01:39,540 [INFO] 🔢 PERSISTENT: SL-hit count today = 2/5
+2026-07-30 11:01:39,540 [INFO] 📉 PAPER EXIT PERSISTENT @ 5626.0 | PnL ₹-460.10 | SL_HIT
+2026-07-30 11:01:39,540 [INFO]    💰 Freed ₹48,475.62 | Deployed ₹0.00 | Available ₹448,091.46
+2026-07-30 11:01:39,540 [INFO]    🧊 PERSISTENT on cooldown for 5 min — no re-entry until then.
+2026-07-30 11:03:07,121 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5468.1 | Trend score 73.78 (>= 60)
+2026-07-30 11:03:08,713 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4012.53 | Trend score 82.84 (>= 60)
+2026-07-30 11:03:09,653 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(73.78)
+2026-07-30 11:03:09,653 [INFO] ❌ Skipping PERSISTENT: Cooldown 3m 30s remaining
+2026-07-30 11:03:09,654 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(82.84)
+2026-07-30 11:03:09,802 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,160.80 margin) → scaled qty 59 using real per-share margin ₹832.80 (cash slice ₹49,290.06, exposure cap 5.0x)
+2026-07-30 11:03:09,802 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4164.0 (market) | 1R=9.90 | Initial SL 4154.1 (1.0R) | Ref target 4184.1 | Qty 59 | Trend ELIGIBLE (82.84)
+2026-07-30 11:03:09,802 [INFO]    💰 Sizing: cash slice ₹49,290.06 (11.0% of usable capital) | Entry ₹4,164.00 | Qty = 59 shares | Notional value ₹245,676.00 | Real margin used ₹49,135.20 | Deployed ₹49,135.20 | Available ₹398,956.26 | Band 2000-4000
+2026-07-30 11:03:09,803 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2120.60
+2026-07-30 11:03:09,850 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4164.0
+LTP   : 4164.0
+Qty   : 59
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-2120.6
+
+Dashboard
+-2120.6
+2026-07-30 11:08:21,930 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4013.85 | Trend score 82.18 (>= 60)
+2026-07-30 11:08:22,895 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(82.18)
+2026-07-30 11:08:23,154 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,160.36 margin) → scaled qty 59 using real per-share margin ₹832.76 (cash slice ₹49,290.06, exposure cap 5.0x)
+2026-07-30 11:08:23,154 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:08:23,154 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-2120.60
+2026-07-30 11:08:23,243 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4164.0
+LTP   : 4163.8
+Qty   : 59
+MTM   : -11.8
+
+Total Open MTM
+-11.8
+
+Closed PnL
+-2120.6
+
+Dashboard
+-2132.4
+2026-07-30 11:13:34,190 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5471.83 | Trend score 70.26 (>= 60)
+2026-07-30 11:13:36,843 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(70.26)
+2026-07-30 11:13:37,118 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,026.56 margin) → scaled qty 43 using real per-share margin ₹1,128.32 (cash slice ₹49,290.06, exposure cap 5.0x)
+2026-07-30 11:13:37,118 [INFO] 📈 PAPER ENTER BUY PERSISTENT @ 5641.6 (market) | 1R=19.20 | Initial SL 5622.4 (1.0R) | Ref target 5680.8 | Qty 43 | Trend ELIGIBLE (70.26)
+2026-07-30 11:13:37,118 [INFO]    💰 Sizing: cash slice ₹49,290.06 (11.0% of usable capital) | Entry ₹5,641.60 | Qty = 43 shares | Notional value ₹242,588.80 | Real margin used ₹48,517.76 | Deployed ₹97,652.96 | Available ₹350,438.50 | Band 1000-2000
+2026-07-30 11:13:37,120 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2120.60
+2026-07-30 11:13:37,210 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4164.0
+LTP   : 4173.7
+Qty   : 59
+MTM   : +572.3
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5641.6
+Qty   : 43
+MTM   : +0.0
+
+Total Open MTM
++572.3
+
+Closed PnL
+-2120.6
+
+Dashboard
+-1548.3
+2026-07-30 11:14:20,044 [INFO] 🪜 TRAIL TVSMOTOR | reached 1.51R → SL moved to 4173.9 (1.0R)
+2026-07-30 11:14:45,543 [WARNING] ⚠️ HIGH SLIPPAGE TVSMOTOR: configured SL 4173.9 vs actual exit 4171.3 — slippage 2.6 pts (0.0623%) | expected loss ₹584.10 vs actual ₹430.70 (0.74R)
+2026-07-30 11:14:45,543 [INFO] 🔢 TVSMOTOR: SL-hit count today = 3/5
+2026-07-30 11:14:45,544 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4171.3 | PnL ₹430.70 | TRAIL_SL_HIT
+2026-07-30 11:14:45,544 [INFO]    💰 Freed ₹49,135.20 | Deployed ₹48,517.76 | Available ₹399,961.33
+2026-07-30 11:14:45,544 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-30 11:18:42,520 [INFO] 🎯 Signal: SELL COALINDIA | EMA=416.0 | Trend score 60.06 (>= 60)
+2026-07-30 11:18:48,192 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5473.54 | Trend score 68.52 (>= 60)
+2026-07-30 11:18:49,911 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4016.65 | Trend score 81.23 (>= 60)
+2026-07-30 11:18:50,881 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(60.06)
+2026-07-30 11:18:51,156 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 118 (₹9,805.80 margin) → scaled qty 593 using real per-share margin ₹83.10 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:18:51,156 [INFO] 📈 PAPER ENTER SELL COALINDIA @ 415.5 (market) | 1R=1.45 | Initial SL 416.95 (1.0R) | Ref target 412.65 | Qty 593 | Trend ELIGIBLE (60.06)
+2026-07-30 11:18:51,156 [INFO]    💰 Sizing: cash slice ₹49,332.70 (11.0% of usable capital) | Entry ₹415.50 | Qty = 593 shares | Notional value ₹246,391.50 | Real margin used ₹49,278.30 | Deployed ₹97,796.06 | Available ₹350,683.03 | Band 500-1000
+2026-07-30 11:18:51,158 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(68.52)
+2026-07-30 11:18:51,412 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,009.60 margin) → scaled qty 43 using real per-share margin ₹1,126.20 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:18:51,412 [INFO] ❌ Skipping PERSISTENT: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:18:51,413 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(81.23)
+2026-07-30 11:18:51,413 [INFO] ❌ Skipping TVSMOTOR: Cooldown 0m 54s remaining
+2026-07-30 11:18:51,413 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:18:51,500 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5631.0
+Qty   : 43
+MTM   : -455.8
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 415.5
+Qty   : 593
+MTM   : +0.0
+
+Total Open MTM
+-455.8
+
+Closed PnL
+-1689.9
+
+Dashboard
+-2145.7
+2026-07-30 11:23:56,903 [INFO] 🎯 Signal: SELL COALINDIA | EMA=415.99 | Trend score 60.61 (>= 60)
+2026-07-30 11:24:02,592 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5475.37 | Trend score 66.85 (>= 60)
+2026-07-30 11:24:04,332 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4017.97 | Trend score 80.57 (>= 60)
+2026-07-30 11:24:05,300 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(60.61)
+2026-07-30 11:24:05,554 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 118 (₹9,801.08 margin) → scaled qty 593 using real per-share margin ₹83.06 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:24:05,554 [INFO] ❌ Skipping COALINDIA: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:24:05,554 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(66.85)
+2026-07-30 11:24:05,808 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,010.40 margin) → scaled qty 43 using real per-share margin ₹1,126.30 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:24:05,808 [INFO] ❌ Skipping PERSISTENT: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:24:05,808 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(80.57)
+2026-07-30 11:24:06,225 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,168.50 margin) → scaled qty 59 using real per-share margin ₹833.50 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:24:06,226 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4167.5 (market) | 1R=13.10 | Initial SL 4154.4 (1.0R) | Ref target 4193.7 | Qty 59 | Trend ELIGIBLE (80.57)
+2026-07-30 11:24:06,226 [INFO]    💰 Sizing: cash slice ₹49,332.70 (11.0% of usable capital) | Entry ₹4,167.50 | Qty = 59 shares | Notional value ₹245,882.50 | Real margin used ₹49,176.50 | Deployed ₹146,972.56 | Available ₹301,506.53 | Band 2000-4000
+2026-07-30 11:24:06,229 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:24:06,318 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5631.4
+Qty   : 43
+MTM   : -438.6
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 415.3
+Qty   : 593
+MTM   : +118.6
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4167.5
+Qty   : 59
+MTM   : +0.0
+
+Total Open MTM
+-320.0
+
+Closed PnL
+-1689.9
+
+Dashboard
+-2009.9
+2026-07-30 11:29:11,681 [INFO] 🎯 Signal: SELL COALINDIA | EMA=415.96 | Trend score 61.53 (>= 60)
+2026-07-30 11:29:18,790 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4019.3 | Trend score 79.58 (>= 60)
+2026-07-30 11:29:19,716 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(61.53)
+2026-07-30 11:29:19,843 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 119 (₹9,849.63 margin) → scaled qty 596 using real per-share margin ₹82.77 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:29:19,844 [INFO] ❌ Skipping COALINDIA: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:29:19,844 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(79.58)
+2026-07-30 11:29:19,974 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,161.90 margin) → scaled qty 59 using real per-share margin ₹832.90 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:29:19,974 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:29:19,975 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:29:20,022 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5646.5
+Qty   : 43
+MTM   : +210.7
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 413.85
+Qty   : 593
+MTM   : +978.45
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4164.5
+Qty   : 59
+MTM   : -177.0
+
+Total Open MTM
++1012.15
+
+Closed PnL
+-1689.9
+
+Dashboard
+-677.75
+2026-07-30 11:34:24,967 [INFO] 🎯 Signal: SELL COALINDIA | EMA=415.95 | Trend score 61.47 (>= 60)
+2026-07-30 11:34:30,295 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5479.25 | Trend score 63.88 (>= 60)
+2026-07-30 11:34:31,879 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4020.56 | Trend score 78.37 (>= 60)
+2026-07-30 11:34:32,805 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(61.47)
+2026-07-30 11:34:32,935 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 119 (₹9,859.15 margin) → scaled qty 595 using real per-share margin ₹82.85 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:34:32,935 [INFO] ❌ Skipping COALINDIA: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:34:32,936 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — PERSISTENT(63.88)
+2026-07-30 11:34:33,063 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹9,017.76 margin) → scaled qty 43 using real per-share margin ₹1,127.22 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:34:33,064 [INFO] ❌ Skipping PERSISTENT: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:34:33,064 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(78.37)
+2026-07-30 11:34:33,189 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,151.12 margin) → scaled qty 59 using real per-share margin ₹831.92 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:34:33,190 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:34:33,190 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:34:33,232 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5636.1
+Qty   : 43
+MTM   : -236.5
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.25
+Qty   : 593
+MTM   : +741.25
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4159.6
+Qty   : 59
+MTM   : -466.1
+
+Total Open MTM
++38.65
+
+Closed PnL
+-1689.9
+
+Dashboard
+-1651.25
+2026-07-30 11:39:38,215 [INFO] 🎯 Signal: SELL COALINDIA | EMA=415.94 | Trend score 60.56 (>= 60)
+2026-07-30 11:39:45,065 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4021.82 | Trend score 77.05 (>= 60)
+2026-07-30 11:39:45,988 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(60.56)
+2026-07-30 11:39:46,116 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 118 (₹9,791.64 margin) → scaled qty 594 using real per-share margin ₹82.98 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:39:46,116 [INFO] ❌ Skipping COALINDIA: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:39:46,117 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(77.05)
+2026-07-30 11:39:46,245 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,153.54 margin) → scaled qty 59 using real per-share margin ₹832.14 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:39:46,245 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:39:46,246 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:39:46,287 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5653.9
+Qty   : 43
+MTM   : +528.9
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.9
+Qty   : 593
+MTM   : +355.8
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4160.7
+Qty   : 59
+MTM   : -401.2
+
+Total Open MTM
++483.5
+
+Closed PnL
+-1689.9
+
+Dashboard
+-1206.4
+2026-07-30 11:44:51,239 [INFO] 🎯 Signal: SELL COALINDIA | EMA=415.91 | Trend score 60.0 (>= 60)
+2026-07-30 11:44:58,042 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4023.08 | Trend score 75.69 (>= 60)
+2026-07-30 11:44:58,966 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — COALINDIA(60.0)
+2026-07-30 11:44:59,091 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 119 (₹9,865.10 margin) → scaled qty 595 using real per-share margin ₹82.90 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:44:59,092 [INFO] ❌ Skipping COALINDIA: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:44:59,092 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(75.69)
+2026-07-30 11:44:59,214 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,153.98 margin) → scaled qty 59 using real per-share margin ₹832.18 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:44:59,214 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:44:59,215 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:44:59,255 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5649.1
+Qty   : 43
+MTM   : +322.5
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.4
+Qty   : 593
+MTM   : +652.3
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4160.9
+Qty   : 59
+MTM   : -389.4
+
+Total Open MTM
++585.4
+
+Closed PnL
+-1689.9
+
+Dashboard
+-1104.5
+2026-07-30 11:50:11,041 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4025.58 | Trend score 73.76 (>= 60)
+2026-07-30 11:50:12,011 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(73.76)
+2026-07-30 11:50:12,143 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,151.12 margin) → scaled qty 59 using real per-share margin ₹831.92 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 11:50:12,144 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 11:50:12,144 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:50:12,188 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5650.0
+Qty   : 43
+MTM   : +361.2
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.65
+Qty   : 593
+MTM   : +504.05
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4159.6
+Qty   : 59
+MTM   : -466.1
+
+Total Open MTM
++399.15
+
+Closed PnL
+-1689.9
+
+Dashboard
+-1290.75
+2026-07-30 11:55:25,182 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 11:55:25,183 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 11:55:25,225 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5641.7
+Qty   : 43
+MTM   : +4.3
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.45
+Qty   : 593
+MTM   : +622.65
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4170.5
+Qty   : 59
+MTM   : +177.0
+
+Total Open MTM
++803.95
+
+Closed PnL
+-1689.9
+
+Dashboard
+-885.95
+2026-07-30 12:00:32,777 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1278.76 | Trend score 60.2 (>= 60)
+2026-07-30 12:00:37,928 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — RELIANCE(60.2)
+2026-07-30 12:00:38,059 [INFO] 📐 RELIANCE: real-leverage sizing — naive (no-leverage) qty 38 (₹9,796.40 margin) → scaled qty 191 using real per-share margin ₹257.80 (cash slice ₹49,332.70, exposure cap 5.0x)
+2026-07-30 12:00:38,060 [INFO] 📈 PAPER ENTER BUY RELIANCE @ 1289.0 (market) | 1R=0.20 | Initial SL 1288.8 (1.0R) | Ref target 1289.4 | Qty 191 | Trend ELIGIBLE (60.2)
+2026-07-30 12:00:38,060 [INFO]    💰 Sizing: cash slice ₹49,332.70 (11.0% of usable capital) | Entry ₹1,289.00 | Qty = 191 shares | Notional value ₹246,199.00 | Real margin used ₹49,239.80 | Deployed ₹196,212.36 | Available ₹252,266.73 | Band 1000-2000
+2026-07-30 12:00:38,063 [INFO] Scan done | Positions: 4/9 | Watchlist: 24 symbols | PnL: ₹-1689.90
+2026-07-30 12:00:38,104 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5641.4
+Qty   : 43
+MTM   : -8.6
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 414.3
+Qty   : 593
+MTM   : +711.6
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4170.0
+Qty   : 59
+MTM   : +147.5
+
+RELIANCE
+BUY
+Entry : 1289.0
+LTP   : 1289.0
+Qty   : 191
+MTM   : +0.0
+
+Total Open MTM
++850.5
+
+Closed PnL
+-1689.9
+
+Dashboard
+-839.4
+2026-07-30 12:01:00,788 [INFO] 🔢 RELIANCE: SL-hit count today = 1/5
+2026-07-30 12:01:00,788 [INFO] 📉 PAPER EXIT RELIANCE @ 1288.3 | PnL ₹-133.70 | SL_HIT
+2026-07-30 12:01:00,788 [INFO]    💰 Freed ₹49,239.80 | Deployed ₹146,972.56 | Available ₹301,506.53
+2026-07-30 12:01:00,789 [INFO]    🧊 RELIANCE on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:05:45,682 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1278.85 | Trend score 60.52 (>= 60)
+2026-07-30 12:05:49,873 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4029.5 | Trend score 69.68 (>= 60)
+2026-07-30 12:05:50,795 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — RELIANCE(60.52)
+2026-07-30 12:05:50,796 [INFO] ❌ Skipping RELIANCE: Cooldown 0m 10s remaining
+2026-07-30 12:05:50,796 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(69.68)
+2026-07-30 12:05:50,923 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,155.96 margin) → scaled qty 59 using real per-share margin ₹832.36 (cash slice ₹49,319.46, exposure cap 5.0x)
+2026-07-30 12:05:50,923 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 12:05:50,924 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-1823.60
+2026-07-30 12:05:50,962 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5635.2
+Qty   : 43
+MTM   : -275.2
+
+COALINDIA
+SELL
+Entry : 415.5
+LTP   : 416.7
+Qty   : 593
+MTM   : -711.6
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4161.8
+Qty   : 59
+MTM   : -336.3
+
+Total Open MTM
+-1323.1
+
+Closed PnL
+-1823.6
+
+Dashboard
+-3146.7
+2026-07-30 12:06:23,044 [INFO] 🔢 COALINDIA: SL-hit count today = 1/5
+2026-07-30 12:06:23,044 [INFO] 📉 PAPER EXIT COALINDIA @ 416.95 | PnL ₹-859.85 | SL_HIT
+2026-07-30 12:06:23,045 [INFO]    💰 Freed ₹49,278.30 | Deployed ₹97,694.26 | Available ₹349,890.63
+2026-07-30 12:06:23,045 [INFO]    🧊 COALINDIA on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:10:58,554 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1278.93 | Trend score 60.66 (>= 60)
+2026-07-30 12:11:02,908 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4030.67 | Trend score 67.71 (>= 60)
+2026-07-30 12:11:03,830 [INFO] 📊 Band ₹1000-2000: 1 candidate(s) ranked by trend score — RELIANCE(60.66)
+2026-07-30 12:11:03,956 [INFO] 📐 RELIANCE: real-leverage sizing — naive (no-leverage) qty 38 (₹9,800.96 margin) → scaled qty 190 using real per-share margin ₹257.92 (cash slice ₹49,234.34, exposure cap 5.0x)
+2026-07-30 12:11:03,957 [INFO] 📈 PAPER ENTER BUY RELIANCE @ 1289.6 (market) | 1R=0.90 | Initial SL 1288.7 (1.0R) | Ref target 1291.5 | Qty 190 | Trend ELIGIBLE (60.66)
+2026-07-30 12:11:03,957 [INFO]    💰 Sizing: cash slice ₹49,234.34 (11.0% of usable capital) | Entry ₹1,289.60 | Qty = 190 shares | Notional value ₹245,024.00 | Real margin used ₹49,004.80 | Deployed ₹146,699.06 | Available ₹300,885.84 | Band 1000-2000
+2026-07-30 12:11:03,960 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(67.71)
+2026-07-30 12:11:04,089 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,146.94 margin) → scaled qty 59 using real per-share margin ₹831.54 (cash slice ₹49,234.34, exposure cap 5.0x)
+2026-07-30 12:11:04,089 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 12:11:04,090 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-2683.45
+2026-07-30 12:11:04,132 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5636.9
+Qty   : 43
+MTM   : -202.1
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4157.7
+Qty   : 59
+MTM   : -578.2
+
+RELIANCE
+BUY
+Entry : 1289.6
+LTP   : 1289.6
+Qty   : 190
+MTM   : +0.0
+
+Total Open MTM
+-780.3
+
+Closed PnL
+-2683.45
+
+Dashboard
+-3463.75
+2026-07-30 12:15:12,299 [INFO] 🔢 RELIANCE: SL-hit count today = 2/5
+2026-07-30 12:15:12,299 [INFO] 📉 PAPER EXIT RELIANCE @ 1288.5 | PnL ₹-209.00 | SL_HIT
+2026-07-30 12:15:12,299 [INFO]    💰 Freed ₹49,004.80 | Deployed ₹97,694.26 | Available ₹349,702.53
+2026-07-30 12:15:12,300 [INFO]    🧊 RELIANCE on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:16:16,979 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4031.85 | Trend score 65.59 (>= 60)
+2026-07-30 12:16:17,909 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(65.59)
+2026-07-30 12:16:18,029 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,147.82 margin) → scaled qty 59 using real per-share margin ₹831.62 (cash slice ₹49,213.65, exposure cap 5.0x)
+2026-07-30 12:16:18,029 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 12:16:18,030 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2892.45
+2026-07-30 12:16:18,069 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5631.6
+Qty   : 43
+MTM   : -430.0
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4158.1
+Qty   : 59
+MTM   : -554.6
+
+Total Open MTM
+-984.6
+
+Closed PnL
+-2892.45
+
+Dashboard
+-3877.05
+2026-07-30 12:21:29,859 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4033.11 | Trend score 63.49 (>= 60)
+2026-07-30 12:21:30,790 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(63.49)
+2026-07-30 12:21:30,920 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,153.98 margin) → scaled qty 59 using real per-share margin ₹832.18 (cash slice ₹49,213.65, exposure cap 5.0x)
+2026-07-30 12:21:30,920 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 12:21:30,920 [INFO] Scan done | Positions: 2/9 | Watchlist: 24 symbols | PnL: ₹-2892.45
+2026-07-30 12:21:30,962 [INFO] 
+======== OPEN MTM ========
+
+PERSISTENT
+BUY
+Entry : 5641.6
+LTP   : 5637.5
+Qty   : 43
+MTM   : -176.3
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4160.9
+Qty   : 59
+MTM   : -389.4
+
+Total Open MTM
+-565.7
+
+Closed PnL
+-2892.45
+
+Dashboard
+-3458.15
+2026-07-30 12:24:44,534 [INFO] 🔢 PERSISTENT: SL-hit count today = 3/5
+2026-07-30 12:24:44,535 [INFO] 📉 PAPER EXIT PERSISTENT @ 5620.8 | PnL ₹-894.40 | SL_HIT
+2026-07-30 12:24:44,535 [INFO]    💰 Freed ₹48,517.76 | Deployed ₹49,176.50 | Available ₹397,415.33
+2026-07-30 12:24:44,535 [INFO]    🧊 PERSISTENT on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:26:42,686 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4034.31 | Trend score 61.53 (>= 60)
+2026-07-30 12:26:43,607 [INFO] 📊 Band ₹2000-4000: 1 candidate(s) ranked by trend score — TVSMOTOR(61.53)
+2026-07-30 12:26:43,735 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,152.88 margin) → scaled qty 59 using real per-share margin ₹832.08 (cash slice ₹49,125.10, exposure cap 5.0x)
+2026-07-30 12:26:43,736 [INFO] ❌ Skipping TVSMOTOR: Duplicate trade — a position on this symbol is already open
+2026-07-30 12:26:43,736 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-3786.85
+2026-07-30 12:26:43,779 [INFO] 
+======== OPEN MTM ========
+
+TVSMOTOR
+BUY
+Entry : 4167.5
+LTP   : 4160.4
+Qty   : 59
+MTM   : -418.9
+
+Total Open MTM
+-418.9
+
+Closed PnL
+-3786.85
+
+Dashboard
+-4205.75
+2026-07-30 12:29:25,276 [INFO] 🔢 TVSMOTOR: SL-hit count today = 4/5
+2026-07-30 12:29:25,277 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4152.4 | PnL ₹-890.90 | SL_HIT
+2026-07-30 12:29:25,277 [INFO]    💰 Freed ₹49,176.50 | Deployed ₹0.00 | Available ₹445,790.02
+2026-07-30 12:29:25,277 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:31:56,324 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 12:31:56,324 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4677.75
+2026-07-30 12:36:59,661 [INFO] 🎯 Signal: SELL UNIONBANK | EMA=170.01 | Trend score 61.73 (>= 60)
+2026-07-30 12:37:08,954 [INFO] 📊 Band ₹500-1000: 1 candidate(s) ranked by trend score — UNIONBANK(61.73)
+2026-07-30 12:37:09,080 [INFO] 📐 UNIONBANK: real-leverage sizing — naive (no-leverage) qty 289 (₹9,792.48 margin) → scaled qty 1447 using real per-share margin ₹33.88 (cash slice ₹49,036.90, exposure cap 5.0x)
+2026-07-30 12:37:09,080 [INFO] 📈 PAPER ENTER SELL UNIONBANK @ 169.42 (market) | 1R=0.12 | Initial SL 169.54 (1.0R) | Ref target 169.24 | Qty 1447 | Trend ELIGIBLE (61.73)
+2026-07-30 12:37:09,081 [INFO]    💰 Sizing: cash slice ₹49,036.90 (11.0% of usable capital) | Entry ₹169.42 | Qty = 1447 shares | Notional value ₹245,150.74 | Real margin used ₹49,030.15 | Deployed ₹49,030.15 | Available ₹396,759.87 | Band 500-1000
+2026-07-30 12:37:09,084 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹-4677.75
+2026-07-30 12:37:09,125 [INFO] 
+======== OPEN MTM ========
+
+UNIONBANK
+SELL
+Entry : 169.42
+LTP   : 169.42
+Qty   : 1447
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
+-4677.75
+
+Dashboard
+-4677.75
+2026-07-30 12:37:28,776 [INFO] 🪜 TRAIL UNIONBANK | reached 1.83R → SL moved to 169.3 (1.0R)
+2026-07-30 12:37:31,777 [INFO] 🪜 TRAIL UNIONBANK | reached 2.08R → SL moved to 169.24 (1.5R)
+2026-07-30 12:37:46,275 [INFO] 🪜 TRAIL UNIONBANK | reached 2.75R → SL moved to 169.16 (2.2R)
+2026-07-30 12:38:01,776 [INFO] 🪜 TRAIL UNIONBANK | reached 3.25R → SL moved to 169.11 (2.6R)
+2026-07-30 12:38:03,777 [INFO] 🪜 TRAIL UNIONBANK | reached 4.25R → SL moved to 169.01 (3.4R)
+2026-07-30 12:38:13,777 [INFO] 🔢 UNIONBANK: SL-hit count today = 1/5
+2026-07-30 12:38:13,777 [INFO] 📉 PAPER EXIT UNIONBANK @ 169.06 | PnL ₹520.92 | TRAIL_SL_HIT
+2026-07-30 12:38:13,777 [INFO]    💰 Freed ₹49,030.15 | Deployed ₹-0.00 | Available ₹446,258.85
+2026-07-30 12:38:13,777 [INFO]    🧊 UNIONBANK on cooldown for 5 min — no re-entry until then.
+2026-07-30 12:42:21,713 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 12:42:21,714 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 12:47:34,370 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 12:47:34,371 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 12:52:46,985 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 12:52:46,986 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 12:57:59,567 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 12:57:59,567 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:03:12,043 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:03:12,044 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:08:24,507 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:08:24,508 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:13:37,065 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:13:37,066 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:18:49,734 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:18:49,735 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:24:02,357 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:24:02,358 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:29:14,878 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:29:14,879 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:34:27,426 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:34:27,427 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:39:39,980 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:39:39,980 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:44:52,569 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:44:52,569 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:50:06,066 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:50:06,066 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 13:55:19,533 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 13:55:19,534 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:00:33,416 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:00:33,416 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:05:46,866 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:05:46,866 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:11:00,250 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:11:00,251 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:16:13,896 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:16:13,897 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:21:27,572 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:21:27,573 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:26:41,172 [INFO] 📭 No qualifying candidates this cycle (trend score < 60, or existing strategy filters not met).
+2026-07-30 14:26:41,172 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹-4156.83
+2026-07-30 14:30:18,907 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-30 14:30:18,907 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-30 14:30:18,907 [INFO] Product        : MIS (intraday)
+2026-07-30 14:30:18,907 [INFO] Order type     : MARKET
+2026-07-30 14:30:18,907 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-30 14:30:18,907 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-30 14:30:18,907 [INFO] EMA Length     : 200
+2026-07-30 14:30:18,907 [INFO] Min Wick %     : 40
+2026-07-30 14:30:18,907 [INFO] Risk:Reward    : 1:2.0
+2026-07-30 14:30:18,907 [INFO] Trend gate     : avoid CHOPPY only, tradeable (neutral+trending) >= 30, ranked by score within each band
+2026-07-30 14:30:18,907 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-30 14:30:18,907 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-30 14:30:18,908 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-30 14:30:18,908 [INFO] Entries cutoff : 14:45 IST
+2026-07-30 14:30:18,908 [INFO] Square-off at  : 15:20 IST
+2026-07-30 14:30:18,908 [INFO] Max hold time  : 120 min
+2026-07-30 14:30:18,908 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-30 14:30:18,908 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-30 14:30:18,908 [INFO] Cooldown       : 5 min after exit
+2026-07-30 14:30:18,908 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-30 14:30:18,908 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-30 14:30:18,908 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-30 14:30:18,908 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-30 14:30:18,908 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-30 14:30:18,908 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-30 14:30:19,250 [INFO] ✅ Loaded 9976 NSE instruments
+2026-07-30 14:30:19,259 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-30 14:30:19,390 [INFO] ✅ KiteTicker connected
+2026-07-30 14:30:20,261 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-30 14:30:20,263 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-30 14:30:20,264 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-30 14:30:20,264 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | MAX_POSITIONS=9
+2026-07-30 14:30:20,266 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-30 14:30:20,267 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-30 14:30:20,268 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-30 14:30:20,269 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-30 14:30:20,269 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-30 14:30:20,270 [INFO]    Trend-score gate: avoid CHOPPY only — tradeable (neutral + trending) >= 30 (smoothing alpha 0.3) — tradeable candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-30 14:30:20,270 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-30 14:30:20,271 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-30 14:30:20,271 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-30 14:30:20,272 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-30 14:30:20,272 [INFO] 🧪 Warm-up scan 1/1 — analyzing the watchlist only, no trades will be placed this cycle.
+2026-07-30 14:30:20,565 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-30 14:30:20,577 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-30 14:30:20,578 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-30 14:30:21,095 [INFO] 🎯 Signal: BUY HDFCBANK | EMA=745.62 | Trend score 43.26 (>= 30)
+2026-07-30 14:30:22,509 [INFO] 🎯 Signal: BUY SBIN | EMA=1017.43 | Trend score 36.57 (>= 30)
+2026-07-30 14:30:23,054 [INFO] 🎯 Signal: SELL BEL | EMA=389.41 | Trend score 38.72 (>= 30)
+2026-07-30 14:30:23,617 [INFO] 🎯 Signal: SELL CANBK | EMA=124.87 | Trend score 30.86 (>= 30)
+2026-07-30 14:30:24,186 [INFO] 🎯 Signal: SELL UNIONBANK | EMA=169.88 | Trend score 32.02 (>= 30)
+2026-07-30 14:30:25,925 [INFO] 🎯 Signal: BUY COALINDIA | EMA=415.66 | Trend score 31.08 (>= 30)
+2026-07-30 14:30:28,770 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1281.38 | Trend score 31.21 (>= 30)
+2026-07-30 14:30:29,892 [INFO] 🎯 Signal: BUY SUNPHARMA | EMA=1992.21 | Trend score 39.91 (>= 30)
+2026-07-30 14:30:31,049 [INFO] 🎯 Signal: BUY TRENT | EMA=2970.81 | Trend score 33.1 (>= 30)
+2026-07-30 14:30:34,468 [INFO] ❌ Skipping HDFCBANK: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping SBIN: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping BEL: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping CANBK: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping UNIONBANK: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping COALINDIA: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping RELIANCE: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,469 [INFO] ❌ Skipping SUNPHARMA: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,470 [INFO] ❌ Skipping TRENT: Warm-up mode active (scan 1/1) — signal noted, no trades placed this cycle
+2026-07-30 14:30:34,470 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 14:35:36,416 [INFO] 🎯 Signal: BUY SBIN | EMA=1017.49 | Trend score 36.03 (>= 30)
+2026-07-30 14:35:36,960 [INFO] 🎯 Signal: SELL BEL | EMA=389.35 | Trend score 38.11 (>= 30)
+2026-07-30 14:35:37,531 [INFO] 🎯 Signal: SELL CANBK | EMA=124.87 | Trend score 30.26 (>= 30)
+2026-07-30 14:35:38,091 [INFO] 🎯 Signal: BUY UNIONBANK | EMA=169.89 | Trend score 32.24 (>= 30)
+2026-07-30 14:35:39,810 [INFO] 🎯 Signal: BUY COALINDIA | EMA=415.63 | Trend score 30.36 (>= 30)
+2026-07-30 14:35:42,624 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1281.44 | Trend score 30.65 (>= 30)
+2026-07-30 14:35:43,749 [INFO] 🎯 Signal: BUY SUNPHARMA | EMA=1992.28 | Trend score 40.05 (>= 30)
+2026-07-30 14:35:44,875 [INFO] 🎯 Signal: BUY TRENT | EMA=2970.84 | Trend score 33.56 (>= 30)
+2026-07-30 14:35:48,105 [INFO] 📊 Band ₹500-1000: 5 candidate(s) ranked by trend score — BEL(38.11), SBIN(36.03), UNIONBANK(32.24), COALINDIA(30.36), CANBK(30.26)
+2026-07-30 14:35:48,334 [INFO] 📐 BEL: real-leverage sizing — naive (no-leverage) qty 128 (₹9,841.92 margin) → scaled qty 643 using real per-share margin ₹76.89 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:48,335 [INFO] 📈 PAPER ENTER SELL BEL @ 384.55 (market) | 1R=0.35 | Initial SL 384.9 (1.0R) | Ref target 383.7 | Qty 643 | Trend TRADEABLE (38.11)
+2026-07-30 14:35:48,335 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹384.55 | Qty = 643 shares | Notional value ₹247,265.65 | Real margin used ₹49,440.27 | Deployed ₹49,440.27 | Available ₹400,559.73 | Band 500-1000
+2026-07-30 14:35:48,604 [INFO] 📐 SBIN: real-leverage sizing — naive (no-leverage) qty 48 (₹9,812.16 margin) → scaled qty 242 using real per-share margin ₹204.42 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:48,604 [INFO] 📈 PAPER ENTER BUY SBIN @ 1022.1 (market) | 1R=1.30 | Initial SL 1020.8 (1.0R) | Ref target 1024.6 | Qty 242 | Trend TRADEABLE (36.03)
+2026-07-30 14:35:48,605 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹1,022.10 | Qty = 242 shares | Notional value ₹247,348.20 | Real margin used ₹49,469.64 | Deployed ₹98,909.91 | Available ₹351,090.09 | Band 500-1000
+2026-07-30 14:35:48,877 [INFO] 📐 UNIONBANK: real-leverage sizing — naive (no-leverage) qty 291 (₹9,893.42 margin) → scaled qty 1455 using real per-share margin ₹34.00 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:48,877 [INFO] 📈 PAPER ENTER BUY UNIONBANK @ 169.99 (market) | 1R=0.24 | Initial SL 169.75 (1.0R) | Ref target 170.52 | Qty 1455 | Trend TRADEABLE (32.24)
+2026-07-30 14:35:48,878 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹169.99 | Qty = 1455 shares | Notional value ₹247,335.45 | Real margin used ₹49,467.09 | Deployed ₹148,377.00 | Available ₹301,623.00 | Band 500-1000
+2026-07-30 14:35:49,120 [INFO] 📐 COALINDIA: real-leverage sizing — naive (no-leverage) qty 118 (₹9,831.76 margin) → scaled qty 594 using real per-share margin ₹83.32 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:49,121 [INFO] 📈 PAPER ENTER BUY COALINDIA @ 416.6 (market) | 1R=0.35 | Initial SL 416.25 (1.0R) | Ref target 417.25 | Qty 594 | Trend TRADEABLE (30.36)
+2026-07-30 14:35:49,121 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹416.60 | Qty = 594 shares | Notional value ₹247,460.40 | Real margin used ₹49,492.08 | Deployed ₹197,869.08 | Available ₹252,130.92 | Band 500-1000
+2026-07-30 14:35:49,122 [INFO] ❌ Skipping CANBK: Band ₹500-1000 limit reached (4/4)
+2026-07-30 14:35:49,122 [INFO] 📊 Band ₹1000-2000: 3 candidate(s) ranked by trend score — SUNPHARMA(40.05), TRENT(33.56), RELIANCE(30.65)
+2026-07-30 14:35:49,361 [INFO] 📐 SUNPHARMA: real-leverage sizing — naive (no-leverage) qty 24 (₹9,609.60 margin) → scaled qty 123 using real per-share margin ₹400.40 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:49,362 [INFO] 📈 PAPER ENTER BUY SUNPHARMA @ 2002.0 (market) | 1R=1.70 | Initial SL 2000.3 (1.0R) | Ref target 2005.4 | Qty 123 | Trend TRADEABLE (40.05)
+2026-07-30 14:35:49,362 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹2,002.00 | Qty = 123 shares | Notional value ₹246,246.00 | Real margin used ₹49,249.20 | Deployed ₹247,118.28 | Available ₹202,881.72 | Band 1000-2000
+2026-07-30 14:35:49,615 [INFO] 📐 TRENT: real-leverage sizing — naive (no-leverage) qty 16 (₹9,551.36 margin) → scaled qty 82 using real per-share margin ₹596.96 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:49,615 [INFO] 📈 PAPER ENTER BUY TRENT @ 2984.8 (market) | 1R=2.80 | Initial SL 2982.0 (1.0R) | Ref target 2990.6 | Qty 82 | Trend TRADEABLE (33.56)
+2026-07-30 14:35:49,616 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹2,984.80 | Qty = 82 shares | Notional value ₹244,753.60 | Real margin used ₹48,950.72 | Deployed ₹296,069.00 | Available ₹153,931.00 | Band 1000-2000
+2026-07-30 14:35:49,828 [INFO] 📐 RELIANCE: real-leverage sizing — naive (no-leverage) qty 38 (₹9,807.80 margin) → scaled qty 191 using real per-share margin ₹258.10 (cash slice ₹49,500.00, exposure cap 5.0x)
+2026-07-30 14:35:49,828 [INFO] 📈 PAPER ENTER BUY RELIANCE @ 1290.5 (market) | 1R=1.30 | Initial SL 1289.2 (1.0R) | Ref target 1292.7 | Qty 191 | Trend TRADEABLE (30.65)
+2026-07-30 14:35:49,829 [INFO]    💰 Sizing: cash slice ₹49,500.00 (11.0% of usable capital) | Entry ₹1,290.50 | Qty = 191 shares | Notional value ₹246,485.50 | Real margin used ₹49,297.10 | Deployed ₹345,366.10 | Available ₹104,633.90 | Band 1000-2000
+2026-07-30 14:35:49,831 [INFO] Scan done | Positions: 7/9 | Watchlist: 24 symbols | PnL: ₹0.00
+2026-07-30 14:35:49,912 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.45
+Qty   : 643
+MTM   : +64.3
+
+SBIN
+BUY
+Entry : 1022.1
+LTP   : 1021.9
+Qty   : 242
+MTM   : -48.4
+
+UNIONBANK
+BUY
+Entry : 169.99
+LTP   : 169.99
+Qty   : 1455
+MTM   : +0.0
+
+COALINDIA
+BUY
+Entry : 416.6
+LTP   : 416.6
+Qty   : 594
+MTM   : +0.0
+
+SUNPHARMA
+BUY
+Entry : 2002.0
+LTP   : 2002.0
+Qty   : 123
+MTM   : +0.0
+
+TRENT
+BUY
+Entry : 2984.8
+LTP   : 2984.8
+Qty   : 82
+MTM   : +0.0
+
+RELIANCE
+BUY
+Entry : 1290.5
+LTP   : 1290.5
+Qty   : 191
+MTM   : +0.0
+
+Total Open MTM
++15.9
+
+Closed PnL
++0.0
+
+Dashboard
++15.9
+2026-07-30 14:37:02,385 [INFO] 🪜 TRAIL RELIANCE | reached 2.23R → SL moved to 1292.45 (1.5R)
+2026-07-30 14:39:37,386 [INFO] 🪜 TRAIL SUNPHARMA | reached 1.53R → SL moved to 2003.7 (1.0R)
+2026-07-30 14:39:43,387 [INFO] 🪜 TRAIL UNIONBANK | reached 1.71R → SL moved to 170.23 (1.0R)
+2026-07-30 14:39:50,638 [INFO] 🔢 UNIONBANK: SL-hit count today = 1/5
+2026-07-30 14:39:50,639 [INFO] 📉 PAPER EXIT UNIONBANK @ 170.19 | PnL ₹291.00 | TRAIL_SL_HIT
+2026-07-30 14:39:50,639 [INFO]    💰 Freed ₹49,467.09 | Deployed ₹295,899.01 | Available ₹154,362.89
+2026-07-30 14:39:50,639 [INFO]    🧊 UNIONBANK on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:40:34,634 [INFO] 🔢 SUNPHARMA: SL-hit count today = 1/5
+2026-07-30 14:40:34,634 [INFO] 📉 PAPER EXIT SUNPHARMA @ 2003.7 | PnL ₹209.10 | TRAIL_SL_HIT
+2026-07-30 14:40:34,634 [INFO]    💰 Freed ₹49,249.20 | Deployed ₹246,649.81 | Available ₹203,800.28
+2026-07-30 14:40:34,634 [INFO]    🧊 SUNPHARMA on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:40:50,749 [INFO] 🎯 Signal: BUY HDFCBANK | EMA=745.74 | Trend score 43.2 (>= 30)
+2026-07-30 14:40:51,967 [INFO] 🎯 Signal: BUY SBIN | EMA=1017.55 | Trend score 35.33 (>= 30)
+2026-07-30 14:40:52,534 [INFO] 🎯 Signal: SELL BEL | EMA=389.3 | Trend score 37.04 (>= 30)
+2026-07-30 14:40:58,183 [INFO] 🎯 Signal: BUY RELIANCE | EMA=1281.56 | Trend score 31.39 (>= 30)
+2026-07-30 14:40:59,325 [INFO] 🎯 Signal: BUY SUNPHARMA | EMA=1992.39 | Trend score 40.16 (>= 30)
+2026-07-30 14:41:00,450 [INFO] 🎯 Signal: BUY TRENT | EMA=2970.91 | Trend score 33.94 (>= 30)
+2026-07-30 14:41:01,016 [INFO] 🎯 Signal: BUY PERSISTENT | EMA=5517.74 | Trend score 47.23 (>= 30)
+2026-07-30 14:41:02,143 [INFO] 🎯 Signal: BUY LT | EMA=3895.09 | Trend score 30.05 (>= 30)
+2026-07-30 14:41:02,711 [INFO] 🎯 Signal: BUY TVSMOTOR | EMA=4066.44 | Trend score 47.2 (>= 30)
+2026-07-30 14:41:03,270 [INFO] 🎯 Signal: SELL M&M | EMA=3258.08 | Trend score 36.18 (>= 30)
+2026-07-30 14:41:03,671 [INFO] 📊 Band ₹500-1000: 3 candidate(s) ranked by trend score — HDFCBANK(43.2), BEL(37.04), SBIN(35.33)
+2026-07-30 14:41:03,921 [INFO] 📐 HDFCBANK: real-leverage sizing — naive (no-leverage) qty 65 (₹9,772.75 margin) → scaled qty 329 using real per-share margin ₹150.35 (cash slice ₹49,549.51, exposure cap 5.0x)
+2026-07-30 14:41:03,922 [INFO] 📈 PAPER ENTER BUY HDFCBANK @ 751.75 (market) | 1R=0.30 | Initial SL 751.45 (1.0R) | Ref target 752.2 | Qty 329 | Trend TRADEABLE (43.2)
+2026-07-30 14:41:03,922 [INFO]    💰 Sizing: cash slice ₹49,549.51 (11.0% of usable capital) | Entry ₹751.75 | Qty = 329 shares | Notional value ₹247,325.75 | Real margin used ₹49,465.15 | Deployed ₹296,114.96 | Available ₹154,335.13 | Band 500-1000
+2026-07-30 14:41:03,923 [INFO] ❌ Skipping BEL: Band ₹500-1000 limit reached (4/4)
+2026-07-30 14:41:03,924 [INFO] ❌ Skipping SBIN: Band ₹500-1000 limit reached (4/4)
+2026-07-30 14:41:03,924 [INFO] 📊 Band ₹1000-2000: 4 candidate(s) ranked by trend score — PERSISTENT(47.23), SUNPHARMA(40.16), TRENT(33.94), RELIANCE(31.39)
+2026-07-30 14:41:04,175 [INFO] 📐 PERSISTENT: real-leverage sizing — naive (no-leverage) qty 8 (₹8,866.88 margin) → scaled qty 44 using real per-share margin ₹1,108.36 (cash slice ₹49,549.51, exposure cap 5.0x)
+2026-07-30 14:41:04,175 [INFO] 📈 PAPER ENTER BUY PERSISTENT @ 5541.8 (market) | 1R=1.00 | Initial SL 5540.8 (1.0R) | Ref target 5544.0 | Qty 44 | Trend TRADEABLE (47.23)
+2026-07-30 14:41:04,176 [INFO]    💰 Sizing: cash slice ₹49,549.51 (11.0% of usable capital) | Entry ₹5,541.80 | Qty = 44 shares | Notional value ₹243,839.20 | Real margin used ₹48,767.84 | Deployed ₹344,882.80 | Available ₹105,567.29 | Band 1000-2000
+2026-07-30 14:41:04,179 [INFO] ❌ Skipping SUNPHARMA: Cooldown 4m 30s remaining
+2026-07-30 14:41:04,179 [INFO] ❌ Skipping TRENT: Band ₹1000-2000 limit reached (3/3)
+2026-07-30 14:41:04,179 [INFO] ❌ Skipping RELIANCE: Band ₹1000-2000 limit reached (3/3)
+2026-07-30 14:41:04,180 [INFO] 📊 Band ₹2000-4000: 3 candidate(s) ranked by trend score — TVSMOTOR(47.2), M&M(36.18), LT(30.05)
+2026-07-30 14:41:04,449 [INFO] 📐 TVSMOTOR: real-leverage sizing — naive (no-leverage) qty 11 (₹9,197.98 margin) → scaled qty 59 using real per-share margin ₹836.18 (cash slice ₹49,549.51, exposure cap 5.0x)
+2026-07-30 14:41:04,449 [INFO] 📈 PAPER ENTER BUY TVSMOTOR @ 4180.9 (market) | 1R=3.50 | Initial SL 4177.4 (1.0R) | Ref target 4186.5 | Qty 59 | Trend TRADEABLE (47.2)
+2026-07-30 14:41:04,449 [INFO]    💰 Sizing: cash slice ₹49,549.51 (11.0% of usable capital) | Entry ₹4,180.90 | Qty = 59 shares | Notional value ₹246,673.10 | Real margin used ₹49,334.62 | Deployed ₹394,217.42 | Available ₹56,232.67 | Band 2000-4000
+2026-07-30 14:41:04,818 [INFO] 📐 M&M: real-leverage sizing — naive (no-leverage) qty 15 (₹9,768.00 margin) → scaled qty 76 using real per-share margin ₹651.20 (cash slice ₹49,549.51, exposure cap 5.0x)
+2026-07-30 14:41:04,818 [INFO] 📈 PAPER ENTER SELL M&M @ 3256.0 (market) | 1R=14.10 | Initial SL 3270.1 (1.0R) | Ref target 3227.7 | Qty 76 | Trend TRADEABLE (36.18)
+2026-07-30 14:41:04,819 [INFO]    💰 Sizing: cash slice ₹49,549.51 (11.0% of usable capital) | Entry ₹3,256.00 | Qty = 76 shares | Notional value ₹247,456.00 | Real margin used ₹49,491.20 | Deployed ₹443,708.62 | Available ₹6,741.47 | Band 2000-4000
+2026-07-30 14:41:04,820 [INFO] 🛑 Max positions cap reached (9/9) — stopping entries for the rest of this cycle.
+2026-07-30 14:41:04,821 [INFO] Scan done | Positions: 9/9 | Watchlist: 24 symbols | PnL: ₹500.10
+2026-07-30 14:41:04,913 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.7
+Qty   : 643
+MTM   : -96.45
+
+SBIN
+BUY
+Entry : 1022.1
+LTP   : 1023.1
+Qty   : 242
+MTM   : +242.0
+
+COALINDIA
+BUY
+Entry : 416.6
+LTP   : 416.6
+Qty   : 594
+MTM   : +0.0
+
+TRENT
+BUY
+Entry : 2984.8
+LTP   : 2988.2
+Qty   : 82
+MTM   : +278.8
+
+RELIANCE
+BUY
+Entry : 1290.5
+LTP   : 1293.3
+Qty   : 191
+MTM   : +534.8
+
+HDFCBANK
+BUY
+Entry : 751.75
+LTP   : 751.7
+Qty   : 329
+MTM   : -16.45
+
+PERSISTENT
+BUY
+Entry : 5541.8
+LTP   : 5542.4
+Qty   : 44
+MTM   : +26.4
+
+TVSMOTOR
+BUY
+Entry : 4180.9
+LTP   : 4180.9
+Qty   : 59
+MTM   : +0.0
+
+M&M
+SELL
+Entry : 3256.0
+LTP   : 3256.0
+Qty   : 76
+MTM   : +0.0
+
+Total Open MTM
++969.1
+
+Closed PnL
++500.1
+
+Dashboard
++1469.2
+2026-07-30 14:41:27,647 [INFO] 🔢 HDFCBANK: SL-hit count today = 1/5
+2026-07-30 14:41:27,647 [INFO] 📉 PAPER EXIT HDFCBANK @ 751.45 | PnL ₹-98.70 | SL_HIT
+2026-07-30 14:41:27,647 [INFO]    💰 Freed ₹49,465.15 | Deployed ₹394,243.47 | Available ₹56,206.62
+2026-07-30 14:41:27,648 [INFO]    🧊 HDFCBANK on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:41:28,637 [INFO] 🪜 TRAIL TRENT | reached 1.68R → SL moved to 2987.6 (1.0R)
+2026-07-30 14:41:28,647 [INFO] 🪜 TRAIL PERSISTENT | reached 2.30R → SL moved to 5543.3 (1.5R)
+2026-07-30 14:41:43,385 [INFO] 🔢 PERSISTENT: SL-hit count today = 1/5
+2026-07-30 14:41:43,386 [INFO] 📉 PAPER EXIT PERSISTENT @ 5542.0 | PnL ₹8.80 | TRAIL_SL_HIT
+2026-07-30 14:41:43,386 [INFO]    💰 Freed ₹48,767.84 | Deployed ₹345,475.63 | Available ₹104,893.55
+2026-07-30 14:41:43,386 [INFO]    🧊 PERSISTENT on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:42:16,389 [INFO] 🔢 RELIANCE: SL-hit count today = 1/5
+2026-07-30 14:42:16,389 [INFO] 📉 PAPER EXIT RELIANCE @ 1292.4 | PnL ₹362.90 | TRAIL_SL_HIT
+2026-07-30 14:42:16,390 [INFO]    💰 Freed ₹49,297.10 | Deployed ₹296,178.53 | Available ₹154,517.26
+2026-07-30 14:42:16,390 [INFO]    🧊 RELIANCE on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:43:48,646 [INFO] 🪜 TRAIL TRENT | reached 2.04R → SL moved to 2989.0 (1.5R)
+2026-07-30 14:44:08,645 [WARNING] ⚠️ HIGH SLIPPAGE M&M: configured SL 3270.1 vs actual exit 3272.6 — slippage 2.5 pts (0.0765%) | expected loss ₹1,071.60 vs actual ₹1,261.60 (1.18R)
+2026-07-30 14:44:08,645 [INFO] 🔢 M&M: SL-hit count today = 1/5
+2026-07-30 14:44:08,646 [INFO] 📉 PAPER EXIT M&M @ 3272.6 | PnL ₹-1261.60 | SL_HIT
+2026-07-30 14:44:08,646 [INFO]    💰 Freed ₹49,491.20 | Deployed ₹246,687.33 | Available ₹202,873.02
+2026-07-30 14:44:08,646 [INFO]    🧊 M&M on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:44:17,638 [INFO] 🪜 TRAIL TRENT | reached 2.50R → SL moved to 2990.96 (2.2R)
+2026-07-30 14:44:40,636 [INFO] 🪜 TRAIL TRENT | reached 3.18R → SL moved to 2992.08 (2.6R)
+2026-07-30 14:44:56,636 [INFO] 🔢 TRENT: SL-hit count today = 1/5
+2026-07-30 14:44:56,636 [INFO] 📉 PAPER EXIT TRENT @ 2992.0 | PnL ₹590.40 | TRAIL_SL_HIT
+2026-07-30 14:44:56,636 [INFO]    💰 Freed ₹48,950.72 | Deployed ₹197,736.61 | Available ₹252,355.10
+2026-07-30 14:44:56,636 [INFO]    🧊 TRENT on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:45:35,636 [INFO] 🔢 COALINDIA: SL-hit count today = 1/5
+2026-07-30 14:45:35,636 [INFO] 📉 PAPER EXIT COALINDIA @ 416.25 | PnL ₹-207.90 | SL_HIT
+2026-07-30 14:45:35,636 [INFO]    💰 Freed ₹49,492.08 | Deployed ₹148,244.53 | Available ₹301,660.07
+2026-07-30 14:45:35,636 [INFO]    🧊 COALINDIA on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:45:51,135 [INFO] 🪜 TRAIL SBIN | reached 1.62R → SL moved to 1023.4 (1.0R)
+2026-07-30 14:46:04,961 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (3) continue to run to SL/trail/square-off.
+2026-07-30 14:46:04,962 [INFO] Scan done | Positions: 3/9 | Watchlist: 24 symbols | PnL: ₹-106.00
+2026-07-30 14:46:05,038 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.4
+Qty   : 643
+MTM   : +96.45
+
+SBIN
+BUY
+Entry : 1022.1
+LTP   : 1024.2
+Qty   : 242
+MTM   : +508.2
+
+TVSMOTOR
+BUY
+Entry : 4180.9
+LTP   : 4184.6
+Qty   : 59
+MTM   : +218.3
+
+Total Open MTM
++822.95
+
+Closed PnL
+-106.0
+
+Dashboard
++716.95
+2026-07-30 14:46:39,635 [INFO] 🪜 TRAIL SBIN | reached 2.00R → SL moved to 1024.05 (1.5R)
+2026-07-30 14:47:23,886 [INFO] 🔢 SBIN: SL-hit count today = 1/5
+2026-07-30 14:47:23,886 [INFO] 📉 PAPER EXIT SBIN @ 1023.9 | PnL ₹435.60 | TRAIL_SL_HIT
+2026-07-30 14:47:23,886 [INFO]    💰 Freed ₹49,469.64 | Deployed ₹98,774.89 | Available ₹351,521.75
+2026-07-30 14:47:23,887 [INFO]    🧊 SBIN on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:48:51,632 [INFO] 🪜 TRAIL TVSMOTOR | reached 1.66R → SL moved to 4184.4 (1.0R)
+2026-07-30 14:49:03,631 [INFO] 🪜 TRAIL TVSMOTOR | reached 2.46R → SL moved to 4186.15 (1.5R)
+2026-07-30 14:50:31,633 [INFO] 🔢 TVSMOTOR: SL-hit count today = 1/5
+2026-07-30 14:50:31,634 [INFO] 📉 PAPER EXIT TVSMOTOR @ 4186.1 | PnL ₹306.80 | TRAIL_SL_HIT
+2026-07-30 14:50:31,634 [INFO]    💰 Freed ₹49,334.62 | Deployed ₹49,440.27 | Available ₹401,132.49
+2026-07-30 14:50:31,634 [INFO]    🧊 TVSMOTOR on cooldown for 5 min — no re-entry until then.
+2026-07-30 14:51:05,139 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-30 14:51:05,139 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹636.40
+2026-07-30 14:51:05,227 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.55
+Qty   : 643
+MTM   : +0.0
+
+Total Open MTM
++0.0
+
+Closed PnL
++636.4
+
+Dashboard
++636.4
+2026-07-30 14:56:05,327 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-30 14:56:05,328 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹636.40
+2026-07-30 14:56:05,409 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.45
+Qty   : 643
+MTM   : +64.3
+
+Total Open MTM
++64.3
+
+Closed PnL
++636.4
+
+Dashboard
++700.7
+2026-07-30 15:01:05,465 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (1) continue to run to SL/trail/square-off.
+2026-07-30 15:01:05,465 [INFO] Scan done | Positions: 1/9 | Watchlist: 24 symbols | PnL: ₹636.40
+2026-07-30 15:01:05,543 [INFO] 
+======== OPEN MTM ========
+
+BEL
+SELL
+Entry : 384.55
+LTP   : 384.25
+Qty   : 643
+MTM   : +192.9
+
+Total Open MTM
++192.9
+
+Closed PnL
++636.4
+
+Dashboard
++829.3
+2026-07-30 15:03:18,631 [INFO] 🔢 BEL: SL-hit count today = 1/5
+2026-07-30 15:03:18,631 [INFO] 📉 PAPER EXIT BEL @ 385.0 | PnL ₹-289.35 | SL_HIT
+2026-07-30 15:03:18,631 [INFO]    💰 Freed ₹49,440.27 | Deployed ₹0.00 | Available ₹450,312.34
+2026-07-30 15:03:18,631 [INFO]    🧊 BEL on cooldown for 5 min — no re-entry until then.
+2026-07-30 15:06:05,626 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-30 15:06:05,627 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹347.05
+2026-07-30 15:11:05,675 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-30 15:11:05,675 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹347.05
+2026-07-30 15:16:05,775 [INFO] ⏱ Past 14:45 IST — no new entries this cycle. Open positions (0) continue to run to SL/trail/square-off.
+2026-07-30 15:16:05,775 [INFO] Scan done | Positions: 0/9 | Watchlist: 24 symbols | PnL: ₹347.05
+2026-07-30 15:56:35,730 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-30 16:14:09,153 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-30 16:14:09,153 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-30 16:14:09,153 [INFO] Product        : MIS (intraday)
+2026-07-30 16:14:09,154 [INFO] Order type     : MARKET
+2026-07-30 16:14:09,154 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-30 16:14:09,154 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-30 16:14:09,154 [INFO] EMA Length     : 200
+2026-07-30 16:14:09,154 [INFO] Min Wick %     : 40
+2026-07-30 16:14:09,154 [INFO] Risk:Reward    : 1:2.0
+2026-07-30 16:14:09,154 [INFO] Trend gate     : avoid CHOPPY only, tradeable (neutral+trending) >= 30, ranked by score within each band
+2026-07-30 16:14:09,154 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-30 16:14:09,154 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-30 16:14:09,154 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-30 16:14:09,154 [INFO] Entries cutoff : 14:45 IST
+2026-07-30 16:14:09,154 [INFO] Square-off at  : 15:20 IST
+2026-07-30 16:14:09,154 [INFO] Max hold time  : 120 min
+2026-07-30 16:14:09,154 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-30 16:14:09,154 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-30 16:14:09,154 [INFO] Cooldown       : 5 min after exit
+2026-07-30 16:14:09,155 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-30 16:14:09,155 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-30 16:14:09,155 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-30 16:14:09,155 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-30 16:14:09,155 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-30 16:14:09,155 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-30 16:14:09,626 [INFO] ✅ Loaded 9976 NSE instruments
+2026-07-30 16:14:09,635 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-30 16:14:09,979 [INFO] ✅ KiteTicker connected
+2026-07-30 16:14:10,638 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-30 16:14:10,641 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-30 16:14:10,642 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | MAX_POSITIONS=9
+2026-07-30 16:14:10,642 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-30 16:14:10,643 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-30 16:14:10,644 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-30 16:14:10,645 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-30 16:14:10,646 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-30 16:14:10,647 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-30 16:14:10,648 [INFO]    Trend-score gate: avoid CHOPPY only — tradeable (neutral + trending) >= 30 (smoothing alpha 0.3) — tradeable candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-30 16:14:10,648 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-30 16:14:10,648 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-30 16:14:10,649 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-30 16:14:10,649 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-30 16:14:10,649 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-30 16:14:10,790 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-30 16:14:10,800 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-30 16:14:10,800 [INFO] [33mPress CTRL+C to quit[0m
+2026-07-30 16:15:10,709 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-30 16:25:30,674 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-07-30 16:25:30,674 [INFO] Mode           : 📝 PAPER TRADING
+2026-07-30 16:25:30,674 [INFO] Product        : MIS (intraday)
+2026-07-30 16:25:30,674 [INFO] Order type     : MARKET
+2026-07-30 16:25:30,674 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-07-30 16:25:30,674 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-07-30 16:25:30,674 [INFO] EMA Length     : 200
+2026-07-30 16:25:30,674 [INFO] Min Wick %     : 40
+2026-07-30 16:25:30,674 [INFO] Risk:Reward    : 1:2.0
+2026-07-30 16:25:30,674 [INFO] Trend gate     : avoid CHOPPY only, tradeable (neutral+trending) >= 30, ranked by score within each band
+2026-07-30 16:25:30,674 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-07-30 16:25:30,675 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-07-30 16:25:30,675 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-07-30 16:25:30,675 [INFO] Entries cutoff : 14:45 IST
+2026-07-30 16:25:30,675 [INFO] Square-off at  : 15:20 IST
+2026-07-30 16:25:30,675 [INFO] Max hold time  : 120 min
+2026-07-30 16:25:30,675 [INFO] Position check : every 7s (independent of the signal scan)
+2026-07-30 16:25:30,675 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-07-30 16:25:30,675 [INFO] Cooldown       : 5 min after exit
+2026-07-30 16:25:30,675 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-07-30 16:25:30,675 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-07-30 16:25:30,675 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-07-30 16:25:30,675 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-07-30 16:25:30,675 [INFO] Using existing ACCESS_TOKEN from config
+2026-07-30 16:25:30,676 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-07-30 16:25:31,107 [INFO] ✅ Loaded 9976 NSE instruments
+2026-07-30 16:25:31,116 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-07-30 16:25:31,459 [INFO] ✅ KiteTicker connected
+2026-07-30 16:25:32,119 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-07-30 16:25:32,121 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-07-30 16:25:32,123 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | MAX_POSITIONS=9
+2026-07-30 16:25:32,123 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-07-30 16:25:32,123 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-07-30 16:25:32,123 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-07-30 16:25:32,123 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-07-30 16:25:32,125 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-07-30 16:25:32,127 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-07-30 16:25:32,127 [INFO]    Trend-score gate: avoid CHOPPY only — tradeable (neutral + trending) >= 30 (smoothing alpha 0.3) — tradeable candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-07-30 16:25:32,128 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-07-30 16:25:32,128 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-07-30 16:25:32,129 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-07-30 16:25:32,129 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-07-30 16:25:32,130 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-07-30 16:25:32,305 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-07-30 16:25:32,312 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-07-30 16:25:32,313 [INFO] [33mPress CTRL+C to quit[0m
+2026-08-03 23:51:12,966 [INFO] 🚀 WickFill Auto-Trader v3 — Zerodha Kite
+2026-08-03 23:51:12,966 [INFO] Mode           : 📝 PAPER TRADING
+2026-08-03 23:51:12,966 [INFO] Product        : MIS (intraday)
+2026-08-03 23:51:12,966 [INFO] Order type     : MARKET
+2026-08-03 23:51:12,966 [INFO] Capital sizing : PAPER virtual pool ₹500,000 (real per-stock leverage still applied via order_margins)
+2026-08-03 23:51:12,966 [INFO] Per-trade cap  : 11.0% of usable margin (safety buffer 10.0%)
+2026-08-03 23:51:12,966 [INFO] EMA Length     : 200
+2026-08-03 23:51:12,967 [INFO] Min Wick %     : 40
+2026-08-03 23:51:12,967 [INFO] Risk:Reward    : 1:2.0
+2026-08-03 23:51:12,967 [INFO] Trend gate     : avoid CHOPPY only, tradeable (neutral+trending) >= 30, ranked by score within each band
+2026-08-03 23:51:12,967 [INFO] Universe mode  : 📌 static WATCHLIST (24 symbols) — dynamic NSE scanner removed
+2026-08-03 23:51:12,967 [INFO] Max Positions  : 9 (4 in ₹500-1000 + 3 in ₹1000-2000 + 2 in ₹2000-4000)
+2026-08-03 23:51:12,967 [INFO] Trading start  : 09:30 IST (market-open delay)
+2026-08-03 23:51:12,967 [INFO] Entries cutoff : 14:45 IST
+2026-08-03 23:51:12,967 [INFO] Square-off at  : 15:20 IST
+2026-08-03 23:51:12,967 [INFO] Max hold time  : 120 min
+2026-08-03 23:51:12,967 [INFO] Position check : every 7s (independent of the signal scan)
+2026-08-03 23:51:12,967 [INFO] Reconciliation : every 45s (bot state vs real Kite positions, live mode only)
+2026-08-03 23:51:12,967 [INFO] Cooldown       : 5 min after exit
+2026-08-03 23:51:12,967 [INFO] Daily SL limit : 5 stop-loss exits per symbol per day (resets on new day / bot restart)
+2026-08-03 23:51:12,967 [INFO] Warm-up scans  : 1 (analysis only, no trades)
+2026-08-03 23:51:12,967 [INFO] Trailing SL    : initial 1.0R, ladder 1.5R⇒1.0R → 2.0R⇒1.5R → 2.5R⇒2.2R → 3.0R⇒2.6R
+2026-08-03 23:51:12,967 [INFO] Kite HTTP timeout: 10s (prevents hung network calls from stalling the scan)
+2026-08-03 23:51:12,968 [INFO] Using existing ACCESS_TOKEN from config
+2026-08-03 23:51:12,968 [INFO] ✅ Connected via ACCESS_TOKEN
+2026-08-03 23:51:13,306 [INFO] ✅ Loaded 10007 NSE instruments
+2026-08-03 23:51:13,316 [INFO] 🔌 KiteTicker starting (threaded WebSocket connection)…
+2026-08-03 23:51:13,465 [INFO] ✅ KiteTicker connected
+2026-08-03 23:51:14,318 [INFO] 📡 KiteTicker subscribed to 24 symbols (FULL mode)
+2026-08-03 23:51:14,321 [INFO] 🔍 Scan loop started (signal detection — 5-min candles)
+2026-08-03 23:51:14,323 [INFO]    EMA_LENGTH=200 | MIN_WICK_PCT=40 | MAX_POSITIONS=9
+2026-08-03 23:51:14,323 [INFO]    Trading window: 09:30–14:45 IST | Force square-off: 15:20 IST | Max hold: 120 min
+2026-08-03 23:51:14,323 [INFO]    Capital sizing: PAPER virtual pool ₹500,000 | Per-trade cap: 11.0% of usable margin | Safety buffer: 10.0%
+2026-08-03 23:51:14,323 [INFO]    Cooldown after exit: 5 min | Daily SL-hit limit per symbol: 5 | Startup warm-up (analysis only): 1 scan(s)
+2026-08-03 23:51:14,324 [INFO] 🩺 Position monitor loop started — checking open positions every 7s
+2026-08-03 23:51:14,324 [INFO]    Trailing SL: initial 1.0R → 1.5R⇒SL1.0R → 2.0R⇒SL1.5R → 2.5R⇒SL2.2R → 3.0R⇒SL2.6R
+2026-08-03 23:51:14,327 [INFO] 🔄 Position reconciliation loop started — checking broker truth every 45s
+2026-08-03 23:51:14,327 [INFO]    Trend-score gate: avoid CHOPPY only — tradeable (neutral + trending) >= 30 (smoothing alpha 0.3) — tradeable candidates that pass the full unmodified strategy are ranked by score within each band and entered highest-first, up to that band's max_positions
+2026-08-03 23:51:14,327 [INFO]    Universe mode: 📌 static WATCHLIST (24 symbols) — dynamic NSE-wide scanner removed
+2026-08-03 23:51:14,328 [INFO]    Band ₹500-1000: max 4 positions | TATASTEEL, HDFCBANK, KOTAKBANK, SBIN, BEL, CANBK, UNIONBANK, POLYCAB, BANKINDIA, COALINDIA, MUTHOOTFIN
+2026-08-03 23:51:14,328 [INFO]    Band ₹1000-2000: max 3 positions | AXISBANK, ICICIBANK, BHARTIARTL, RELIANCE, INFY, SUNPHARMA, HCLTECH, TRENT, PERSISTENT
+2026-08-03 23:51:14,329 [INFO]    Band ₹2000-4000: max 2 positions | TCS, LT, TVSMOTOR, M&M
+2026-08-03 23:51:14,329 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…
+2026-08-03 23:51:14,757 [INFO] 🌐 Dashboard live at http://0.0.0.0:5050/dashboard  (login: admin)
+2026-08-03 23:51:14,773 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5050
+ * Running on http://192.168.1.23:5050
+2026-08-03 23:51:14,774 [INFO] [33mPress CTRL+C to quit[0m
+2026-08-03 23:52:14,378 [INFO] Market closed. Opens in ~0 min. Sleeping 60 s…

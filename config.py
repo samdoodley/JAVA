@@ -48,8 +48,8 @@ POSITION_QTY_MULTIPLIER = 3
 
 # ─── Watchlist — Price Bands (UNCHANGED — same symbols, same band caps) ───────
 PRICE_BAND_500_1000 = [
-    "TATASTEEL", "HDFCBANK", "KOTAKBANK", "SBIN", "BEL", "CANBK","Union Bank of India",
-    "POLYCAB", "Bank of India", "COALINDIA","MUTHOOTFIN"
+    "TATASTEEL", "HDFCBANK", "KOTAKBANK", "SBIN", "BEL", "CANBK","UNIONBANK",
+    "POLYCAB", "BANKINDIA", "COALINDIA","MUTHOOTFIN"
 ]
 PRICE_BAND_1000_2000 = [
     "AXISBANK", "ICICIBANK", "BHARTIARTL", "RELIANCE", "INFY", "SUNPHARMA", "HCLTECH",
@@ -71,26 +71,37 @@ MAX_POSITIONS = 9
 
 # ─── Strategy Configuration ───────────────────────────────────────────────────
 EMA_LENGTH = 200
-MIN_WICK_PCT = 50
+MIN_WICK_PCT = 40
 RISK_REWARD = 2.0
 
-# ─── 4-Tier Trend-Score Gate ───────────────────────────────────────────────────
-# Replaces the old binary TRENDING/NEUTRAL/CHOPPY filter with a continuous
-# 0-100 score (ADX + EMA slope + price-distance from EMA), smoothed per
-# symbol across scans, then bucketed into 4 tiers:
+# ─── Trend-Score Ranked Entry Gate ─────────────────────────────────────────────
+# Every symbol's smoothed trend score (0-100, from ADX + EMA slope +
+# price-distance from the 200-EMA) is computed on every scan.
 #
-#   score >= TRENDING_MIN_SCORE                              -> TRENDING
-#   STRONG_NEUTRAL_MIN_SCORE <= score < TRENDING_MIN_SCORE    -> STRONG_NEUTRAL
-#   CHOPPY_MAX_SCORE <= score < STRONG_NEUTRAL_MIN_SCORE      -> WEAK_NEUTRAL
-#   score < CHOPPY_MAX_SCORE                                  -> CHOPPY
+#   score <  MIN_TREND_SCORE_FOR_ENTRY  -> CHOPPY: symbol is ignored outright;
+#                                           the existing WickFill strategy
+#                                           (EMA bias, wick-zone, zone-fill,
+#                                           3% risk cap) is never evaluated.
+#   score >= MIN_TREND_SCORE_FOR_ENTRY  -> both NEUTRAL and TRENDING stocks
+#                                           are treated the same and still
+#                                           have to pass every one of those
+#                                           existing filters unmodified — the
+#                                           score does not relax or replace
+#                                           any of them.
 #
-# TRENDING always trades. STRONG_NEUTRAL trades only if
-# ALLOW_STRONG_NEUTRAL_TRADES is True. WEAK_NEUTRAL and CHOPPY never trade.
+# MIN_TREND_SCORE_FOR_ENTRY is set low (30) on purpose — it's meant to screen
+# out only genuinely choppy/range-bound stocks (low ADX, flat EMA, price
+# hugging the EMA), not to require a strong trend. Raise it toward 50-60 if
+# you want to trade only stronger trends again; lower it further (e.g. 20) if
+# you want to filter even less.
+#
+# Among symbols that pass everything, the score is then used to RANK
+# candidates within each price band (see PRICE_BANDS above), so that when a
+# band has more qualifying setups than open slots, the strongest-trending
+# ones are taken first, up to that band's max_positions / the overall
+# MAX_POSITIONS cap.
 TREND_SLOPE_LOOKBACK = 14
-TRENDING_MIN_SCORE = 70
-STRONG_NEUTRAL_MIN_SCORE = 50
-CHOPPY_MAX_SCORE = 30
-ALLOW_STRONG_NEUTRAL_TRADES = True
+MIN_TREND_SCORE_FOR_ENTRY = 30
 SCORE_SMOOTHING_ALPHA = 0.3
 
 # ─── Timing ───────────────────────────────────────────────────────────────────
@@ -99,13 +110,13 @@ MONITOR_INTERVAL_SEC = 7
 TRADING_START_TIME = "09:30"
 NO_NEW_ENTRIES_AFTER = "14:45"
 SQUARE_OFF_TIME = "15:20"
-MAX_HOLD_MINUTES = 120
+MAX_HOLD_MINUTES = 150
 
 # ─── Cooldown After Exit ───────────────────────────────────────────────────────
-COOLDOWN_MINUTES = 5
+COOLDOWN_MINUTES = 3
 
 # ─── Daily Per-Symbol SL-Hit Circuit Breaker ──────────────────────────────────
-MAX_SL_HITS_PER_DAY = 5
+MAX_SL_HITS_PER_DAY = 8
 
 # ─── Exchange-Native Execution Engine (LIVE mode only) ────────────────────────
 USE_EXCHANGE_SL = True

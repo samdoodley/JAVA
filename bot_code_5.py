@@ -1,31 +1,33 @@
 """
-WickFill Auto-Trader Bot v3 — Zerodha Kite
-Strategy: EMA 200 Filter + Wick Zones + Zone Fills + 4-Tier Trend-Score Gate
+WickFill Auto-Trader Bot v4 — Zerodha Kite
+Strategy: EMA 200 Filter + Wick Zones + Zone Fills + Trend-Score Ranked Entry
 
 CHANGES IN THIS VERSION
 ------------------------
-1. Dynamic NSE-wide universe scanner REMOVED. The bot goes back to trading
-   only the fixed config.py WATCHLIST (PRICE_BANDS). nse_universe.py,
-   candidate_ranker.py's ranking path, and market_scanner.py are no longer
-   imported or used anywhere in this file.
-2. New 4-tier trend-score gate added directly to check_signal(), replacing
-   the old binary TRENDING/CHOPPY + ALLOW_NEUTRAL_TRADES on/off switch:
+1. Dynamic NSE-wide universe scanner REMOVED (unchanged from v3). The bot
+   trades only the fixed config.py WATCHLIST (PRICE_BANDS).
+2. The old 4-tier TRENDING/STRONG_NEUTRAL/WEAK_NEUTRAL/CHOPPY gate has been
+   replaced with a single-threshold ranked-entry gate:
 
-       score >= TRENDING_MIN_SCORE                              -> TRENDING
-       STRONG_NEUTRAL_MIN_SCORE <= score < TRENDING_MIN_SCORE    -> STRONG_NEUTRAL
-       CHOPPY_MAX_SCORE <= score < STRONG_NEUTRAL_MIN_SCORE      -> WEAK_NEUTRAL
-       score < CHOPPY_MAX_SCORE                                  -> CHOPPY
+     PHASE 1 — SCAN & SCORE: every symbol in WATCHLIST gets its smoothed
+     trend score computed (ADX(14) + 200-EMA slope + price-distance from
+     EMA, EMA-smoothed across scans via SCORE_SMOOTHING_ALPHA). Symbols
+     scoring below MIN_TREND_SCORE_FOR_ENTRY (30 — tuned to screen out only
+     genuinely choppy/range-bound stocks, not neutral ones) are ignored
+     outright — the existing WickFill strategy is never evaluated for them.
 
-   TRENDING always trades (subject to the existing EMA/wick/RR filters).
-   STRONG_NEUTRAL trades ONLY if ALLOW_STRONG_NEUTRAL_TRADES is True AND
-   every existing strategy filter (EMA bias, wick %, zone fill, risk/reward
-   cap) also passes — same bar as a TRENDING signal, no filters relaxed.
-   WEAK_NEUTRAL and CHOPPY never trade.
+     PHASE 2 — STRATEGY FILTER: symbols at/above the threshold still have
+     to pass every existing strategy condition completely unmodified (EMA
+     bias, wick-zone detection, zone-fill entry, 3% max-risk cap). The
+     score never substitutes for or relaxes any of these checks.
 
-   The trend score itself is computed from ADX(14) + 200-EMA slope +
-   price-distance-from-EMA, then smoothed per symbol with an EMA
-   (SCORE_SMOOTHING_ALPHA) across scans so one noisy 5-min candle can't
-   flip a symbol's tier back and forth every cycle.
+     PHASE 3 — RANK & ENTER: symbols that pass everything are grouped by
+     price band and ranked by trend score (highest first) within that
+     band. The bot then enters top-ranked candidates first, up to each
+     band's max_positions slot count (4 in ₹500-1000, 3 in ₹1000-2000, 2
+     in ₹2000-4000) and the overall MAX_POSITIONS cap — while still
+     honouring cooldown, the daily per-symbol SL-hit circuit breaker, and
+     duplicate-position protection exactly as before.
 """
 
 import sys
@@ -75,9 +77,8 @@ from config import (
     TELEGRAM_NOTIFY_ERRORS, TELEGRAM_NOTIFY_STARTUP, TELEGRAM_NOTIFY_EOD_SUMMARY,
     TELEGRAM_REQUEST_TIMEOUT_SEC,
     DASHBOARD_HOST, DASHBOARD_PORT,
-    # ── 4-tier trend-score gate ──────────────────────────────────────────
-    TREND_SLOPE_LOOKBACK, TRENDING_MIN_SCORE, STRONG_NEUTRAL_MIN_SCORE,
-    CHOPPY_MAX_SCORE, ALLOW_STRONG_NEUTRAL_TRADES, SCORE_SMOOTHING_ALPHA,
+    # ── Trend-score ranked entry gate ────────────────────────────────────
+    TREND_SLOPE_LOOKBACK, MIN_TREND_SCORE_FOR_ENTRY, SCORE_SMOOTHING_ALPHA,
 )
 from reporting import save_trade_report
 
@@ -768,24 +769,23 @@ def _smooth_trend_score(symbol: str, raw_score: float) -> float:
 
 
 def classify_trend_tier(score: float) -> str:
-    if score >= TRENDING_MIN_SCORE:
-        return "TRENDING"
-    if score >= STRONG_NEUTRAL_MIN_SCORE:
-        return "STRONG_NEUTRAL"
-    if score >= CHOPPY_MAX_SCORE:
-        return "WEAK_NEUTRAL"
-    return "CHOPPY"
+    return "TRADEABLE" if score >= MIN_TREND_SCORE_FOR_ENTRY else "CHOPPY"
 
 
 def trend_gate_allows_entry(symbol: str, candles: list[dict], ema_vals: list[float | None]) -> tuple[bool, str, float]:
     """
     Returns (allowed, tier, smoothed_score).
-      TRENDING        -> always allowed
-      STRONG_NEUTRAL  -> allowed only if ALLOW_STRONG_NEUTRAL_TRADES is True
-                          (the caller still has to pass every other existing
-                          strategy filter — this gate does not relax those)
-      WEAK_NEUTRAL     -> never allowed
-      CHOPPY           -> never allowed
+      score >= MIN_TREND_SCORE_FOR_ENTRY -> "TRADEABLE": covers both neutral
+        and trending stocks — the unmodified WickFill strategy checks below
+        run as normal for either.
+      score <  MIN_TREND_SCORE_FOR_ENTRY -> "CHOPPY": symbol is skipped
+        before any zone-fill logic runs at all.
+
+    Passing this gate does not guarantee a trade — the caller still has to
+    pass every existing strategy filter (EMA bias, wick %, zone fill, 3%
+    risk cap) unmodified. It only decides who's eligible to be evaluated,
+    and later (in the scan loop) who gets ranked highest for a limited
+    number of band slots.
     """
     raw_score = _calc_raw_trend_score(candles, ema_vals)
     score = _smooth_trend_score(symbol, raw_score)
@@ -794,11 +794,7 @@ def trend_gate_allows_entry(symbol: str, candles: list[dict], ema_vals: list[flo
     with _state_lock:
         state["trend_tiers"][symbol] = tier
 
-    if tier == "TRENDING":
-        return True, tier, score
-    if tier == "STRONG_NEUTRAL":
-        return ALLOW_STRONG_NEUTRAL_TRADES, tier, score
-    return False, tier, score
+    return tier == "TRADEABLE", tier, score
 
 
 # ── Wick Zone Detection ───────────────────────────────────────────────────────
@@ -829,14 +825,17 @@ def detect_wick_zones(candles: list[dict]) -> list[dict]:
 # ── Strategy Signal ───────────────────────────────────────────────────────────
 def check_signal(symbol: str, candles: list[dict]) -> dict | None:
     """
-    Core EMA200 + wick-zone strategy, now gated by the 4-tier trend-score
-    classifier before any zone-fill logic runs:
+    Core EMA200 + wick-zone strategy, now gated by a single trend-score
+    threshold before any zone-fill logic runs. The threshold is set low on
+    purpose — it filters out only genuinely choppy stocks, not neutral ones:
 
       1. Need enough candles for the 200-EMA.
-      2. Compute the smoothed trend score / tier for this symbol.
-         - CHOPPY / WEAK_NEUTRAL -> no signal, skip the rest of the checks.
-         - STRONG_NEUTRAL -> only continue if ALLOW_STRONG_NEUTRAL_TRADES.
-         - TRENDING -> always continue.
+      2. Compute the smoothed trend score for this symbol.
+         - score < MIN_TREND_SCORE_FOR_ENTRY -> CHOPPY, no signal, skip the
+           rest of the checks entirely (symbol is never zone-checked).
+         - score >= MIN_TREND_SCORE_FOR_ENTRY -> TRADEABLE (covers both
+           neutral and trending stocks) -> continue to the unmodified
+           strategy checks below.
       3. From here on the strategy logic is unchanged: EMA bias, wick-zone
          detection, zone-fill entry, 3% max-risk cap, TP at RISK_REWARD.
     """
@@ -2061,20 +2060,28 @@ def position_monitor_loop():
 
 # ── Main Scan Loop ────────────────────────────────────────────────────────────
 def _run_static_watchlist_scan(current_scan_num: int, is_warmup: bool):
-    """Serial per-symbol scan over the fixed config.py WATCHLIST. Each
-    symbol goes through check_signal() (EMA200 + wick-zone + the 4-tier
-    trend-score gate), then the same cooldown/SL-hit-limit/band-capacity/
-    MAX_POSITIONS checks as before."""
-    cap_hit_logged = False
+    """
+    Two-phase scan over the fixed config.py WATCHLIST:
+
+      PHASE 1 — COLLECT: every symbol is evaluated through check_signal()
+      (EMA200 + wick-zone + zone-fill), which itself first requires the
+      symbol's smoothed trend score to be >= MIN_TREND_SCORE_FOR_ENTRY
+      before running any of the existing strategy checks. Only symbols
+      that pass EVERY existing strategy condition unmodified end up as
+      candidates — the trend score never substitutes for or relaxes any
+      of those checks, it only decides who gets checked at all.
+
+      PHASE 2 — RANK & ENTER: candidates are grouped by price band and
+      sorted by trend score (highest first) within each band. The bot
+      then walks each band's ranked list and enters trades up to that
+      band's max_positions slot count (existing open positions in the
+      band count against that cap), still honouring cooldown, the daily
+      per-symbol SL-hit circuit breaker, duplicate-position protection,
+      and the overall MAX_POSITIONS cap — exactly as before.
+    """
+    candidates: list[dict] = []
+
     for symbol in WATCHLIST:
-        if len(state["positions"]) >= MAX_POSITIONS:
-            if not cap_hit_logged:
-                log.info(
-                    f"🛑 Max positions cap reached ({MAX_POSITIONS}/{MAX_POSITIONS}) — "
-                    f"stopping scan for remaining symbols this cycle."
-                )
-                cap_hit_logged = True
-            break
         try:
             scan_started = time.monotonic()
             candles = get_candles(symbol, EMA_LENGTH + 60)
@@ -2085,50 +2092,89 @@ def _run_static_watchlist_scan(current_scan_num: int, is_warmup: bool):
             if signal:
                 log.info(
                     f"🎯 Signal: {signal['direction']} {symbol} | EMA={signal['ema']} | "
-                    f"Trend {signal['trend_tier']} ({signal['trend_score']})"
+                    f"Trend score {signal['trend_score']} (>= {MIN_TREND_SCORE_FOR_ENTRY})"
                 )
-
-                if is_warmup:
-                    log_skip(
-                        symbol,
-                        f"Warm-up mode active (scan {current_scan_num}/{WARMUP_SCANS}) — "
-                        f"signal noted, no trades placed this cycle"
-                    )
-                    continue
-
-                remaining = cooldown_remaining_min(symbol)
-                if remaining > 0:
-                    log_skip(symbol, f"Cooldown {_fmt_remaining(remaining)} remaining")
-                    continue
-
-                if sl_hit_limit_reached(symbol):
-                    log_skip(
-                        symbol,
-                        f"Daily SL-hit limit reached ({sl_hit_count_today(symbol)}/"
-                        f"{MAX_SL_HITS_PER_DAY} today) — blocked for the rest of today, "
-                        f"resumes fresh tomorrow (or on bot restart)"
-                    )
-                    continue
-
-                if not band_capacity_available(symbol, signal["entry"]):
-                    band = band_for_symbol(symbol, signal["entry"])
-                    band_name = band["name"] if band else "n/a"
-                    band_count = band_open_positions_count(band_name)
-                    log_skip(
-                        symbol,
-                        f"Band ₹{band_name} limit reached ({band_count}/{band['max_positions']})"
-                    )
-                    continue
-
-                enter_trade(signal)
+                band = band_for_symbol(symbol, signal["entry"])
+                signal["band_name"] = band["name"] if band else None
+                candidates.append(signal)
                 elapsed = time.monotonic() - scan_started
                 if elapsed > 5:
-                    log.info(f"⏱️ {symbol}: full signal→entry pipeline took {elapsed:.1f}s")
+                    log.info(f"⏱️ {symbol}: candle fetch + signal check took {elapsed:.1f}s")
             else:
                 log.debug(f"No signal: {symbol}")
         except Exception as e:
             log.warning(f"Scan error {symbol}: {e}")
         time.sleep(0.4)
+
+    if not candidates:
+        log.info(
+            f"📭 No qualifying candidates this cycle (trend score < "
+            f"{MIN_TREND_SCORE_FOR_ENTRY}, or existing strategy filters not met)."
+        )
+        return
+
+    if is_warmup:
+        for signal in candidates:
+            log_skip(
+                signal["symbol"],
+                f"Warm-up mode active (scan {current_scan_num}/{WARMUP_SCANS}) — "
+                f"signal noted, no trades placed this cycle"
+            )
+        return
+
+    # Group candidates by band, then rank each band's list by trend score
+    # (highest first) so the strongest-trending setups get first claim on
+    # that band's limited slots.
+    by_band: dict[str | None, list[dict]] = {}
+    for signal in candidates:
+        by_band.setdefault(signal["band_name"], []).append(signal)
+    for band_candidates in by_band.values():
+        band_candidates.sort(key=lambda s: s["trend_score"], reverse=True)
+
+    band_lookup = {b["name"]: b for b in PRICE_BANDS}
+
+    for band_name, band_candidates in by_band.items():
+        band = band_lookup.get(band_name)
+        band_cap = band["max_positions"] if band else None
+        ranked_desc = ", ".join(f"{s['symbol']}({s['trend_score']})" for s in band_candidates)
+        log.info(f"📊 Band ₹{band_name or 'n/a'}: {len(band_candidates)} candidate(s) ranked by trend score — {ranked_desc}")
+
+        for signal in band_candidates:
+            symbol = signal["symbol"]
+
+            if len(state["positions"]) >= MAX_POSITIONS:
+                log.info(
+                    f"🛑 Max positions cap reached ({MAX_POSITIONS}/{MAX_POSITIONS}) — "
+                    f"stopping entries for the rest of this cycle."
+                )
+                return
+
+            remaining = cooldown_remaining_min(symbol)
+            if remaining > 0:
+                log_skip(symbol, f"Cooldown {_fmt_remaining(remaining)} remaining")
+                continue
+
+            if sl_hit_limit_reached(symbol):
+                log_skip(
+                    symbol,
+                    f"Daily SL-hit limit reached ({sl_hit_count_today(symbol)}/"
+                    f"{MAX_SL_HITS_PER_DAY} today) — blocked for the rest of today, "
+                    f"resumes fresh tomorrow (or on bot restart)"
+                )
+                continue
+
+            if not band_capacity_available(symbol, signal["entry"]):
+                band_count = band_open_positions_count(band_name) if band_name else 0
+                log_skip(
+                    symbol,
+                    f"Band ₹{band_name or 'n/a'} limit reached ({band_count}/{band_cap})"
+                )
+                continue
+
+            # enter_trade() itself still enforces duplicate-position
+            # protection and re-checks MAX_POSITIONS/band caps atomically
+            # under the state lock right before recording a position.
+            enter_trade(signal)
 
 
 def scan_loop():
@@ -2140,10 +2186,10 @@ def scan_loop():
     log.info(f"   Cooldown after exit: {COOLDOWN_MINUTES} min | Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} | Startup warm-up (analysis only): {WARMUP_SCANS} scan(s)")
     log.info(f"   Trailing SL: initial {INITIAL_SL_R}R → " + " → ".join(f"{s['trigger_r']}R⇒SL{s['sl_r']}R" for s in TRAIL_STAGES))
     log.info(
-        f"   Trend-score gate: TRENDING >= {TRENDING_MIN_SCORE} | STRONG_NEUTRAL "
-        f"{STRONG_NEUTRAL_MIN_SCORE}-{TRENDING_MIN_SCORE - 0.01:.0f} (allow_strong_neutral="
-        f"{ALLOW_STRONG_NEUTRAL_TRADES}) | WEAK_NEUTRAL {CHOPPY_MAX_SCORE}-{STRONG_NEUTRAL_MIN_SCORE - 0.01:.0f} "
-        f"(always skip) | CHOPPY < {CHOPPY_MAX_SCORE} (always skip) | smoothing alpha {SCORE_SMOOTHING_ALPHA}"
+        f"   Trend-score gate: avoid CHOPPY only — tradeable (neutral + trending) >= "
+        f"{MIN_TREND_SCORE_FOR_ENTRY} (smoothing alpha {SCORE_SMOOTHING_ALPHA}) — tradeable "
+        f"candidates that pass the full unmodified strategy are ranked by score within each "
+        f"band and entered highest-first, up to that band's max_positions"
     )
     log.info(f"   Universe mode: 📌 static WATCHLIST ({len(WATCHLIST)} symbols) — dynamic NSE-wide scanner removed")
     for band in PRICE_BANDS:
@@ -2236,10 +2282,7 @@ def get_dashboard_state() -> dict:
             "watchlist_size":       len(WATCHLIST),
             "trend_scores":         dict(state["trend_scores"]),
             "trend_tiers":          dict(state["trend_tiers"]),
-            "trending_min_score":   TRENDING_MIN_SCORE,
-            "strong_neutral_min_score": STRONG_NEUTRAL_MIN_SCORE,
-            "choppy_max_score":     CHOPPY_MAX_SCORE,
-            "allow_strong_neutral_trades": ALLOW_STRONG_NEUTRAL_TRADES,
+            "min_trend_score_for_entry": MIN_TREND_SCORE_FOR_ENTRY,
         }
 
 
@@ -2255,10 +2298,7 @@ if __name__ == "__main__":
     log.info(f"EMA Length     : {EMA_LENGTH}")
     log.info(f"Min Wick %     : {MIN_WICK_PCT}")
     log.info(f"Risk:Reward    : 1:{RISK_REWARD}")
-    log.info(
-        f"Trend gate     : TRENDING>={TRENDING_MIN_SCORE} | STRONG_NEUTRAL>={STRONG_NEUTRAL_MIN_SCORE} "
-        f"(allow={ALLOW_STRONG_NEUTRAL_TRADES}) | CHOPPY<{CHOPPY_MAX_SCORE}"
-    )
+    log.info(f"Trend gate     : avoid CHOPPY only, tradeable (neutral+trending) >= {MIN_TREND_SCORE_FOR_ENTRY}, ranked by score within each band")
     log.info(f"Universe mode  : 📌 static WATCHLIST ({len(WATCHLIST)} symbols) — dynamic NSE scanner removed")
     log.info(f"Max Positions  : {MAX_POSITIONS} (" + " + ".join(f"{b['max_positions']} in ₹{b['name']}" for b in PRICE_BANDS) + ")")
     log.info(f"Trading start  : {TRADING_START_TIME} IST (market-open delay)")
@@ -2288,8 +2328,7 @@ if __name__ == "__main__":
             f"🚀 WickFill Auto-Trader started\n"
             f"Mode: {mode_tag}\n"
             f"Universe: {len(WATCHLIST)} symbols (static watchlist) | Max positions: {MAX_POSITIONS}\n"
-            f"Trend gate: TRENDING>={TRENDING_MIN_SCORE} | STRONG_NEUTRAL>={STRONG_NEUTRAL_MIN_SCORE} "
-            f"(allow={ALLOW_STRONG_NEUTRAL_TRADES}) | CHOPPY<{CHOPPY_MAX_SCORE}\n"
+            f"Trend gate: avoid CHOPPY only, tradeable >= {MIN_TREND_SCORE_FOR_ENTRY}, ranked by score per band\n"
             f"Window: {TRADING_START_TIME}–{NO_NEW_ENTRIES_AFTER} IST | Square-off: {SQUARE_OFF_TIME} IST\n"
             f"Daily SL-hit limit per symbol: {MAX_SL_HITS_PER_DAY} (fresh count today)"
         )
